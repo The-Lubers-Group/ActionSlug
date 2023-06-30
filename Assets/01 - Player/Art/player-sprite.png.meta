@@ -1,0 +1,786 @@
+fileFormatVersion: 2
+guid: 3b41832f20fa7bd4c85e4b14ed84a4a4
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: muzzle-flash_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 760
+        width: 157
+        height: 177
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d6d7cd034105d34c8139d42dbae8851
+      internalID: 1896494581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-head
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 656
+        width: 278
+        height: 279
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59b782e673c59a44dbd0b1ce8c8f20fd
+      internalID: 192255359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_knife
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 649
+        width: 74
+        height: 261
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb7b0acb81f47f44abd3bb13e30a71b5
+      internalID: 113854546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muzzle-flash_2
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 613
+        width: 167
+        height: 117
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92021260d622c2344813240b91439aa7
+      internalID: 1567475573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-L_upper_arm
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 546
+        width: 57
+        height: 68
+      alignment: 9
+      pivot: {x: 0.63692003, y: 0.9877804}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f7e3d6b23edc2541a2d598df1c8dfbc
+      internalID: -941488160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-R_upper_arm
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 546
+        width: 60
+        height: 68
+      alignment: 9
+      pivot: {x: 0.30488586, y: 0.97343445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e4c3affabf50f64c8f18140ef1037e3
+      internalID: 486748652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-body
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 505
+        width: 150
+        height: 108
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4c0ce782d3e9b4ea7630db855ee8dc
+      internalID: 818014668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-eye_1
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 550
+        width: 124
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae2b4b81a4ad62b4e8a37718b4d9d68e
+      internalID: -1948978171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muzzle-flash_3
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 483
+        width: 172
+        height: 72
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26f0179e98394c64885ecb4da9ed9b67
+      internalID: 1013230921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-L_lower_arm
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 465
+        width: 73
+        height: 57
+      alignment: 9
+      pivot: {x: 0.066818446, y: 0.75672674}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bac13241a742ec49acf9dc99de0dabf
+      internalID: -1631171972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-R_lower_arm
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 466
+        width: 69
+        height: 54
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e73d2a08c0eecb740a9091b9a9fb0e58
+      internalID: 222783040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-L_lower_arm_2
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 467
+        width: 69
+        height: 54
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51051072d4f3e964c938b487cfc5714e
+      internalID: -1920617716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-eye_2
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 462
+        width: 118
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d25fc9802194f4caf685c948e069ee
+      internalID: -72299929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-abdomen
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 430
+        width: 133
+        height: 41
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fae184d0749814478d8f7ade9bd541e
+      internalID: 1914925248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muzzle-flash_4
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 349
+        width: 233
+        height: 92
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e295133ee5832c4ab9de11d665d2bce
+      internalID: 838753155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-L_hand
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 380
+        width: 88
+        height: 62
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5d802fbc0b8c904b8019ddcdc8d67d2
+      internalID: -1329161163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-knife_hand
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 390
+        width: 64
+        height: 43
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1071dffef08e6454690754b248e14c91
+      internalID: -537369320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-catch_hand
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 381
+        width: 72
+        height: 64
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4920ce6d51bd65341a760d72fdaa0058
+      internalID: -1396679277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-eye_3
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 363
+        width: 116
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f829761ee2d0024e9e5b23ef019820c
+      internalID: -821761902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muzzle-flash_5
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 183
+        width: 168
+        height: 127
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f44c11d713b07a4fa4890c6234f5569
+      internalID: 1422241809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-L_leg
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 258
+        width: 90
+        height: 94
+      alignment: 9
+      pivot: {x: 0.68246967, y: 0.9912645}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f9742398b8bf948811814be42acfc8
+      internalID: 193860393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-R_leg
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 260
+        width: 92
+        height: 96
+      alignment: 9
+      pivot: {x: 0.30364725, y: 1.0085531}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeda410577a291a40b340ff090c3dd64
+      internalID: -904852560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-Extra_leg
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 254
+        width: 93
+        height: 99
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c15e0b2ffe6e05408f7f3f9551ed391
+      internalID: 650316941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-R_hand
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 295
+        width: 73
+        height: 60
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36c7a4aff12224d479b3734e9ff0cc97
+      internalID: -1305252326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-face_1
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 295
+        width: 29
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0449546dc5383d4e81ba48392dd47ef
+      internalID: 1894568960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_pistol
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 52
+        width: 245
+        height: 176
+      alignment: 9
+      pivot: {x: 0.31007442, y: 0.5426428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30e57acc6eb225e4aadc9385c2853e04
+      internalID: 1160237975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-face_2
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 222
+        width: 45
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1676ececa74f6c940886e84d67f41ca0
+      internalID: 602730969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muzzle-flash_6
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 87
+        width: 174
+        height: 80
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbb9fd2b4cd83074491f811e909fdbc4
+      internalID: -1766343419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_rifle
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 18
+        width: 391
+        height: 171
+      alignment: 9
+      pivot: {x: 0.330937, y: 0.51693}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd733e470651f8c4a923dfa4acd3cc5e
+      internalID: 502532579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      muzzle-flash_1: 1896494581
+      muzzle-flash_2: 1567475573
+      muzzle-flash_3: 1013230921
+      muzzle-flash_4: 838753155
+      muzzle-flash_5: 1422241809
+      muzzle-flash_6: -1766343419
+      player-Extra_leg: 650316941
+      player-L_hand: -1329161163
+      player-L_leg: 193860393
+      player-L_lower_arm: -1631171972
+      player-L_lower_arm_2: -1920617716
+      player-L_upper_arm: -941488160
+      player-R_hand: -1305252326
+      player-R_leg: -904852560
+      player-R_lower_arm: 222783040
+      player-R_upper_arm: 486748652
+      player-abdomen: 1914925248
+      player-body: 818014668
+      player-catch_hand: -1396679277
+      player-eye_1: -1948978171
+      player-eye_2: -72299929
+      player-eye_3: -821761902
+      player-face_1: 1894568960
+      player-face_2: 602730969
+      player-head: 192255359
+      player-knife_hand: -537369320
+      player-sprite_15: -547557258
+      player-sprite_17: -1869443468
+      player-sprite_18: -894506638
+      player-sprite_24: -1506749843
+      player-sprite_25: 425285854
+      player-sprite_26: 2146455866
+      player-sprite_7: 173626045
+      player-sprite_9: 1046540478
+      weapon_knife: 113854546
+      weapon_pistol: 1160237975
+      weapon_rifle: 502532579
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
