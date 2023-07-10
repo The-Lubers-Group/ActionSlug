@@ -5,12 +5,23 @@ using UnityEngine;
 public class GameInput : MonoBehaviour
 {
     PlayerControls playerControls;
+    private bool isShoot;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         playerControls.PlayerMap.Enable();
 
+    }
+
+    private void Update()
+    {
+        if (playerControls.PlayerMap.Shoot.IsPressed())
+        {
+            Debug.Log(isShoot);
+            isShoot = true;
+        }
+        else isShoot = false;
     }
 
     // Character movement
@@ -21,5 +32,10 @@ public class GameInput : MonoBehaviour
 
         inputVector = inputVector.normalized;
         return inputVector;
+    }
+
+    public bool IsShoot()
+    {
+        return isShoot;
     }
 }

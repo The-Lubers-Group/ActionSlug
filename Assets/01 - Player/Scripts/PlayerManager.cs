@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameInput gameInput;
     
     private bool isWalking;
+    private bool isShoot;
 
     // Update is called once per frame
     void Update()
@@ -25,10 +26,18 @@ public class PlayerManager : MonoBehaviour
         
         if(inputVector.x == 1)
             transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        isShoot = gameInput.IsShoot();
+        
     }
 
     public bool IsWalking()
     {
         return isWalking;
+    }
+
+    public bool IsShoot()
+    {
+        return isShoot;
     }
 }
