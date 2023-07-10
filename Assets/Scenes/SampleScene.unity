@@ -1199,7 +1199,7 @@ GameObject:
   - component: {fileID: 1244597244}
   - component: {fileID: 1244597245}
   m_Layer: 0
-  m_Name: Main Player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1331,7 +1331,7 @@ GameObject:
   - component: {fileID: 1283818476}
   - component: {fileID: 1283818477}
   m_Layer: 0
-  m_Name: Bones
+  m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
