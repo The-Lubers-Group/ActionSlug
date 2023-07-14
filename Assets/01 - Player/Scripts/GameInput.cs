@@ -16,11 +16,13 @@ public class GameInput : MonoBehaviour
 
     private void Update()
     {
+
         if (playerControls.PlayerMap.Shoot.IsPressed())
+
         {
-            Debug.Log(isShoot);
             isShoot = true;
         }
+
         else isShoot = false;
     }
 
@@ -28,8 +30,6 @@ public class GameInput : MonoBehaviour
     public Vector2 getMovementVectorNormalized()
     {
         Vector2 inputVector = playerControls.PlayerMap.Move.ReadValue<Vector2>();
-
-
         inputVector = inputVector.normalized;
         return inputVector;
     }
