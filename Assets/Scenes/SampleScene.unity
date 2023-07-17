@@ -636,8 +636,8 @@ RectTransform:
   m_GameObject: {fileID: 683823793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 175013514}
   m_RootOrder: -1
@@ -781,8 +781,8 @@ RectTransform:
   m_GameObject: {fileID: 754031760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 175013514}
   m_RootOrder: -1
@@ -21351,6 +21351,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7622632033761314889, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
   m_PrefabInstance: {fileID: 2869267848963093803}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1637165414 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2232477134866654902, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+  m_PrefabInstance: {fileID: 2869267848963093803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1675469468 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1091837656291901265, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+  m_PrefabInstance: {fileID: 2869267848963093803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1786020719
 GameObject:
   m_ObjectHideFlags: 0
@@ -21382,6 +21392,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1860021071 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3854182117243306501, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+  m_PrefabInstance: {fileID: 2869267848963093803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2869267848963093803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21394,6 +21409,22 @@ PrefabInstance:
       propertyPath: gameInput
       value: 
       objectReference: {fileID: 527554439}
+    - target: {fileID: 94479307561961195, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: groundCheckPoint
+      value: 
+      objectReference: {fileID: 1860021071}
+    - target: {fileID: 94479307561961195, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: backWallCheckPoint
+      value: 
+      objectReference: {fileID: 1637165414}
+    - target: {fileID: 94479307561961195, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: cameraFollowObject
+      value: 
+      objectReference: {fileID: 677330060}
+    - target: {fileID: 94479307561961195, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: frontWallCheckPoint
+      value: 
+      objectReference: {fileID: 1675469468}
     - target: {fileID: 94479307561961195, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
       propertyPath: cameraFollowObjectGO
       value: 
