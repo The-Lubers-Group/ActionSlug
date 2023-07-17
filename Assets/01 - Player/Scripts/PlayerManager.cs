@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+
+    public PlayerData Data;
+
+    // COMPONENTS
+    public Rigidbody2D rb { get; private set; }
+    public PlayerAnimator AnimHandler { get; private set; }
+
+
+
+
+
+
+
+
+
+
+
+
+
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private float maxFallSpeed = 17f;
@@ -23,9 +42,7 @@ public class PlayerManager : MonoBehaviour
 
     //public PlayerRunData Data;
 
-    #region COMPONENTS
-    public Rigidbody2D rb { get; private set; }
-    #endregion
+   
 
     #region STATE PARAMETERS
     //Variables control the varioues action the player can perform at any time.
