@@ -142,12 +142,14 @@ public class PlayerManager : MonoBehaviour
         
         if(!IsDashing)
         {
-            //Debug.Log("+++ LastPressedJumpTime: " + LastPressedJumpTime);
-
+            //Debug.Log("+++ IsJumping: " + IsJumping + " +++ LastPressedJumpTime: " + LastPressedJumpTime);
             //Jump
-            if (CanJump() && LastPressedJumpTime > 0)
+
+            Debug.Log("+++ CanJump(): " + CanJump() + " - LastPressedJumpTime: " + LastPressedJumpTime + " é < 0?");
+
+            if (CanJump() && LastPressedJumpTime < 0)
             {
-                Debug.Log("+++ IsJumping: " + IsJumping + " +++ LastPressedJumpTime: " + LastPressedJumpTime);
+                //Debug.Log("+++ IsJumping: " + IsJumping + " +++ LastPressedJumpTime: " + LastPressedJumpTime);
                 
                 IsJumping = true;
                 IsWallJumping = false;
@@ -196,6 +198,40 @@ public class PlayerManager : MonoBehaviour
         else
             IsSliding = false;
 
+        if (!isDashAttacking)
+        {
+            if (IsSliding)
+            {
+                SetGravityScale(0);
+            }
+            else if (RB.velocity.y < 0 && moveInput.y < 0)
+            {
+                SetGravityScale(Data.gravityScale * Data.fastFallGravityMult);
+                RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFastFallSpeed));
+            }
+            else if (isJumpCut)
+            {
+                SetGravityScale(Data.gravityScale * Data.jumpCutGravityMult);
+                RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFallSpeed));
+            }
+            else if ((IsJumping || IsWallJumping || isJumpFalling) && Mathf.Abs(RB.velocity.y) < Data.jumpHangTimeThreshold)
+            {
+                SetGravityScale(Data.gravityScale * Data.jumpHangGravityMult);
+            }
+            else if (RB.velocity.y < 0)
+            {
+                SetGravityScale(Data.gravityScale * Data.fallGravityMult);
+                RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFallSpeed));
+            }
+            else
+            {
+                SetGravityScale(Data.gravityScale);
+            }
+        }
+        else
+        {
+            SetGravityScale(0);
+        }
 
     }
 
