@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 1150753133}
   m_Layer: 0
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21422,6 +21422,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 677330060}
     - target: {fileID: 94479307561961195, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94479307561961195, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
       propertyPath: frontWallCheckPoint
       value: 
       objectReference: {fileID: 1675469468}
@@ -21429,9 +21433,29 @@ PrefabInstance:
       propertyPath: cameraFollowObjectGO
       value: 
       objectReference: {fileID: 677330058}
+    - target: {fileID: 1147184979658500789, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4120558874226329851, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482191808458457929, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: m_Size.x
+      value: 2.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482191808458457929, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: m_Size.y
+      value: 4.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482191808458457929, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482191808458457929, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.53
       objectReference: {fileID: 0}
     - target: {fileID: 7622632033761314889, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
       propertyPath: m_RootOrder

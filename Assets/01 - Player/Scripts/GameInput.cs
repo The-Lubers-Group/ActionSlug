@@ -5,7 +5,9 @@ using UnityEngine;
 public class GameInput : MonoBehaviour
 {
     PlayerControls playerControls;
+    
     private bool isShoot;
+    private bool isJumping;
 
     private void Awake()
     {
@@ -16,14 +18,18 @@ public class GameInput : MonoBehaviour
 
     private void Update()
     {
-
-        if (playerControls.PlayerMap.Shoot.IsPressed())
-
+        // Jump
+        if (playerControls.PlayerMap.Jump.IsPressed())
         {
-            isShoot = true;
+            //Debug.Log("---------> PULO <---------");
+            isJumping = true;
         }
+        else isJumping = false;
 
+        // Shoot
+        if (playerControls.PlayerMap.Shoot.IsPressed()) isShoot = true;
         else isShoot = false;
+        
     }
 
     // Character movement
@@ -37,5 +43,10 @@ public class GameInput : MonoBehaviour
     public bool IsShoot()
     {
         return isShoot;
+    }
+
+    public bool IsJumping()
+    {
+        return isJumping;
     }
 }
