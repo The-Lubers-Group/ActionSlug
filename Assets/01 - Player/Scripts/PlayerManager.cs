@@ -145,7 +145,6 @@ public class PlayerManager : MonoBehaviour
             //Debug.Log("+++ IsJumping: " + IsJumping + " +++ LastPressedJumpTime: " + LastPressedJumpTime);
             //Jump
 
-            Debug.Log("+++ CanJump(): " + CanJump() + " - LastPressedJumpTime: " + LastPressedJumpTime + " é < 0?");
 
             if (CanJump() && LastPressedJumpTime < 0)
             {
