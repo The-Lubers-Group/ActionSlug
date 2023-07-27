@@ -24,7 +24,7 @@ public class FlyingEnemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= maxHealth;
-
+        Debug.Log(currentHealth);
         if(currentHealth <= 0 )
         {
             Die();
@@ -83,5 +83,6 @@ public class FlyingEnemy : MonoBehaviour
     void Die()
     {
         Debug.Log("Morreu");
+        GameObject.Destroy(gameObject);
     }
 }

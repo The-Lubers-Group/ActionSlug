@@ -45437,6 +45437,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 677330060}
     - target: {fileID: 94479307561961195, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
+      propertyPath: enemyLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 94479307561961195, guid: 396fac2612cb6884fa7c6028a2e4d340, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}

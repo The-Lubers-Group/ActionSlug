@@ -47,6 +47,13 @@ public class PlayerManager : MonoBehaviour
     //private Vector2 moveInput;
 
 
+    public LayerMask enemyLayers;
+    public Transform attackPoint;
+    [SerializeField] float attackRange = 0.5f;
+
+    [SerializeField] private int attackDamage = 40;
+
+
     public float LastPressedJumpTime { get; private set; }
     public float LastPressedDashTime { get; private set; }
 
@@ -117,7 +124,7 @@ public class PlayerManager : MonoBehaviour
         isShoot = gameInput.IsShoot();
         if(isShoot)
         {
-            Debug.Log(isShoot);
+            MeleeAttack();
 
         }
 
@@ -511,4 +518,27 @@ public class PlayerManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private void MeleeAttack()
+    {
+        
+        Collider2D[] hitEnemies =  Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach(Collider2D hit in hitEnemies)
+        {
+            Debug.Log("foi dano ");
+            //Debug.Log("foi dano " + hit.name);
+
+            hit.GetComponent<FlyingEnemy>().TakeDamage(attackDamage);
+
+
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
 }
