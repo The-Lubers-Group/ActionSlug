@@ -6,7 +6,7 @@ public class FlyingEnemy : BaseEnemies
 {
     //private int maxHealth = 100;
     //int currentHealth;
-    [SerializeField] private float speed;
+    //[SerializeField] private float speed;
     //[SerializeField] private GameObject player;
 
     

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPatrol : MonoBehaviour
+public class EnemyPatrol : BaseEnemies
 {
     
     private Rigidbody2D rb;
@@ -11,11 +11,14 @@ public class EnemyPatrol : MonoBehaviour
 
     [SerializeField] GameObject pointA;
     [SerializeField] GameObject pointB;
-    [SerializeField] private float speed;
+    //[SerializeField] private float speed;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
+        player = GameObject.FindGameObjectWithTag("Player");
+        
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         currentPoint = pointB.transform;

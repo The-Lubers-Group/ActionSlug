@@ -18,6 +18,7 @@ public class BaseEnemies : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log(currentHealth);
         currentHealth -= maxHealth;
         Debug.Log(currentHealth);
         if (currentHealth <= 0)

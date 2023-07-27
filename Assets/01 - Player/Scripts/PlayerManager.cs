@@ -528,7 +528,7 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("foi dano ");
             //Debug.Log("foi dano " + hit.name);
 
-            hit.GetComponent<FlyingEnemy>().TakeDamage(attackDamage);
+            hit.GetComponent<BaseEnemies>().TakeDamage(attackDamage);
 
 
         }
