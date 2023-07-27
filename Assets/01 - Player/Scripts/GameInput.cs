@@ -19,7 +19,7 @@ public class GameInput : MonoBehaviour
     private void Update()
     {
         // Jump
-        if (playerControls.PlayerMap.Jump.triggered)
+        if (playerControls.PlayerMap.Jump.WasReleasedThisFrame())
         {
             //Debug.Log("---------> PULO <---------");
             isJumping = true;

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FlyingEnemy : MonoBehaviour
 {
-
+    private int maxHealth = 100;
+    int currentHealth;
     [SerializeField] private float speed;
     [SerializeField] private GameObject player;
 
@@ -16,7 +17,18 @@ public class FlyingEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= maxHealth;
+
+        if(currentHealth <= 0 )
+        {
+            Die();
+        }
     }
 
     // Update is called once per frame
@@ -66,5 +78,10 @@ public class FlyingEnemy : MonoBehaviour
             transform.localScale = localScale;
         }
         
+    }
+
+    void Die()
+    {
+        Debug.Log("Morreu");
     }
 }

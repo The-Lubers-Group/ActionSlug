@@ -115,6 +115,11 @@ public class PlayerManager : MonoBehaviour
 
         // Shoot
         isShoot = gameInput.IsShoot();
+        if(isShoot)
+        {
+            Debug.Log(isShoot);
+
+        }
 
         // Jump
         IsJumping = gameInput.IsJumping();
@@ -444,12 +449,10 @@ public class PlayerManager : MonoBehaviour
     {
         return isWalking;
     }
-
     public bool IsShoot()
     {
         return isShoot;
     }
-
     public void CheckDirectionToFace(bool isMovingRight)
     {
         if (isMovingRight != IsFacingRight)
