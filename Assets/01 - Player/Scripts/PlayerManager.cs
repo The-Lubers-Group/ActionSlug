@@ -139,17 +139,15 @@ public class PlayerManager : MonoBehaviour
             isJumpFalling = false;
         }
 
-        
+        if(IsJumping)
+        {
+            Jump();
+        }
+
         if(!IsDashing)
         {
-            //Debug.Log("+++ IsJumping: " + IsJumping + " +++ LastPressedJumpTime: " + LastPressedJumpTime);
-            //Jump
-
-
             if (CanJump() && LastPressedJumpTime < 0)
             {
-                //Debug.Log("+++ IsJumping: " + IsJumping + " +++ LastPressedJumpTime: " + LastPressedJumpTime);
-                
                 IsJumping = true;
                 IsWallJumping = false;
                 isJumpCut = false;
@@ -460,8 +458,6 @@ public class PlayerManager : MonoBehaviour
 
     private bool CanJump()
     {
-        //Debug.Log("CanJump() +++ IsJumping --> " + IsJumping);
-        //Debug.Log("+++ LastOnGroundTime: " + LastOnGroundTime + " +++ && IsJumping: " + IsJumping);
         return LastOnGroundTime > 0 && !IsJumping;
     }
 
