@@ -113,8 +113,7 @@ public class PlayerManager : MonoBehaviour
         if (moveInput.x != 0)
             CheckDirectionToFace(moveInput.x > 0);
 
-        //Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-        //transform.position += moveDir * Data.maxFallSpeed * Time.deltaTime;
+
         Vector3 moveDir = new Vector3(moveInput.x, 0f, moveInput.y);
 
         // Walking
@@ -122,20 +121,60 @@ public class PlayerManager : MonoBehaviour
 
         // Shoot
         isShoot = gameInput.IsShoot();
-        if(isShoot)
+        if (isShoot)
         {
             MeleeAttack();
 
         }
 
         // Jump
-        IsJumping = gameInput.IsJumping();
+        //IsJumping = gameInput.IsJumpingPress();
+
+        //Jumps
+        if (gameInput.IsJumpingPress())
+        {
+            OnJumpInput();
+        }
+
+        if(gameInput.IsJumpingReleases())
+        {
+            OnJumpUpInput();
+        }
+
+        //Dash
+        if (gameInput.IsDash())
+        {
+            OnDashInput();
+        }
+
+        if (!IsDashing && !IsJumping)
+        {
+            if (Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer))
+            {
+                if (LastOnGroundTime < -0.1f)
+                {
+                    AnimHandler.justLanded = true;
+                }
+
+                LastOnGroundTime = Data.coyoteTime;
+            }
+        }
+
+        if (((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && IsFacingRight)
+                    || (Physics2D.OverlapBox(backWallCheckPoint.position,wallCheckSize, 0, groundLayer) && !IsFacingRight)) && !IsWallJumping)
+            LastOnWallRightTime = Data.coyoteTime;
+
+        if (((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0,groundLayer) && !IsFacingRight)
+                || (Physics2D.OverlapBox(backWallCheckPoint.position, wallCheckSize, 0, groundLayer) && IsFacingRight)) && !IsWallJumping)
+            LastOnWallLeftTime = Data.coyoteTime;
+
+        LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+
 
         // JUMP CHECKS
         if (IsJumping && RB.velocity.y < 0)
         {
             IsJumping = false;
-
             isJumpFalling = true;
         }
 
@@ -147,24 +186,18 @@ public class PlayerManager : MonoBehaviour
         if (LastOnGroundTime > 0 && !IsJumping && !IsWallJumping)
         {
             isJumpCut = false;
-
             isJumpFalling = false;
         }
 
-        if(IsJumping)
+        if (!IsDashing)
         {
-            Jump();
-        }
-
-        if(!IsDashing)
-        {
-            if (CanJump() && LastPressedJumpTime < 0)
+            //Jump
+            if (CanJump() && LastPressedJumpTime > 0)
             {
                 IsJumping = true;
                 IsWallJumping = false;
                 isJumpCut = false;
                 isJumpFalling = false;
-
                 Jump();
 
                 AnimHandler.startedJumping = true;
@@ -184,31 +217,16 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        if (CanDash() && LastPressedDashTime > 0)
-        {
-            Sleep(Data.dashSleepTime);
-
-            if (moveInput != Vector2.zero)
-                lastDashDir = moveInput;
-            else
-                lastDashDir = IsFacingRight ? Vector2.right : Vector2.left;
-
-            IsDashing = true;
-            IsJumping = false;
-            IsWallJumping = false;
-            isJumpCut = false;
-
-            StartCoroutine(nameof(StartDash), lastDashDir);
-        }
-
         // SLIDE CHECKS
         if (CanSlide() && ((LastOnWallLeftTime > 0 && moveInput.x < 0) || (LastOnWallRightTime > 0 && moveInput.x > 0)))
             IsSliding = true;
         else
             IsSliding = false;
 
+        // GRAVITY
         if (!isDashAttacking)
         {
+            //Higher gravity if we've released the jump input or are falling
             if (IsSliding)
             {
                 SetGravityScale(0);
@@ -241,6 +259,7 @@ public class PlayerManager : MonoBehaviour
         {
             SetGravityScale(0);
         }
+
 
     }
 
@@ -364,7 +383,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     private void Jump()
-    {
+    {d
         LastPressedJumpTime = 0;
         LastOnGroundTime = 0;
 
@@ -541,4 +560,22 @@ public class PlayerManager : MonoBehaviour
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
+    //INPUT CALLBACKS
+    public void OnJumpInput()
+    {
+        LastPressedJumpTime = Data.jumpInputBufferTime;
+    }
+
+    public void OnJumpUpInput()
+    {
+        if (CanJumpCut() || CanWallJumpCut())
+            isJumpCut = true;
+    }
+
+    public void OnDashInput()
+    {
+        LastPressedDashTime = Data.dashInputBufferTime;
+    }
+
 }

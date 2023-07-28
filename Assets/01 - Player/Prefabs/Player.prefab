@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1091837656291901265}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall Front Check
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2990189705414759711}
   - component: {fileID: 407264153429757444}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4471918157718310381}
   - component: {fileID: 2557036923292654966}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-face_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2232477134866654902}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall Back Check
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -240,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5188391638284994907}
   - component: {fileID: 613786492329985331}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-eye_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,8 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 75380888254737329}
   - component: {fileID: 6116322545533439347}
-  - component: {fileID: 5883509527444040506}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,19 +373,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5883509527444040506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637874986181601226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afe7d3ba0c40208499aa5ef7e6627c01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerManager: {fileID: 94479307561961195}
 --- !u!1 &2445325532469701202
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7889363909107865334}
   - component: {fileID: 5614174312810273234}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8948506257221887976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3854182117243306501}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
@@ -550,7 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8138095969840681207}
   - component: {fileID: 7091667098727987988}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: weapon_knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3857268773482809360}
   - component: {fileID: 6894970630635902783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-L_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -719,7 +705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4170814063131759607}
   - component: {fileID: 7095254307808415982}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-L_upper_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,7 +790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7124363850118470224}
   - component: {fileID: 8837290183802979899}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-R_lower_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1070080615570656386}
   - component: {fileID: 1485217228240893039}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: muzzle-flash_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -973,7 +959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8777940112419918532}
   - component: {fileID: 2720618555554756791}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: weapon_rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,7 +1044,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8430123086209020138}
   - component: {fileID: 1030926835860304863}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-face_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1142,7 +1128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2232321481839728158}
   - component: {fileID: 2456101915982037425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-R_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,10 +1211,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7622632033761314889}
-  - component: {fileID: 94479307561961195}
-  - component: {fileID: 1147184979658500789}
   - component: {fileID: 7482191808458457929}
-  m_Layer: 0
+  - component: {fileID: 1147184979658500789}
+  - component: {fileID: 94479307561961195}
+  - component: {fileID: 5380720951084230054}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,71 +1231,14 @@ Transform:
   m_GameObject: {fileID: 4120558874226329851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 75380888254737329}
   - {fileID: 8948506257221887976}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &94479307561961195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4120558874226329851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed21c103e84c92249a7eeec40f1054c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 955a7195b2de176458e7a8069bf9790f, type: 2}
-  attackPoint: {fileID: 2790451719896272159}
-  attackRange: 0.75
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  groundCheckPoint: {fileID: 0}
-  groundCheckSize: {x: 0.49, y: 0.03}
-  frontWallCheckPoint: {fileID: 0}
-  backWallCheckPoint: {fileID: 0}
-  wallCheckSize: {x: 0.5, y: 1}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  cameraFollowObject: {fileID: 0}
-  cameraFollowObjectGO: {fileID: 0}
-  gameInput: {fileID: 0}
-  maxFallSpeed: 31
---- !u!50 &1147184979658500789
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4120558874226329851}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!70 &7482191808458457929
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1344,6 +1274,83 @@ CapsuleCollider2D:
   m_Offset: {x: 0.06, y: 1.34}
   m_Size: {x: 2, y: 4.8}
   m_Direction: 0
+--- !u!50 &1147184979658500789
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120558874226329851}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &94479307561961195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120558874226329851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed21c103e84c92249a7eeec40f1054c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: 955a7195b2de176458e7a8069bf9790f, type: 2}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  attackPoint: {fileID: 2790451719896272159}
+  attackRange: 0.75
+  attackDamage: 40
+  groundCheckPoint: {fileID: 3854182117243306501}
+  groundCheckSize: {x: 0.49, y: 0.03}
+  frontWallCheckPoint: {fileID: 1091837656291901265}
+  backWallCheckPoint: {fileID: 2232477134866654902}
+  wallCheckSize: {x: 0.5, y: 1}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  cameraFollowObject: {fileID: 0}
+  cameraFollowObjectGO: {fileID: 0}
+  gameInput: {fileID: 0}
+  maxFallSpeed: 31
+--- !u!114 &5380720951084230054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120558874226329851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe7d3ba0c40208499aa5ef7e6627c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mov: {fileID: 94479307561961195}
+  anim: {fileID: 6116322545533439347}
+  maxTilt: 10
+  tiltSpeed: 0
+  jumpFX: {fileID: 3234584074981126610, guid: 996a689f9431c2b45b1dd6c2721f2be2, type: 3}
+  landFX: {fileID: 3234584074981126610, guid: b47d049b49eb2064a9f52b58cbf086d3, type: 3}
+  currentVelY: 0
 --- !u!1 &4130734852885462751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6743629094063939112}
   - component: {fileID: 302696319402357634}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-R_upper_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1439,7 +1446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4574063732054686990}
   - component: {fileID: 2765206135213901339}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-L_hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,7 +1531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5986654611541341345}
   - component: {fileID: 4868216783700294920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-abdomen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1609,7 +1616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8590604788013765650}
   - component: {fileID: 9116158843414979944}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-eye_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1692,7 +1699,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2790451719896272159}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -1724,7 +1731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5254874087009436394}
   - component: {fileID: 3163097159931593931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-L_lower_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1810,7 +1817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388624032142728138}
   - component: {fileID: 5605884988523724460}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player-R_hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

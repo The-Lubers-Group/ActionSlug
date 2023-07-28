@@ -7,7 +7,9 @@ public class GameInput : MonoBehaviour
     PlayerControls playerControls;
     
     private bool isShoot;
-    private bool isJumping;
+    private bool isJumpingPress;
+    private bool isJumpingReleases;
+    private bool isDash;
 
     private void Awake()
     {
@@ -18,13 +20,26 @@ public class GameInput : MonoBehaviour
 
     private void Update()
     {
-        // Jump
+        //Jump PRESS
+        if (playerControls.PlayerMap.Jump.WasPerformedThisFrame())
+            isJumpingPress = true;
+        else isJumpingPress = false;
+
+        //Jump Releases 
         if (playerControls.PlayerMap.Jump.WasReleasedThisFrame())
-        {
-            //Debug.Log("---------> PULO <---------");
-            isJumping = true;
-        }
-        else isJumping = false;
+            isJumpingReleases = true;
+        else isJumpingReleases = false;
+
+
+        // Dash 
+        if (playerControls.PlayerMap.Dash.IsPressed())
+            isDash = true;
+        else isDash = false;
+
+
+
+
+
 
         // Shoot
         if (playerControls.PlayerMap.Shoot.IsPressed()) isShoot = true;
@@ -45,8 +60,18 @@ public class GameInput : MonoBehaviour
         return isShoot;
     }
 
-    public bool IsJumping()
+    public bool IsJumpingPress()
     {
-        return isJumping;
+        return isJumpingPress;
+    }
+
+    public bool IsJumpingReleases()
+    {
+        return isJumpingReleases;
+    }
+
+    public bool IsDash()
+    {
+        return isDash;
     }
 }
