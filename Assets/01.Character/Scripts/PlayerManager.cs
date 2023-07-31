@@ -383,7 +383,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     private void Jump()
-    {d
+    {
         LastPressedJumpTime = 0;
         LastOnGroundTime = 0;
 
