@@ -1,3 +1,4 @@
+using LubyAdventure;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,8 @@ public class PlayerAnimator : MonoBehaviour
     private const string IS_ATTACK = "isShoot";
     private const string IS_JUMP = "isJump";
 
-    [SerializeField] private PlayerManager mov;
+    //[SerializeField] private PlayerManager mov;
+    [SerializeField] private UnitController mov;
     [SerializeField] private Animator anim;
     //[SerializeField] private SpriteRenderer spriteRend;
 
@@ -50,17 +52,13 @@ public class PlayerAnimator : MonoBehaviour
 
         //gameManager = FindObjectOfType<GameManager>();
 
-        jumpParticle = jumpFX.GetComponent<ParticleSystem>();
-        landParticle = landFX.GetComponent<ParticleSystem>();
+        //jumpParticle = jumpFX.GetComponent<ParticleSystem>();
+        //landParticle = landFX.GetComponent<ParticleSystem>();
     }
   
 
     private void LateUpdate()
     {
-
-        
-
-        
         float tiltProgress;
 
         int mult = -1;
@@ -74,6 +72,8 @@ public class PlayerAnimator : MonoBehaviour
             tiltProgress = Mathf.InverseLerp(-mov.Data.runMaxSpeed, mov.Data.runMaxSpeed, mov.RB.velocity.x);
             mult = (mov.IsFacingRight) ? 1 : -1;
         }
+        
+        
 
         float newRot = ((tiltProgress * maxTilt * 2) - maxTilt);
         //float rot = Mathf.LerpAngle(spriteRend.transform.localRotation.eulerAngles.z * mult, newRot, tiltSpeed);
@@ -94,7 +94,10 @@ public class PlayerAnimator : MonoBehaviour
     private void CheckAnimationState()
     {
         anim.SetBool(IS_WALKING, mov.IsWalking());
-        anim.SetBool(IS_ATTACK, mov.IsShoot());
+        
+        
+        Debug.Log(mov.IsWalking());
+        //anim.SetBool(IS_ATTACK, mov.IsShoot());
 
         /*
         if(startedJumping)
