@@ -101,7 +101,11 @@ namespace LubyAdventure
             LastOnWallLeftTime -= Time.deltaTime;
 
             LastPressedJumpTime -= Time.deltaTime;
-            LastPressedDashTime -= Time.deltaTime;
+            LastPressedDashTime = Time.deltaTime;
+
+            //Debug.Log(LastOnGroundTime);
+
+            Debug.Log(LastPressedJumpTime);
 
             moveInput = gameInput.getMovementVectorNormalized();
 
@@ -127,10 +131,6 @@ namespace LubyAdventure
                 OnDashInput();
             }
 
-            // Walk
-            Vector3 moveDir = new Vector3(moveInput.x, 0f, moveInput.y);
-            isWalking = moveDir != Vector3.zero;
-
             if (!IsDashing && !IsJumping)
             {
                 //Ground Check
@@ -138,6 +138,7 @@ namespace LubyAdventure
                 {
                     if (LastOnGroundTime < -0.1f)
                     {
+                        Debug.Log("Physics2D.OverlapBox");
                         characterAnimationBehaviour.justLanded = true;
                     }
 
@@ -179,6 +180,9 @@ namespace LubyAdventure
 
             if (!IsDashing)
             {
+                //Debug.Log(CanJump());
+
+                    
                 //Jump
                 if (CanJump() && LastPressedJumpTime > 0)
                 {
@@ -371,6 +375,12 @@ namespace LubyAdventure
             //Convert this to a vector and apply to rigidbody
             RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
 
+
+            // Walk
+            Vector3 moveDir = new Vector3(moveInput.x, 0f, moveInput.y);
+            isWalking = moveDir != Vector3.zero;
+
+
             /*
              * For those interested here is what AddForce() will do
              * RB.velocity = new Vector2(RB.velocity.x + (Time.fixedDeltaTime  * speedDif * accelRate) / RB.mass, RB.velocity.y);
@@ -434,30 +444,6 @@ namespace LubyAdventure
             RB.AddForce(force, ForceMode2D.Impulse);
         }
 
-
-        //Short period before the player is able to dash again
-        private IEnumerator RefillDash(int amount)
-        {
-            dashRefilling = true;
-            yield return new WaitForSeconds(Data.dashRefillTime);
-            dashRefilling = false;
-            dashesLeft = Mathf.Min(Data.dashAmount, dashesLeft + 1);
-        }
-
-        private void Slide()
-        {
-            if (RB.velocity.y > 0)
-            {
-                RB.AddForce(-RB.velocity.y * Vector2.up, ForceMode2D.Impulse);
-            }
-
-            float speedDif = Data.slideSpeed - RB.velocity.y;
-            float movement = speedDif * Data.slideAccel;
-            movement = Mathf.Clamp(movement, -Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime));
-
-            RB.AddForce(movement * Vector2.up);
-        }
-
         private IEnumerator StartDash(Vector2 dir)
         {
 
@@ -492,6 +478,32 @@ namespace LubyAdventure
             IsDashing = false;
         }
 
+
+        //Short period before the player is able to dash again
+        private IEnumerator RefillDash(int amount)
+        {
+            dashRefilling = true;
+            yield return new WaitForSeconds(Data.dashRefillTime);
+            dashRefilling = false;
+            dashesLeft = Mathf.Min(Data.dashAmount, dashesLeft + 1);
+        }
+
+        private void Slide()
+        {
+            if (RB.velocity.y > 0)
+            {
+                RB.AddForce(-RB.velocity.y * Vector2.up, ForceMode2D.Impulse);
+            }
+
+            float speedDif = Data.slideSpeed - RB.velocity.y;
+            float movement = speedDif * Data.slideAccel;
+            movement = Mathf.Clamp(movement, -Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime));
+
+            RB.AddForce(movement * Vector2.up);
+        }
+
+        
+
         public bool IsWalking()
         {
             return isWalking;
@@ -500,6 +512,10 @@ namespace LubyAdventure
 
         private bool CanJump()
         {
+            //Debug.Log("+++++++++++ !IsJumping ==== ?= " + (!IsJumping));
+
+            Debug.Log("+++++++++++ LastOnGroundTime > 0  ?= " + (LastOnGroundTime > 0));
+
             return LastOnGroundTime > 0 && !IsJumping;
         }
 

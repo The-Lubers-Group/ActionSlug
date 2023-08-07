@@ -67,13 +67,6 @@ namespace LubyAdventure
             float newRot = ((tiltProgress * maxTilt * 2) - maxTilt);
             float rot = Mathf.LerpAngle(spriteRend.transform.localRotation.eulerAngles.z * mult, newRot, tiltSpeed);
             spriteRend.transform.localRotation = Quaternion.Euler(0, 0, rot * mult);
-
-
-
-
-
-
-
             
             CheckAnimationState();
         }
@@ -113,6 +106,8 @@ namespace LubyAdventure
                 justLanded = false;
                 return;
             }
+
+            characterAnimator.SetFloat("Vel Y", unitController.RB.velocity.y);
         }
 
     }
