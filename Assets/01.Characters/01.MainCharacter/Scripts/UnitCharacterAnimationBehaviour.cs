@@ -92,10 +92,9 @@ namespace LubyAdventure
         private void CheckAnimationState()
         {
             characterAnimator.SetBool(animWalkingID, unitController.IsWalking());
-
             if (startedJumping)
             {
-                characterAnimator.SetTrigger(animJumpID);
+                characterAnimator.SetTrigger("Jump");
                 startedJumping = false;
                 return;
             }

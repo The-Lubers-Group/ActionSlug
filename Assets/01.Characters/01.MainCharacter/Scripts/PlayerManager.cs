@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -11,24 +12,28 @@ public class PlayerManager : MonoBehaviour
     public PlayerAnimator AnimHandler { get; private set; }
 
     //STATE PARAMETERS
+    //Variables control the various actions the player can perform at any time.
+    //These are fields which can are public allowing for other sctipts to read them
+    //but can only be privately written to.
     public bool IsFacingRight { get; private set; }
     public bool IsJumping { get; private set; }
     public bool IsWallJumping { get; private set; }
     public bool IsDashing { get; private set; }
     public bool IsSliding { get; private set; }
 
+    //Timers (also all fields, could be private and a method returning a bool could be used)
     public float LastOnGroundTime { get; private set; }
     public float LastOnWallTime { get; private set; }
     public float LastOnWallRightTime { get; private set; }
     public float LastOnWallLeftTime { get; private set; }
-
-    // Walk + Shoot
-    private bool isWalking;
-    private bool isShoot;
-
+    
     //Jump
     private bool isJumpCut;
     private bool isJumpFalling;
+    
+    // Walk + Shoot
+    private bool isWalking;
+    private bool isShoot;
 
     //Wall Jump
     private float wallJumpStartTime;
@@ -78,7 +83,7 @@ public class PlayerManager : MonoBehaviour
     // ---------------------
     //[SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
-    [SerializeField] private float maxFallSpeed = 17f;
+    //[SerializeField] private float maxFallSpeed = 17f;
     //private RaycastHit2D groundHit;
     // ---------------------
 
