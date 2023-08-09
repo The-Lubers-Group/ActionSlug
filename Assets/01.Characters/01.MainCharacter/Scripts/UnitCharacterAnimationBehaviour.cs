@@ -28,8 +28,11 @@ namespace LubyAdventure
         private string animWalkingParameter = "isWalking";
         private int animWalkingID;
 
-        private string animJumpParameter = "isJump";
+        private string animJumpParameter = "Jump";
         private int animJumpID;
+
+        private string animLandParameter = "Land";
+        private int animLandID;
 
 
         public bool startedJumping { private get; set; }
@@ -77,6 +80,7 @@ namespace LubyAdventure
             animDieID = Animator.StringToHash(animDieParameter);
             animWalkingID = Animator.StringToHash(animWalkingParameter);
             animJumpID = Animator.StringToHash(animJumpParameter);
+            animLandID = Animator.StringToHash(animLandParameter);
         }
 
         public void CharacterWasHit()
@@ -94,14 +98,14 @@ namespace LubyAdventure
             characterAnimator.SetBool(animWalkingID, unitController.IsWalking());
             if (startedJumping)
             {
-                characterAnimator.SetTrigger("Jump");
+                characterAnimator.SetTrigger(animJumpID);
                 startedJumping = false;
                 return;
             }
 
             if (justLanded)
             {
-                characterAnimator.SetTrigger("Land");
+                characterAnimator.SetTrigger(animLandID);
                 justLanded = false;
                 return;
             }

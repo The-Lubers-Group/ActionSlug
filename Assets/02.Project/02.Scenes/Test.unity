@@ -11786,6 +11786,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.30832317
       objectReference: {fileID: 0}
+    - target: {fileID: 1875103633859747334, guid: c5cbc779ad124084c863a56130beba4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -54.474
+      objectReference: {fileID: 0}
     - target: {fileID: 1942773747207171075, guid: c5cbc779ad124084c863a56130beba4d, type: 3}
       propertyPath: m_Layer
       value: 6

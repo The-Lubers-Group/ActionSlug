@@ -116,7 +116,6 @@ public class PlayerAnimator : MonoBehaviour
         */
 
 
-
         if (startedJumping)
         {
             anim.SetTrigger(IS_JUMP);
