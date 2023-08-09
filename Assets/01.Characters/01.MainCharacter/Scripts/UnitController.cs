@@ -141,18 +141,50 @@ namespace LubyAdventure
             */
 
 
+            if(moveInput.x < 0 && attached)
+            {
+                RB.AddRelativeForce(new Vector3(-1, 0, 0) * PushForce);
+            }
+
+            if (moveInput.x > 0 && attached)
+            {
+                RB.AddRelativeForce(new Vector3(1, 0, 0) * PushForce);
+            }
+
+
+            // Climb Up
+            if (moveInput.y > 0 && attached)
+            {
+                SlideRope(1);
+            }
+
+            if (moveInput.y < 0 && attached)
+            {
+                SlideRope(-1);
+            }
 
             //Jumps
             if (gameInput.IsJumpingPress())
             {
                 //Jump();
                 OnJumpInput();
+
+               
             }
 
             if (gameInput.IsJumpingReleases())
             {
                 OnJumpUpInput();
+
+                if (attached)
+                {
+                    Detach();
+                    //attached = false;
+                }
             }
+
+
+            
 
             //Dash
             if (gameInput.IsDash())
@@ -626,6 +658,8 @@ namespace LubyAdventure
             HJ.enabled = true;
             attached = true;
             attachedTo = ropeBone.gameObject.transform.parent;
+
+            Debug.Log("Attach: " + attached);
         }
 
         void Detach()

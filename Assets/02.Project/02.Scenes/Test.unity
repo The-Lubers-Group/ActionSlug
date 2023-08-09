@@ -55372,7 +55372,7 @@ PrefabInstance:
       objectReference: {fileID: 208797093}
     - target: {fileID: 6768188259147146684, guid: f7763fba2aeefe941a1edbb9c67424c4, type: 3}
       propertyPath: force
-      value: 15
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6768188259147146684, guid: f7763fba2aeefe941a1edbb9c67424c4, type: 3}
       propertyPath: visualTransform

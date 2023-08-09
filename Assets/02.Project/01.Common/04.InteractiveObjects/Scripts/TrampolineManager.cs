@@ -25,19 +25,10 @@ public class TrampolineManager : MonoBehaviour
             //Debug.Log("Jogador");
             this.player = GameObject.FindWithTag("Player").transform;
             anim.SetTrigger("Trigger");
-            Debug.Log(this.player);
-
-
+            //Debug.Log(this.player);
             //RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-
             this.player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * force, ForceMode2D.Impulse);
-
-
-
-
-
-
-
+            //this.player.GetComponent<Rigidbody2D>().AddForce(transform.up * force, ForceMode2D.Impulse);
         }
     }
 }
