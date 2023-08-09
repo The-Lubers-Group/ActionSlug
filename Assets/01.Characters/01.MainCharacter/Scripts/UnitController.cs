@@ -20,11 +20,21 @@ namespace LubyAdventure
         [Header("Movement")]
         [SerializeField] private GameInput gameInput;
         public Rigidbody2D RB;
+        public HingeJoint2D HJ;
 
         [Header("Health Settings")]
         private bool unitIsAlive;
 
         [Header("Ability Settings")]
+
+        //Climb
+        //[SerializeField] private float climbSpeed = 4f;
+        [SerializeField] private float PushForce = 10f;
+        [SerializeField] private bool attached = false;
+        [SerializeField] private Transform attachedTo;
+        [SerializeField] private GameObject disregard;
+
+
 
         [Header("Animation Settings")]
         public UnitCharacterAnimationBehaviour characterAnimationBehaviour;
@@ -35,6 +45,9 @@ namespace LubyAdventure
         [SerializeField] private CameraFollowObject cameraFollowObject;
         [SerializeField] private GameObject cameraFollowObjectGO;
 
+        //private float vertical;
+        //private HashSet<GameObject> ladders = new HashSet<GameObject>();
+
         //STATE PARAMETERS
         //Variables control the various actions the player can perform at any time.
         //These are fields which can are public allowing for other sctipts to read them
@@ -44,6 +57,7 @@ namespace LubyAdventure
         public bool IsWallJumping { get; private set; }
         public bool IsDashing { get; private set; }
         public bool IsSliding { get; private set; }
+
 
         //Timers (also all fields, could be private and a method returning a bool could be used)
         public float LastOnGroundTime { get; private set; }
@@ -115,6 +129,18 @@ namespace LubyAdventure
 
             if (moveInput.x != 0)
                 CheckDirectionToFace(moveInput.x > 0);
+
+            /*
+            if(ladders.Count > 0 && moveInput.y > 0)
+            {
+                IsClimbing = true;
+            } else if(ladders.Count <= 0)
+            {
+                IsClimbing = false;
+            }
+            */
+
+
 
             //Jumps
             if (gameInput.IsJumpingPress())
@@ -291,6 +317,20 @@ namespace LubyAdventure
             //Handle Slide
             if (IsSliding)
                 Slide();
+
+            /*
+            if(IsClimbing)
+            {
+                //RB.gravityScale = 0f;
+                SetGravityScale(0);
+                RB.velocity = new Vector2(RB.velocity.x, moveInput.y * climbSpeed);
+
+            }
+            else
+            {
+                SetGravityScale(Data.gravityScale);
+            }
+            */
         }
 
 
@@ -579,6 +619,92 @@ namespace LubyAdventure
                 return false;
         }
 
+        public void Attach(Rigidbody2D ropeBone)
+        {
+            ropeBone.gameObject.GetComponent<RopeSegment>().isPlayerAttached = true;
+            HJ.connectedBody = ropeBone;
+            HJ.enabled = true;
+            attached = true;
+            attachedTo = ropeBone.gameObject.transform.parent;
+        }
+
+        void Detach()
+        {
+            HJ.connectedBody.gameObject.GetComponent<RopeSegment>().isPlayerAttached = false;
+            attached = false;
+            HJ.enabled = false;
+            HJ.connectedBody = null;
+        }
+
+        void SlideRope(int direction)
+        {
+            RopeSegment myConnection = HJ.connectedBody.gameObject.GetComponent<RopeSegment>();
+            GameObject newSeg = null;
+            if(direction > 0)
+            {
+                if(myConnection.connectAbove != null)
+                {
+                    if(myConnection.connectAbove.gameObject.GetComponent<RopeSegment>() != null)
+                    {
+                        newSeg = myConnection.connectAbove;
+                    }
+                }
+            }
+            else
+            {
+                if (myConnection.connectBelow != null)
+                {
+                    newSeg = myConnection.connectBelow;
+                }
+            }
+            if(newSeg != null) 
+            {
+                transform.position = newSeg.transform.position;
+                myConnection.isPlayerAttached = false;
+                newSeg.GetComponent<RopeSegment>().isPlayerAttached = true;
+                HJ.connectedBody = newSeg.GetComponent<Rigidbody2D>();
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(!attached)
+            {
+                if(GameObject.FindWithTag("Rope"))
+                {
+                    if(attachedTo != collision.gameObject.transform.parent)
+                    {
+                        if(disregard == null || collision.gameObject.transform.parent.gameObject != disregard)
+                        {
+                            Attach(collision.gameObject.GetComponent<Rigidbody2D>());
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        /*
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            //this.player = GameObject.FindWithTag("Player").transform;
+            if (GameObject.FindWithTag("Ladder"))
+            {
+                Debug.Log("Ladder");
+                ladders.Add(collision.gameObject);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (GameObject.FindWithTag("Ladder"))
+            {
+                ladders.Remove(collision.gameObject);
+
+            }
+        }
+        */
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
