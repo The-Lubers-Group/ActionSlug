@@ -706,6 +706,7 @@ namespace LubyAdventure
             if(!attached)
             {
                 //if (GameObject.FindWithTag("Rope"))
+               
                 if (collision.CompareTag("Rope"))
                 {
                     if(attachedTo != collision.gameObject.transform.parent)
@@ -716,6 +717,7 @@ namespace LubyAdventure
                         }
                     }
                 }
+                
             }
         }
         

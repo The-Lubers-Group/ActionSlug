@@ -12,15 +12,32 @@ public class LadderMovement : MonoBehaviour
     public UnitInfoData Data;
 
     [SerializeField] private Rigidbody2D rb;
+    
+    [SerializeField] private GameInput gameInput;
+    private Vector2 moveInput;
+
+
 
     void Update()
     {
+        moveInput = gameInput.getMovementVectorNormalized();
         vertical = Input.GetAxisRaw("Vertical");
 
+        /*
         if (isLadder && Mathf.Abs(vertical) > 0f)
         {
             issClimbing = true;
         }
+        */
+
+        if(isLadder && moveInput.y > 0)
+        {
+            issClimbing = true;
+
+        }
+
+
+
     }
 
     private void FixedUpdate()
@@ -41,6 +58,7 @@ public class LadderMovement : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
+            Debug.Log("Ladder");
             isLadder = true;
         }
     }
