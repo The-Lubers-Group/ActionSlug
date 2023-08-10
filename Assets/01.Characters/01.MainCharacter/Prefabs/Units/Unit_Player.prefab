@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 2865779321596384539}
   - component: {fileID: 42596122054393149}
   - component: {fileID: 409074661959511370}
+  - component: {fileID: 8380815507783741677}
   m_Layer: 7
   m_Name: Unit_Player
   m_TagString: Untagged
@@ -208,6 +209,11 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 19d6d59bc206c3741937fe72b2d84885, type: 2}
   gameInput: {fileID: 0}
   RB: {fileID: 2865779321596384539}
+  HJ: {fileID: 0}
+  PushForce: 10
+  attached: 0
+  attachedTo: {fileID: 0}
+  disregard: {fileID: 0}
   characterAnimationBehaviour: {fileID: 409074661959511370}
   cameraFollowObject: {fileID: 0}
   cameraFollowObjectGO: {fileID: 0}
@@ -236,6 +242,19 @@ MonoBehaviour:
   unitController: {fileID: 42596122054393149}
   maxTilt: 10
   tiltSpeed: 0.08
+--- !u!114 &8380815507783741677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2547904548363120857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2754a94152dd0f46a966d6b680b849e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2865779321596384539}
 --- !u!1 &4829436975252209470
 GameObject:
   m_ObjectHideFlags: 0

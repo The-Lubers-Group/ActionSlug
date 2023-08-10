@@ -700,11 +700,13 @@ namespace LubyAdventure
             }
         }
 
+        
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if(!attached)
             {
-                if(GameObject.FindWithTag("Rope"))
+                //if (GameObject.FindWithTag("Rope"))
+                if (collision.CompareTag("Rope"))
                 {
                     if(attachedTo != collision.gameObject.transform.parent)
                     {
@@ -716,29 +718,8 @@ namespace LubyAdventure
                 }
             }
         }
+        
 
-
-
-        /*
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            //this.player = GameObject.FindWithTag("Player").transform;
-            if (GameObject.FindWithTag("Ladder"))
-            {
-                Debug.Log("Ladder");
-                ladders.Add(collision.gameObject);
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (GameObject.FindWithTag("Ladder"))
-            {
-                ladders.Remove(collision.gameObject);
-
-            }
-        }
-        */
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;

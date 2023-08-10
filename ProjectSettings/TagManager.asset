@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Rope
   - Undefined
+  - Ladder
   layers:
   - Default
   - TransparentFX
