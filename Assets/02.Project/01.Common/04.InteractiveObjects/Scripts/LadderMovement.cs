@@ -23,14 +23,11 @@ public class LadderMovement : MonoBehaviour
         moveInput = gameInput.getMovementVectorNormalized();
         vertical = Input.GetAxisRaw("Vertical");
 
-        /*
         if (isLadder && Mathf.Abs(vertical) > 0f)
         {
             issClimbing = true;
         }
-        */
-
-        if(isLadder && moveInput.y > 0)
+        else if(isLadder && moveInput.y > 0)
         {
             issClimbing = true;
 
