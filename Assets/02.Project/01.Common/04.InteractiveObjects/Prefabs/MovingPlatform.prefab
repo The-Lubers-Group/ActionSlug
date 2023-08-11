@@ -155,7 +155,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8080819726622130743}
-  - component: {fileID: 4498305340216273080}
   m_Layer: 0
   m_Name: MovingPlatform
   m_TagString: Untagged
@@ -180,24 +179,6 @@ Transform:
   - {fileID: 526152235921763408}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4498305340216273080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2021387110097191183}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd8e446e102c0546873585d9bd46fcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platform: {fileID: 1191509698205112232}
-  startPoint: {fileID: 6450530501811102057}
-  endPoint: {fileID: 819535239730335932}
-  InteractLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &6436757668579218777
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,9 +315,6 @@ MonoBehaviour:
   platform: {fileID: 1191509698205112232}
   startPoint: {fileID: 6450530501811102057}
   endPoint: {fileID: 819535239730335932}
-  InteractLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!61 &3656489921521440413
 BoxCollider2D:
   m_ObjectHideFlags: 0
