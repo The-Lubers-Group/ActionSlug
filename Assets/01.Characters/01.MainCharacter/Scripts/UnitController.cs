@@ -23,6 +23,7 @@ namespace LubyAdventure
         public HingeJoint2D HJ;
 
         [Header("Health Settings")]
+        public UnitHealthBehaviour healthBehaviour;
         private bool unitIsAlive;
 
         [Header("Ability Settings")]
@@ -31,6 +32,7 @@ namespace LubyAdventure
         //[SerializeField] private float climbSpeed = 4f;
         [SerializeField] private float PushForce = 10f;
         [SerializeField] private bool attached = false;
+
         [SerializeField] private Transform attachedTo;
         [SerializeField] private GameObject disregard;
 

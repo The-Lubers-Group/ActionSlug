@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform endPoint;
     
-    private float speed = 1.5f;
+    [SerializeField] private float speed = 1.5f;
     int direction = 1;
 
     private void Update()
