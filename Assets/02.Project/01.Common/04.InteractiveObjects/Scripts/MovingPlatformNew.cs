@@ -8,6 +8,12 @@ public class MovingPlatformNew : MonoBehaviour
     [SerializeField] private float speed = 5f;          // speed of the platform
     [SerializeField] private int startinPoint;          // starting index (position of the platform)
     [SerializeField] private Transform[] points;        // An array of transform points (positions where the platform needs to move)
+    
+    [SerializeField] private PlatformEffector2D platformEffector2D;
+    
+    
+    [SerializeField] private GameInput gameInput;        // GameInput Reference (Use the new input system)
+
 
     private int i; //index of the array;
 
@@ -40,13 +46,67 @@ public class MovingPlatformNew : MonoBehaviour
             if(transform.position.y < collision.transform.position.y)
             {
                 collision.transform.SetParent(transform);
+                gameInput = GameObject.FindAnyObjectByType<GameInput>();
             }
         }
     }
-     
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(gameInput == null)
+        {
+            return;
+        }
+
+        if (gameInput.GetMoveLeftRight())
+        {
+            collision.transform.SetParent(null);
+        }
+        else
+        {
+            collision.transform.SetParent(transform);
+        }
+        /*
+        if (gameInput.GetMoveUpDown())
+        {
+            collision.transform.SetParent(null);
+            platformEffector2D.rotationalOffset = 180;
+            gameInput = null;
+        }
+        */
+
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
+        platformEffector2D.rotationalOffset = 0;
         collision.transform.SetParent(null);
+        gameInput = null;
 
     }
 }
+/*
+ * 
+ * private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(gameInput == null)
+        {
+            return;
+        }
+        if (gameInput.GetMoveUpDown())
+        {
+            collision.transform.SetParent(null);
+            platformEffector2D.rotationalOffset = 180;
+            gameInput = null;
+        } 
+        if (gameInput.GetMoveLeftRight())
+        {
+            collision.transform.SetParent(null);
+            gameInput = null;
+        }
+        else
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
+ **/

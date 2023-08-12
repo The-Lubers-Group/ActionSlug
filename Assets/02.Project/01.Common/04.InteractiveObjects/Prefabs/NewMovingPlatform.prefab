@@ -169,6 +169,7 @@ MonoBehaviour:
   points:
   - {fileID: 6450530501811102057}
   - {fileID: 819535239730335932}
+  platformEffector2D: {fileID: 9086525859297400244}
 --- !u!61 &4756129135501291433
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.05, y: 1}
+  m_Size: {x: 5, y: 1}
   m_EdgeRadius: 0
 --- !u!251 &9086525859297400244
 PlatformEffector2D:

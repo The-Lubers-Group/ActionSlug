@@ -84,7 +84,7 @@ namespace LubyAdventure
         private Vector2 lastDashDir;
         private bool isDashAttacking;
 
-        private Vector2 moveInput;
+        public Vector2 moveInput;
 
         public float LastPressedJumpTime { get; private set; }
         public float LastPressedDashTime { get; private set; }

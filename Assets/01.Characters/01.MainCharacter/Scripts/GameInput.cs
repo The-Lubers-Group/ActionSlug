@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class GameInput : MonoBehaviour
     private bool isJumpingReleases;
     private bool isDash;
 
+    private bool moveUpDown;
+    private bool moveLeftRight;
+
+    private Vector2 moveInput;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -20,6 +26,28 @@ public class GameInput : MonoBehaviour
 
     private void Update()
     {
+        moveInput = getMovementVectorNormalized();
+
+        // Moviment in Y (UP and Down)
+        if (moveInput.y < 0)
+        {
+            moveUpDown = true;
+        }
+        else
+        {
+            moveUpDown = false;
+        }
+
+        // Moviment in Y (Left and Right)
+        if (moveInput.x != 0)
+        {
+            moveLeftRight = true;
+        }
+        else
+        {
+            moveLeftRight = false;
+        }
+
         //Jump PRESS
         if (playerControls.PlayerMap.Jump.WasPerformedThisFrame())
             isJumpingPress = true;
@@ -36,10 +64,7 @@ public class GameInput : MonoBehaviour
             isDash = true;
         else isDash = false;
 
-
-
-
-
+        
 
         // Shoot
         if (playerControls.PlayerMap.Shoot.IsPressed()) isShoot = true;
@@ -73,5 +98,15 @@ public class GameInput : MonoBehaviour
     public bool IsDash()
     {
         return isDash;
+    }
+
+    public bool GetMoveUpDown()
+    {
+        return moveUpDown;
+    }
+
+    public bool GetMoveLeftRight()
+    {
+        return moveLeftRight;
     }
 }
