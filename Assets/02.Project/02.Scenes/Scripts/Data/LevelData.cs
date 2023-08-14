@@ -6,7 +6,9 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     public string LevelName;
-    public int LevelNumber;
+
+    public string LevelSceneName;
+    public int LevelID;
 
     public bool isCompleted;
     public int Score;

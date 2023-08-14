@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Level01
   m_EditorClassIdentifier: 
   LevelName: Amazonas
-  LevelNumber: 1
+  LevelSceneName: Level_01
+  LevelID: 1
   isCompleted: 0
   Score: 0
   nStar: 0
