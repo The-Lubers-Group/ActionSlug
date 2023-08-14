@@ -94,69 +94,6 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Layer 9 copy 4
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 1015
-      width: 1280
-      height: 263
-    spriteID: aecb40f2fc5229d47973a751ea036fba
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 964}
-    spritePosition: {x: 0, y: 457}
-  - name: Layer 9 copy 3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 1286
-      width: 1280
-      height: 260
-    spriteID: c441e48b58b03c94dbbc400843c13c60
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 1229}
-    spritePosition: {x: 0, y: 460}
-  - name: Layer 9 copy 2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 732
-      width: 1280
-      height: 275
-    spriteID: b26f590f9e1a9364088d9e69f9552784
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 732}
-    spritePosition: {x: 0, y: 445}
   - name: Group 4
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -241,8 +178,8 @@ ScriptedImporter:
     layerID: 5
     mosaicPosition: {x: 4, y: 1015}
     flatten: 0
-    isImported: 1
-    isVisible: 1
+    isImported: 0
+    isVisible: 0
   - name: Layer 9 copy 3
     spriteName: Layer 9 copy 3
     isGroup: 0
@@ -251,8 +188,8 @@ ScriptedImporter:
     layerID: 4
     mosaicPosition: {x: 4, y: 1286}
     flatten: 0
-    isImported: 1
-    isVisible: 1
+    isImported: 0
+    isVisible: 0
   - name: Layer 9 copy 2
     spriteName: Layer 9 copy 2
     isGroup: 0
@@ -261,8 +198,8 @@ ScriptedImporter:
     layerID: 3
     mosaicPosition: {x: 4, y: 732}
     flatten: 0
-    isImported: 1
-    isVisible: 1
+    isImported: 0
+    isVisible: 0
   - name: Group 4
     spriteName: Group 4
     isGroup: 0
