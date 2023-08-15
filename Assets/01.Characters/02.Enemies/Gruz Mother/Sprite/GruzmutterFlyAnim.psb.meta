@@ -1,0 +1,703 @@
+fileFormatVersion: 2
+guid: ed7dac13000808c45ae9d8a20938ce8d
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: Layer 19
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 420
+      width: 566
+      height: 258
+    spriteID: 8617bf0444d00fa47bf0b8316093ce5e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 420}
+    spritePosition: {x: 65, y: 128}
+  - name: Group 5 copy 4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 664
+      height: 408
+    spriteID: f5137d810ae06d942a13a15d96d41b21
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 0, y: 8}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings: []
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  skeletonAssetReferenceID: 
+  padding: 4
+  spriteSizeExpand: 0
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Layer 1 copy 2
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 383ebeb13f2dd2b4e918f2207cde5ad3
+    layerID: 321
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Layer 19
+    spriteName: Layer 19
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8617bf0444d00fa47bf0b8316093ce5e
+    layerID: 322
+    mosaicPosition: {x: 4, y: 420}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Group 5 copy 4
+    spriteName: Group 5 copy 4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f5137d810ae06d942a13a15d96d41b21
+    layerID: 317
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Group 5 copy 3
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 182027683b6094b4aa06d87f5ca974d9
+    layerID: 316
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Group 5 copy 2
+    spriteName: Group 5 copy 2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 909339854db25d14abe27b65b0b0b091
+    layerID: 313
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Group 5 copy
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 6cb2d8ba65daf54498c5d71d18279572
+    layerID: 312
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Group 5
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 6e03f1b9ee8bfea4e939954c38acbf9a
+    layerID: 260
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Layer 18
+    spriteName: 
+    isGroup: 0
+    parentIndex: 6
+    spriteID: cebe3217081c8f940a1e383bbda22b68
+    layerID: 259
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 16
+    spriteName: 
+    isGroup: 0
+    parentIndex: 6
+    spriteID: a8722aac2826b04439d4582d4927c869
+    layerID: 257
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 15
+    spriteName: 
+    isGroup: 0
+    parentIndex: 6
+    spriteID: ac5fbb1e3481ce74f806dafc0abf825f
+    layerID: 256
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: fc9d7afd603a7b806efe56d73a60dc74 copy 2
+    spriteName: 
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 554bc17a14db0ae459b94d611f1e472d
+    layerID: 246
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Layer 13
+    spriteName: Layer 13
+    isGroup: 0
+    parentIndex: 6
+    spriteID: f5ed22a27b697f84db572e4e369f51cc
+    layerID: 247
+    mosaicPosition: {x: 4, y: 419}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 2 copy
+    spriteName: 
+    isGroup: 0
+    parentIndex: 6
+    spriteID: f637e8c1c317ed545bbec45d19fab545
+    layerID: 318
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 14
+    spriteName: Layer 14
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 1796422bea272114c8bd0dfe862d4573
+    layerID: 255
+    mosaicPosition: {x: 591, y: 419}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Curves 1
+    spriteName: Curves 1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: ba1172a966f9c2943be1497043b77617
+    layerID: 245
+    mosaicPosition: {x: 1013, y: 419}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Group 4 copy
+    spriteName: Group 4 copy
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 5f12a06772b88ab4483f96841bf2d85d
+    layerID: 244
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Group 4
+    spriteName: 
+    isGroup: 1
+    parentIndex: 6
+    spriteID: fc7c451795542664190d4486454e0b10
+    layerID: 202
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Group 3 copy
+    spriteName: 
+    isGroup: 0
+    parentIndex: 16
+    spriteID: 31c67b78ae21d854e99470fe06c18e98
+    layerID: 201
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Group 3
+    spriteName: 
+    isGroup: 1
+    parentIndex: 16
+    spriteID: ad00613c5a9e3644c8298af9f10f3c5f
+    layerID: 86
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: fc9d7afd603a7b806efe56d73a60dc74 copy
+    spriteName: 
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 7496118d0b9b7634c97b5799f9fb5158
+    layerID: 11
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Layer 6 copy 2
+    spriteName: Layer 6 copy 2
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 0fd080a66d00708488c27a248b154632
+    layerID: 77
+    mosaicPosition: {x: 667, y: 962}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 6 copy 2
+    spriteName: Layer 6 copy 2
+    isGroup: 0
+    parentIndex: 18
+    spriteID: b72b8c0d8b21412439d3d626ebffc342
+    layerID: 76
+    mosaicPosition: {x: 794, y: 961}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Group 2 copy
+    spriteName: 
+    isGroup: 1
+    parentIndex: 18
+    spriteID: 138839e7acd1e89478679685f02ab867
+    layerID: 32
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 6
+    spriteName: Layer 6
+    isGroup: 0
+    parentIndex: 22
+    spriteID: 25b819e7d5e70c844a76e2daed78f16a
+    layerID: 31
+    mosaicPosition: {x: 712, y: 1362}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Generative Fill
+    spriteName: Generative Fill
+    isGroup: 0
+    parentIndex: 22
+    spriteID: dfe5ce5aafeb8f546848d5f99e515a61
+    layerID: 30
+    mosaicPosition: {x: 781, y: 1212}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Group 2
+    spriteName: 
+    isGroup: 1
+    parentIndex: 18
+    spriteID: 7d5bc27a97d35ad47bb9006d589e9956
+    layerID: 23
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 6
+    spriteName: Layer 6
+    isGroup: 0
+    parentIndex: 25
+    spriteID: 50b4e8ad624c66943b4f1664032a3c43
+    layerID: 14
+    mosaicPosition: {x: 667, y: 1048}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Generative Fill
+    spriteName: Generative Fill
+    isGroup: 0
+    parentIndex: 25
+    spriteID: 06e6daf325aef1f4b849367673c985b1
+    layerID: 15
+    mosaicPosition: {x: 580, y: 1212}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 11
+    spriteName: Layer 11
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 0b1c3a678d93c4f409d120c090919215
+    layerID: 78
+    mosaicPosition: {x: 904, y: 1341}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 10
+    spriteName: Layer 10
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 404801c1274df2f448134289d8be72ce
+    layerID: 64
+    mosaicPosition: {x: 910, y: 1212}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Generative Fill 2
+    spriteName: Generative Fill 2
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 161e15a266429a0468bf5a94b4f6df18
+    layerID: 61
+    mosaicPosition: {x: 580, y: 1362}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Generative Fill 2
+    spriteName: Generative Fill 2
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 2ef2fc2b78b52194a917c648b0087c4e
+    layerID: 59
+    mosaicPosition: {x: 781, y: 1341}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 9
+    spriteName: Layer 9
+    isGroup: 0
+    parentIndex: 18
+    spriteID: d4ed678a8d9a71b47861677c27bff83f
+    layerID: 57
+    mosaicPosition: {x: 667, y: 834}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 8
+    spriteName: Layer 8
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 79be4abad70076c4f9033a227897128a
+    layerID: 56
+    mosaicPosition: {x: 794, y: 834}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: fc9d7afd603a7b806efe56d73a60dc74
+    spriteName: 
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 7e69a0439d0fbe441a0ba1bbf6d522bb
+    layerID: 9
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Group 1
+    spriteName: 
+    isGroup: 1
+    parentIndex: 18
+    spriteID: 09d227547df8d414faf1568ed9f62b6f
+    layerID: 16
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 3
+    spriteName: Layer 3
+    isGroup: 0
+    parentIndex: 35
+    spriteID: 1d18f72ea1de68c49aaf3824b3eb1de4
+    layerID: 8
+    mosaicPosition: {x: 4, y: 1212}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 2
+    spriteName: Layer 2
+    isGroup: 0
+    parentIndex: 35
+    spriteID: e5042cc2497feb541962830833e58217
+    layerID: 7
+    mosaicPosition: {x: 4, y: 834}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 1 copy
+    spriteName: Layer 1 copy
+    isGroup: 0
+    parentIndex: 35
+    spriteID: 04e5bea5366e3444d9ce2f26bcde0f79
+    layerID: 6
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: mosquito-bite-illustration-dengue-fever-concept-vector
+    spriteName: mosquito-bite-illustration-dengue-fever-concept-vector
+    isGroup: 0
+    parentIndex: 35
+    spriteID: feae18626e42df84ca26a3d2901b4111
+    layerID: 4
+    mosaicPosition: {x: 781, y: 1212}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Layer 1
+    spriteName: Layer 1
+    isGroup: 0
+    parentIndex: 35
+    spriteID: 099bf3b7c5d1005479a06848c9d8dfe5
+    layerID: 2
+    mosaicPosition: {x: 4, y: 419}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 12
+    spriteName: Layer 12
+    isGroup: 0
+    parentIndex: 18
+    spriteID: abf0b949971b946498688661b8e0156e
+    layerID: 79
+    mosaicPosition: {x: 667, y: 1140}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Group 1 copy
+    spriteName: 
+    isGroup: 1
+    parentIndex: 18
+    spriteID: 5b38dde26d21d3c4d80c95de58b1e9d5
+    layerID: 53
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Layer 3
+    spriteName: 
+    isGroup: 0
+    parentIndex: 42
+    spriteID: 31a4653eb95208145aa141fe34728b82
+    layerID: 52
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 2
+    spriteName: 
+    isGroup: 0
+    parentIndex: 42
+    spriteID: a1163f84086424b4188cccac0877a64b
+    layerID: 51
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 1 copy
+    spriteName: 
+    isGroup: 0
+    parentIndex: 42
+    spriteID: 14339e8d241aaf14a834607f9c81fde0
+    layerID: 50
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: mosquito-bite-illustration-dengue-fever-concept-vector
+    spriteName: 
+    isGroup: 0
+    parentIndex: 42
+    spriteID: 2562a121b1e8b734385aae3e38e09124
+    layerID: 49
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 1
+    spriteName: 
+    isGroup: 0
+    parentIndex: 42
+    spriteID: 0d5a8db7791237b4fadd490b2f8a621a
+    layerID: 48
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Layer 6 copy
+    spriteName: 
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 578daaf2cb7d25d4184348206e107101
+    layerID: 20
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Generative Fill copy
+    spriteName: 
+    isGroup: 0
+    parentIndex: 18
+    spriteID: f7d1b0c8188d52c45843d2bce3cb4398
+    layerID: 22
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Layer 4
+    spriteName: 
+    isGroup: 0
+    parentIndex: 18
+    spriteID: 86a8039ff93e20544a773527a5b453de
+    layerID: 12
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Color Fill 1
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: b8694ef72df8f814599fc0dd65b18ef0
+    layerID: 315
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  sharedRigPSDLayers: []
+  pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []

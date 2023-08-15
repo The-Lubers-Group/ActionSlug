@@ -15,6 +15,7 @@ public class GruzMother : MonoBehaviour
     [Header("AttackPlayer")]
     [SerializeField] float attackPlayerSpeed;
     [SerializeField] Transform player;
+    private Vector2 playerPosition;
 
     [Header("Other")]
     [SerializeField] Transform groundCheckUp;
@@ -44,10 +45,12 @@ public class GruzMother : MonoBehaviour
         isTouchingUp = Physics2D.OverlapCircle(groundCheckUp.position, groundCheckRadius, groundLayer);
         isTouchingDown = Physics2D.OverlapCircle(groundCheckDown.position, groundCheckRadius, groundLayer);
         isTouchingWall = Physics2D.OverlapCircle(groundCheckWall.position, groundCheckRadius, groundLayer);
-        IdleState();
+        //IdleState();
+         //FlipTowardsPlayer();
+
     }
 
-    private void IdleState()
+    public void IdleState()
     {
         if(isTouchingUp && goingUp)
         {
@@ -95,7 +98,29 @@ public class GruzMother : MonoBehaviour
                 Flip();
             }
         }
+
         enemyRB.velocity = attackMovementSpeed * attackMovementDirection;
+    }
+
+    public void AttackPlayer()
+    {
+        playerPosition = player.position - transform.position;
+        playerPosition.Normalize();
+        enemyRB.velocity = playerPosition * attackPlayerSpeed;
+    }
+
+    void FlipTowardsPlayer()
+    {
+        float playerDirection = player.position.x - transform.position.x;
+
+        if(playerDirection > 0 && facingLeft)
+        {
+            Flip();
+        }
+        else if (playerDirection < 0 && !facingLeft)
+        {
+            Flip();
+        }
     }
 
     private void ChangeDirection()
