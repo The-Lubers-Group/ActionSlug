@@ -66,6 +66,10 @@ namespace LubyAdventure
         public float LastOnWallTime { get; private set; }
         public float LastOnWallRightTime { get; private set; }
         public float LastOnWallLeftTime { get; private set; }
+        
+        
+        public bool IsSwimming { get; private set; }
+        //private bool IsSwimming = false;
 
         //Walk
         private bool isWalking;
@@ -107,14 +111,19 @@ namespace LubyAdventure
 
         private void Start()
         {
+
             if (initializeSelf)
             {
                 //SetAlive();
+
+                //groundLayer = LayerMask.GetMask("Ground");
+                //waterLayer = LayerMask.GetMask("Water");
 
                 cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
                 SetGravityScale(Data.gravityScale);
                 IsFacingRight = true;
             }
+
         }
 
         private void Update()
@@ -126,6 +135,38 @@ namespace LubyAdventure
 
             LastPressedJumpTime -= Time.deltaTime;
             LastPressedDashTime -= Time.deltaTime;
+
+
+            //Debug.Log(Physics2D.OverlapCapsule(RB.position, RB.transform.localScale, 0, waterLayer));
+
+            //IsSwimming = Physics2D.OverlapCircle(RB.position, RB.transform.localScale, groundLayer);
+
+
+            //IsSwimming = Physics2D.OverlapCapsule(RB.position, RB.transform.localScale,0, waterLayer);
+            //Debug.Log(LayerMask.GetMask("Water"));
+            //Debug.Log(1 << 4);
+            //IsSwimming = Physics2D.OverlapCapsule(RB.position, RB.transform.localScale, 0, 1 << 4);
+            //Debug.Log(IsSwimming);
+
+
+
+            IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
+            Debug.Log("IsSwimming: " + IsSwimming);
+
+
+            /*
+            if (Physics2D.OverlapCapsule(RB.position, RB.transform.localScale , 0, waterLayer))
+            {
+                Debug.Log("IsSwimming: " + IsSwimming);
+                IsSwimming = true;
+            }
+            else if (!Physics2D.OverlapCapsule(RB.position, wallCheckSize, 0, waterLayer))
+            {
+                Debug.Log("IsSwimming: " + IsSwimming);
+                IsSwimming = false;
+            }
+            */
+
 
             moveInput = gameInput.getMovementVectorNormalized();
 
@@ -185,9 +226,6 @@ namespace LubyAdventure
                 }
             }
 
-
-            
-
             //Dash
             if (gameInput.IsDash())
             {
@@ -196,9 +234,10 @@ namespace LubyAdventure
 
             if (!IsDashing && !IsJumping)
             {
-                //Ground Check
-                if (Physics2D.OverlapCapsule(groundCheckPoint.position, groundCheckSize, 0, groundLayer)) //checks if set box overlaps with ground
+                //Ground Check.GetMask("Player","Ground")
+                if (Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer)) //checks if set box overlaps with ground
                 {
+                   // Debug.Log("sadadasdsadasd");
                     if (LastOnGroundTime < -0.1f)
                     {
                         characterAnimationBehaviour.justLanded = true;
@@ -208,13 +247,13 @@ namespace LubyAdventure
                 }
 
                 //Right Wall Check
-                if (((Physics2D.OverlapCapsule(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && IsFacingRight)
-                        || (Physics2D.OverlapCapsule(backWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !IsFacingRight)) && !IsWallJumping)
+                if (((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && IsFacingRight)
+                        || (Physics2D.OverlapBox(backWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !IsFacingRight)) && !IsWallJumping)
                     LastOnWallRightTime = Data.coyoteTime;
 
                 //Right Wall Check
-                if (((Physics2D.OverlapCapsule(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !IsFacingRight)
-                    || (Physics2D.OverlapCapsule(backWallCheckPoint.position, wallCheckSize, 0, groundLayer) && IsFacingRight)) && !IsWallJumping)
+                if (((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !IsFacingRight)
+                    || (Physics2D.OverlapBox(backWallCheckPoint.position, wallCheckSize, 0, groundLayer) && IsFacingRight)) && !IsWallJumping)
                     LastOnWallLeftTime = Data.coyoteTime;
 
                 //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
@@ -329,6 +368,8 @@ namespace LubyAdventure
             {
                 SetGravityScale(0);
             }
+            
+
         }
 
         private void FixedUpdate()
@@ -387,7 +428,17 @@ namespace LubyAdventure
 
         public void SetGravityScale(float scale)
         {
-            RB.gravityScale = scale;
+            if (IsSwimming)
+            {
+                // Debug.Log("Na agua " + Physics2D.OverlapCapsule(RB.position, wallCheckSize, 0, waterLayer));
+                // IsSwimming = true;
+                RB.gravityScale = 0.5f;
+            }
+            else
+            {
+                RB.gravityScale = scale;
+            }
+            //Debug.Log("RB.gravityScale: " + RB.gravityScale);
         }
 
         private void Sleep(float duration)

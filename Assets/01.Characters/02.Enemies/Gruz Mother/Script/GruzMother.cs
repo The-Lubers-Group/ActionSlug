@@ -96,7 +96,7 @@ public class GruzMother : MonoBehaviour
         }
 
         enemyRB.velocity = idleMovementSpeed * idleMovementDirection;
-        FlipTowardsPlayer();
+        //FlipTowardsPlayer();
     }
 
     public void AttackUpNDownState()
