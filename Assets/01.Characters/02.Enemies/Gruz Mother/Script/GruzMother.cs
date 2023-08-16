@@ -31,17 +31,18 @@ public class GruzMother : MonoBehaviour
 
     private bool facingLeft = true;
     private bool goingUp = true;
-    private Rigidbody2D enemyRB;
 
+    [SerializeField] private Rigidbody2D enemyRB;
     [SerializeField] private Animator enemyAnim;
+    [SerializeField] private Transform checks;
 
     private void Start()
     {
 
         idleMovementDirection.Normalize(); 
         attackMovementDirection.Normalize();
-        enemyRB = GetComponent<Rigidbody2D>();
-        
+
+         //enemyRB = GetComponent<Rigidbody2D>();
         //enemyAnim = GetComponent<Animator>();
         //enemyAnim = GetComponentInChildren<Animator>();
         //enemyAnim.GetBehaviours<GruzMother_AttackPlayer>().gruzMother = this;
@@ -53,8 +54,22 @@ public class GruzMother : MonoBehaviour
         isTouchingDown = Physics2D.OverlapCircle(groundCheckDown.position, groundCheckRadius, groundLayer);
         isTouchingWall = Physics2D.OverlapCircle(groundCheckWall.position, groundCheckRadius, groundLayer);
         //IdleState();
-         //FlipTowardsPlayer();
+        //FlipTowardsPlayer();
 
+    }
+
+    private void RandonStatePicker()
+    {
+        int randonState = Random.Range(0, 2);
+
+        if(randonState == 0)
+        {
+            enemyAnim.SetTrigger("AttackUpDown");
+        }
+        else if (randonState == 1)
+        {
+            enemyAnim.SetTrigger("AttackPlayer");
+        }
     }
 
     public void IdleState()
@@ -81,6 +96,7 @@ public class GruzMother : MonoBehaviour
         }
 
         enemyRB.velocity = idleMovementSpeed * idleMovementDirection;
+        FlipTowardsPlayer();
     }
 
     public void AttackUpNDownState()
@@ -127,7 +143,6 @@ public class GruzMother : MonoBehaviour
         {
             enemyRB.velocity = Vector2.zero;
             hasPlayerPosition = false;
-            // player slamed animation
             enemyAnim.SetTrigger("Slamed");
         }
         
@@ -160,6 +175,8 @@ public class GruzMother : MonoBehaviour
         idleMovementDirection.x *= -1;
         attackMovementDirection.x *= -1;
         transform.Rotate(0, 180, 0);
+        checks.Rotate(0, 180, 0);
+
     }
 
     private void OnDrawGizmosSelected()

@@ -10,7 +10,7 @@ public class GruzMother_AttackPlayer : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        //ruzMother = GameObject.FindGameObjectWithTag("GruzMother").GetComponent<GruzMother>();
-        gruzMother = GameObject.FindGameObjectWithTag("GruzMother").GetComponent<GruzMother>();
+        gruzMother = GameObject.FindGameObjectWithTag("GruzMother").GetComponentInChildren<GruzMother>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

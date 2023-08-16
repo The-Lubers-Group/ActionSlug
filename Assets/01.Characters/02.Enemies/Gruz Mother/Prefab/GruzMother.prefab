@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 4679582949211168437}
   - component: {fileID: 5407115414243799081}
   - component: {fileID: 2721374474153850486}
+  - component: {fileID: 1955724290066633876}
   m_Layer: 0
   m_Name: GruzMotherVisual
   m_TagString: Untagged
@@ -265,6 +266,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1955724290066633876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410534083600176958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49d6a923a1da174cbe8a618b9dc01a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleMovementSpeed: 10
+  idleMovementDirection: {x: -1, y: 2}
+  attackMovementSpeed: 20
+  attackMovementDirection: {x: -1, y: 5}
+  attackPlayerSpeed: 25
+  player: {fileID: 0}
+  groundCheckUp: {fileID: 7784066452993882374}
+  groundCheckDown: {fileID: 2598959837511111814}
+  groundCheckWall: {fileID: 5732760738970387353}
+  groundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  enemyRB: {fileID: 8109735279065846459}
+  enemyAnim: {fileID: 2721374474153850486}
 --- !u!1 &7758822701104830585
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,4 +426,5 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  enemyRB: {fileID: 8109735279065846459}
   enemyAnim: {fileID: 2721374474153850486}

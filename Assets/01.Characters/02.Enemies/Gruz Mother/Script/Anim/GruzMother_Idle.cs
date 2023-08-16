@@ -5,10 +5,12 @@ using UnityEngine;
 public class GruzMother_Idle : StateMachineBehaviour
 {
     [SerializeField] GruzMother gruzMother;
+    
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        gruzMother = GameObject.FindGameObjectWithTag("GruzMother").GetComponent<GruzMother>();
+        //gruzMother = GameObject.FindGameObjectWithTag("GruzMother").GetComponent<GruzMother>();
+        gruzMother = GameObject.FindGameObjectWithTag("GruzMother").GetComponentInChildren<GruzMother>();
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
