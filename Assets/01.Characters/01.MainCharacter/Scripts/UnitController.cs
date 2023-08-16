@@ -41,6 +41,7 @@ namespace LubyAdventure
         [Header("Animation Settings")]
         public UnitCharacterAnimationBehaviour characterAnimationBehaviour;
 
+
         [Header("Audio Settings")]
 
         [Header("Camera Stuff")]
@@ -69,6 +70,10 @@ namespace LubyAdventure
         
         
         public bool IsSwimming { get; private set; }
+        public float swimmingTime { get; private set; }
+
+        [SerializeField] private float forceSwimming = 4f;
+
         //private bool IsSwimming = false;
 
         //Walk
@@ -92,6 +97,7 @@ namespace LubyAdventure
 
         public float LastPressedJumpTime { get; private set; }
         public float LastPressedDashTime { get; private set; }
+
 
         [Header("Checks")]
         [SerializeField] private Transform groundCheckPoint;
@@ -135,39 +141,18 @@ namespace LubyAdventure
 
             LastPressedJumpTime -= Time.deltaTime;
             LastPressedDashTime -= Time.deltaTime;
-
-
-            //Debug.Log(Physics2D.OverlapCapsule(RB.position, RB.transform.localScale, 0, waterLayer));
-
-            //IsSwimming = Physics2D.OverlapCircle(RB.position, RB.transform.localScale, groundLayer);
-
-
-            //IsSwimming = Physics2D.OverlapCapsule(RB.position, RB.transform.localScale,0, waterLayer);
-            //Debug.Log(LayerMask.GetMask("Water"));
-            //Debug.Log(1 << 4);
-            //IsSwimming = Physics2D.OverlapCapsule(RB.position, RB.transform.localScale, 0, 1 << 4);
-            //Debug.Log(IsSwimming);
-
-
-
+            
+            
             IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
-            Debug.Log("IsSwimming: " + IsSwimming);
+            //Debug.Log("IsSwimming: " + IsSwimming);
 
 
-            /*
-            if (Physics2D.OverlapCapsule(RB.position, RB.transform.localScale , 0, waterLayer))
+            if(IsSwimming)
             {
-                Debug.Log("IsSwimming: " + IsSwimming);
-                IsSwimming = true;
+                characterAnimationBehaviour.SwimmingAnim(true);
+                //ForceSwimming();
             }
-            else if (!Physics2D.OverlapCapsule(RB.position, wallCheckSize, 0, waterLayer))
-            {
-                Debug.Log("IsSwimming: " + IsSwimming);
-                IsSwimming = false;
-            }
-            */
-
-
+            
             moveInput = gameInput.getMovementVectorNormalized();
 
             if (moveInput.x != 0)
@@ -182,7 +167,6 @@ namespace LubyAdventure
                 IsClimbing = false;
             }
             */
-
 
             if(moveInput.x < 0 && attached)
             {
@@ -211,18 +195,24 @@ namespace LubyAdventure
             {
                 //Jump();
                 OnJumpInput();
+                if(IsSwimming)
+                {
+                  ForceSwimming();
+                }
 
-               
             }
 
             if (gameInput.IsJumpingReleases())
             {
-                OnJumpUpInput();
-
-                if (attached)
+               if(!IsSwimming)
                 {
-                    Detach();
-                    //attached = false;
+                    OnJumpUpInput();
+
+                    if (attached)
+                    {
+                        Detach();
+                        //attached = false;
+                    }
                 }
             }
 
@@ -260,115 +250,119 @@ namespace LubyAdventure
                 LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
             }
 
-            if (IsJumping && RB.velocity.y < 0)
+            if (!IsSwimming)
             {
-                IsJumping = false;
 
-                isJumpFalling = true;
-            }
-
-            if (IsWallJumping && Time.time - wallJumpStartTime > Data.wallJumpTime)
-            {
-                IsWallJumping = false;
-            }
-
-            if (LastOnGroundTime > 0 && !IsJumping && !IsWallJumping)
-            {
-                isJumpCut = false;
-
-                isJumpFalling = false;
-            }
-
-            if (!IsDashing)
-            {
-                //Jump
-                if (CanJump() && LastPressedJumpTime > 0)
+                if (IsJumping && RB.velocity.y < 0)
                 {
-                    IsJumping = true;
+                    IsJumping = false;
+
+                    isJumpFalling = true;
+                }
+
+                if (IsWallJumping && Time.time - wallJumpStartTime > Data.wallJumpTime)
+                {
+                    IsWallJumping = false;
+                }
+
+                if (LastOnGroundTime > 0 && !IsJumping && !IsWallJumping)
+                {
+                    isJumpCut = false;
+
+                    isJumpFalling = false;
+                }
+
+                if (!IsDashing)
+                {
+                    //Jump
+                    if (CanJump() && LastPressedJumpTime > 0)
+                    {
+                        IsJumping = true;
+                        IsWallJumping = false;
+                        isJumpCut = false;
+                        isJumpFalling = false;
+                        Jump();
+
+                        characterAnimationBehaviour.startedJumping = true;
+                    }
+                    //WALL JUMP
+                    else if (CanWallJump() && LastPressedJumpTime > 0)
+                    {
+                        IsWallJumping = true;
+                        IsJumping = false;
+                        isJumpCut = false;
+                        isJumpFalling = false;
+
+                        wallJumpStartTime = Time.time;
+                        lastWallJumpDir = (LastOnWallRightTime > 0) ? -1 : 1;
+
+                        WallJump(lastWallJumpDir);
+                    }
+                }
+
+                if (CanDash() && LastPressedDashTime > 0)
+                {
+                    //Freeze game for split second. Adds juiciness and a bit of forgiveness over directional input
+                    Sleep(Data.dashSleepTime);
+
+                    //If not direction pressed, dash forward
+                    if (moveInput != Vector2.zero)
+                        lastDashDir = moveInput;
+                    else
+                        lastDashDir = IsFacingRight ? Vector2.right : Vector2.left;
+
+                    IsDashing = true;
+                    IsJumping = false;
                     IsWallJumping = false;
                     isJumpCut = false;
-                    isJumpFalling = false;
-                    Jump();
 
-                    characterAnimationBehaviour.startedJumping = true;
+                    StartCoroutine(nameof(StartDash), lastDashDir);
                 }
-                //WALL JUMP
-                else if (CanWallJump() && LastPressedJumpTime > 0)
+
+
+                //characterAnimationBehaviour
+
+                // SLIDE CHECKS
+                if (CanSlide() && ((LastOnWallLeftTime > 0 && moveInput.x < 0) || (LastOnWallRightTime > 0 && moveInput.x > 0))) { IsSliding = true; }
+                else { IsSliding = false; }
+
+                // GRAVITY
+                if (!isDashAttacking)
                 {
-                    IsWallJumping = true;
-                    IsJumping = false;
-                    isJumpCut = false;
-                    isJumpFalling = false;
-
-                    wallJumpStartTime = Time.time;
-                    lastWallJumpDir = (LastOnWallRightTime > 0) ? -1 : 1;
-
-                    WallJump(lastWallJumpDir);
+                    if (IsSliding)
+                    {
+                        SetGravityScale(0);
+                    }
+                    else if (RB.velocity.y < 0 && moveInput.y < 0)
+                    {
+                        SetGravityScale(Data.gravityScale * Data.fastFallGravityMult);
+                        RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFastFallSpeed));
+                    }
+                    else if (isJumpCut)
+                    {
+                        SetGravityScale(Data.gravityScale * Data.jumpCutGravityMult);
+                        RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFallSpeed));
+                    }
+                    else if ((IsJumping || IsWallJumping || isJumpFalling) && Mathf.Abs(RB.velocity.y) < Data.jumpHangTimeThreshold)
+                    {
+                        SetGravityScale(Data.gravityScale * Data.jumpHangGravityMult);
+                    }
+                    else if (RB.velocity.y < 0)
+                    {
+                        SetGravityScale(Data.gravityScale * Data.fallGravityMult);
+                        RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFallSpeed));
+                    }
+                    else
+                    {
+                        SetGravityScale(Data.gravityScale);
+                    }
                 }
-            }
-
-            if (CanDash() && LastPressedDashTime > 0)
-            {
-                //Freeze game for split second. Adds juiciness and a bit of forgiveness over directional input
-                Sleep(Data.dashSleepTime);
-
-                //If not direction pressed, dash forward
-                if (moveInput != Vector2.zero)
-                    lastDashDir = moveInput;
                 else
-                    lastDashDir = IsFacingRight ? Vector2.right : Vector2.left;
-
-                IsDashing = true;
-                IsJumping = false;
-                IsWallJumping = false;
-                isJumpCut = false;
-
-                StartCoroutine(nameof(StartDash), lastDashDir);
-            }
-
-
-            //characterAnimationBehaviour
-
-            // SLIDE CHECKS
-            if (CanSlide() && ((LastOnWallLeftTime > 0 && moveInput.x < 0) || (LastOnWallRightTime > 0 && moveInput.x > 0))) { IsSliding = true; }
-            else { IsSliding = false; }
-
-            // GRAVITY
-            if (!isDashAttacking)
-            {
-                if (IsSliding)
                 {
                     SetGravityScale(0);
                 }
-                else if (RB.velocity.y < 0 && moveInput.y < 0)
-                {
-                    SetGravityScale(Data.gravityScale * Data.fastFallGravityMult);
-                    RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFastFallSpeed));
-                }
-                else if (isJumpCut)
-                {
-                    SetGravityScale(Data.gravityScale * Data.jumpCutGravityMult);
-                    RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFallSpeed));
-                }
-                else if ((IsJumping || IsWallJumping || isJumpFalling) && Mathf.Abs(RB.velocity.y) < Data.jumpHangTimeThreshold)
-                {
-                    SetGravityScale(Data.gravityScale * Data.jumpHangGravityMult);
-                }
-                else if (RB.velocity.y < 0)
-                {
-                    SetGravityScale(Data.gravityScale * Data.fallGravityMult);
-                    RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFallSpeed));
-                }
-                else
-                {
-                    SetGravityScale(Data.gravityScale);
-                }
+
             }
-            else
-            {
-                SetGravityScale(0);
-            }
-            
 
         }
 
@@ -438,7 +432,7 @@ namespace LubyAdventure
             {
                 RB.gravityScale = scale;
             }
-            //Debug.Log("RB.gravityScale: " + RB.gravityScale);
+            Debug.Log("RB.gravityScale: " + RB.gravityScale);
         }
 
         private void Sleep(float duration)
@@ -557,6 +551,36 @@ namespace LubyAdventure
                 force -= RB.velocity.y;
 
             RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        }
+
+        private void ForceSwimming()
+        {
+            characterAnimationBehaviour.SwimmingAnim(false);
+
+
+
+            LastPressedJumpTime = 0;
+            LastOnGroundTime = 0;
+            float force = Data.jumpForce;
+            if (RB.velocity.y < 0)
+                force -= RB.velocity.y;
+            
+            RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //RB.AddForce(new Vector2(RB.velocity.y, forceSwimming), ForceMode2D.Impulse);
+            swimmingTime = 0.3f;
         }
 
         private void WallJump(int dir)

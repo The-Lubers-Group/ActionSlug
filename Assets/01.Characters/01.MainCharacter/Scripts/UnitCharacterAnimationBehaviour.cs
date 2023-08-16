@@ -113,5 +113,12 @@ namespace LubyAdventure
             characterAnimator.SetFloat("Vel Y", unitController.RB.velocity.y);
         }
 
+        public void SwimmingAnim(bool status)
+        {
+            //characterAnimator.SetTrigger("Swimming");
+            characterAnimator.SetBool("Swimming", status);
+            Debug.Log("SwimmingAnim: " +  status);
+        }
+
     }
 }
