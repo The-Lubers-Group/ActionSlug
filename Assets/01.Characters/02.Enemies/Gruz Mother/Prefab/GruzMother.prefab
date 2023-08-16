@@ -398,3 +398,4 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  enemyAnim: {fileID: 2721374474153850486}

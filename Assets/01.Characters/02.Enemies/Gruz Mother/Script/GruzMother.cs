@@ -16,6 +16,7 @@ public class GruzMother : MonoBehaviour
     [SerializeField] float attackPlayerSpeed;
     [SerializeField] Transform player;
     private Vector2 playerPosition;
+    private bool hasPlayerPosition;
 
     [Header("Other")]
     [SerializeField] Transform groundCheckUp;
@@ -32,12 +33,18 @@ public class GruzMother : MonoBehaviour
     private bool goingUp = true;
     private Rigidbody2D enemyRB;
 
+    [SerializeField] private Animator enemyAnim;
+
     private void Start()
     {
 
         idleMovementDirection.Normalize(); 
         attackMovementDirection.Normalize();
         enemyRB = GetComponent<Rigidbody2D>();
+        
+        //enemyAnim = GetComponent<Animator>();
+        //enemyAnim = GetComponentInChildren<Animator>();
+        //enemyAnim.GetBehaviours<GruzMother_AttackPlayer>().gruzMother = this;
     }
 
     private void Update()
@@ -104,9 +111,26 @@ public class GruzMother : MonoBehaviour
 
     public void AttackPlayer()
     {
-        playerPosition = player.position - transform.position;
-        playerPosition.Normalize();
-        enemyRB.velocity = playerPosition * attackPlayerSpeed;
+        if (!hasPlayerPosition)
+        {
+            playerPosition = player.position - transform.position;
+            playerPosition.Normalize();
+            hasPlayerPosition = true;
+        }
+
+        if(hasPlayerPosition)
+        {
+            enemyRB.velocity = playerPosition * attackPlayerSpeed;
+        }
+
+        if(isTouchingWall || isTouchingDown)
+        {
+            enemyRB.velocity = Vector2.zero;
+            hasPlayerPosition = false;
+            // player slamed animation
+            enemyAnim.SetTrigger("Slamed");
+        }
+        
     }
 
     void FlipTowardsPlayer()
