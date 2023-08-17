@@ -72,7 +72,7 @@ namespace LubyAdventure
         public bool IsSwimming { get; private set; }
         public float swimmingTime { get; private set; }
 
-        [SerializeField] private float forceSwimming = 4f;
+        //[SerializeField] private float forceSwimming = 4f;
 
         //private bool IsSwimming = false;
 
@@ -142,17 +142,43 @@ namespace LubyAdventure
             LastPressedJumpTime -= Time.deltaTime;
             LastPressedDashTime -= Time.deltaTime;
             
-            
             IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
-            //Debug.Log("IsSwimming: " + IsSwimming);
+            //Debug.Log(Physics2D.gravity);
 
-
-            if(IsSwimming)
+            if (IsSwimming)
             {
                 characterAnimationBehaviour.SwimmingAnim(true);
-                //ForceSwimming();
+                RB.drag = Data.linerDragSwimming;
+
+                // Movemnt swimming
+                if (moveInput.x < 0)
+                {
+                    Physics2D.gravity = new Vector2(0, Data.gravitySwimming);
+                }
+                else if (moveInput.x > 0)
+                {
+                    Physics2D.gravity = new Vector2(0, -Data.gravitySwimming);
+                }
+                else if (moveInput.y < 0)
+                {
+                    Physics2D.gravity = new Vector2(-Data.gravitySwimming, 0);
+                }
+                else if (moveInput.y > 0)
+                {
+                    Physics2D.gravity = new Vector2(Data.gravitySwimming, 0);
+                }
             }
-            
+            else if (!IsSwimming){
+                characterAnimationBehaviour.SwimmingAnim(false);
+
+                RB.drag = Data.linerDrag;
+
+                Physics2D.gravity = new Vector2(0, -9.81f);
+            }
+
+            Debug.Log(Physics2D.gravity);
+
+
             moveInput = gameInput.getMovementVectorNormalized();
 
             if (moveInput.x != 0)
@@ -424,15 +450,13 @@ namespace LubyAdventure
         {
             if (IsSwimming)
             {
-                // Debug.Log("Na agua " + Physics2D.OverlapCapsule(RB.position, wallCheckSize, 0, waterLayer));
-                // IsSwimming = true;
-                RB.gravityScale = 0.5f;
+                RB.gravityScale = Data.gravitySwimming;
             }
             else
             {
                 RB.gravityScale = scale;
             }
-            Debug.Log("RB.gravityScale: " + RB.gravityScale);
+            //Debug.Log("RB.gravityScale: " + RB.gravityScale);
         }
 
         private void Sleep(float duration)
@@ -556,31 +580,22 @@ namespace LubyAdventure
         private void ForceSwimming()
         {
             characterAnimationBehaviour.SwimmingAnim(false);
-
-
-
-            LastPressedJumpTime = 0;
-            LastOnGroundTime = 0;
-            float force = Data.jumpForce;
-            if (RB.velocity.y < 0)
-                force -= RB.velocity.y;
+            RB.velocity = new Vector2(RB.velocity.x, 0);
             
+            float force = Data.forceSwimming;
+
+
+
+            //RB.AddForce(new Vector2(0, Data.forceSwimming), ForceMode2D.Force);
+            //RB.AddForce(Vector2.up * force, ForceMode2D.Force);
             RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //RB.AddForce(new Vector2(RB.velocity.y, forceSwimming), ForceMode2D.Impulse);
             swimmingTime = 0.3f;
+            //LastPressedJumpTime = 0;
+            //LastOnGroundTime = 0;
+            //float force = Data.jumpForce;
+            //if (RB.velocity.y < 0)
+            //    force -= RB.velocity.y;
+            //RB.AddForce(new Vector2(RB.velocity.y, forceSwimming), ForceMode2D.Impulse);
         }
 
         private void WallJump(int dir)

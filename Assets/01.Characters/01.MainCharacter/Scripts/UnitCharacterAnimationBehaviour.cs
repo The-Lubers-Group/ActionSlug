@@ -117,7 +117,7 @@ namespace LubyAdventure
         {
             //characterAnimator.SetTrigger("Swimming");
             characterAnimator.SetBool("Swimming", status);
-            Debug.Log("SwimmingAnim: " +  status);
+            //Debug.Log("SwimmingAnim: " +  status);
         }
 
     }

@@ -17,6 +17,7 @@ public class UnitInfoData : ScriptableObject
     [Header("Gravity Settings")]
     [HideInInspector] public float gravityStrength;
     [HideInInspector] public float gravityScale;
+    [HideInInspector] public float linerDrag;
 
     [Space(5)]
     public float fallGravityMult;
@@ -39,6 +40,13 @@ public class UnitInfoData : ScriptableObject
     [Range(0f, 1)] public float deccelInAir;
     [Space(5)]
     public bool doConserveMomentum = true;
+
+    [Space(20)]
+
+    [Header("Swimming")]
+    public float forceSwimming;
+    public float linerDragSwimming;
+    public float gravitySwimming;
 
     [Space(20)]
 
@@ -95,6 +103,10 @@ public class UnitInfoData : ScriptableObject
         gravityStrength = -(2 * jumpHeight) / (jumpTimeToApex * jumpTimeToApex);
 
         gravityScale = gravityStrength / Physics2D.gravity.y;
+        //gravitySwimming = 0.5f;
+        //gravitySwimming = gravityScale / Physics2D.gravity.y;
+
+        linerDrag = 1f;
 
         runAccelAmount = (50 * runAcceleration) / runMaxSpeed;
         runDeccelAmount = (50 * runDecceleration) / runMaxSpeed;
