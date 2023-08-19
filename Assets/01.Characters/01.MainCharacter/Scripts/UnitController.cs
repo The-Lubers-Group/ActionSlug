@@ -176,7 +176,7 @@ namespace LubyAdventure
                 Physics2D.gravity = new Vector2(0, -9.81f);
             }
 
-            Debug.Log(Physics2D.gravity);
+            //Debug.Log(Physics2D.gravity);
 
 
             moveInput = gameInput.getMovementVectorNormalized();

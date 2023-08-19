@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 819535239730335932}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450530501811102057}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StartPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 3770459799066395632}
   - component: {fileID: 4756129135501291433}
   - component: {fileID: 9086525859297400244}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,6 +170,7 @@ MonoBehaviour:
   - {fileID: 6450530501811102057}
   - {fileID: 819535239730335932}
   platformEffector2D: {fileID: 9086525859297400244}
+  gameInput: {fileID: 0}
 --- !u!61 &4756129135501291433
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -243,7 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8080819726622130743}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: NewMovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3466381436036200}
   - component: {fileID: 6681904996550527843}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2331928138282364274}
   - component: {fileID: 2137726657318643830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 544253899876286915}
   - component: {fileID: 4461915913773259970}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 526152235921763408}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}

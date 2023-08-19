@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7764480397549715894}
   - component: {fileID: 1734273952298720901}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain (16x16)_66
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3172551685903224862}
   - component: {fileID: 6892340402668899239}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain (16x16)_46
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1591025040405125581}
   - component: {fileID: 6336570647154161618}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain (16x16)_47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 4769463042405400175}
   - component: {fileID: 5934857388735013245}
   - component: {fileID: 7679704405733478157}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeddiunPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5586083076477563405}
   - component: {fileID: 1396294622988105150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain (16x16)_65
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1231915649192639503}
   - component: {fileID: 125764738496774380}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain (16x16)_67
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2020353669275294676}
   - component: {fileID: 9164538383832231246}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain (16x16)_84
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1771131135118438844}
   - component: {fileID: 5997295160436153336}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain (16x16)_86
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5630129245192164771}
   - component: {fileID: 8593842301533325438}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain (16x16)_85
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6901483464906799882}
   - component: {fileID: 4002311362838766284}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain (16x16)_48
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,7 +863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3807164892234184627}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
