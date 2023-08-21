@@ -57,10 +57,10 @@ public class GetHit : MonoBehaviour
 
         Instantiate(impactEffect, impactEffect.transform.position, Quaternion.identity);
         characterAnimationBehaviour.CharacterWasHit();
-
+        
+        transform.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
+        
         OnMaterial(true);
-
-
         Time.timeScale = ChangeTime;
     }
 
