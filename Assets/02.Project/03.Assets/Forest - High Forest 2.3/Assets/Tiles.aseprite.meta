@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638279729043971209
+  platformSettingsDirtyTick: 638282082681393884
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -155,7 +155,14 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: -3, y: -4}
+      - {x: -8, y: -8}
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
+      - {x: 8, y: -4}
+      - {x: 3, y: -4}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -175,7 +182,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: -8, y: -3.93573}
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
+      - {x: 8, y: -3.953064}
+      - {x: 4.674488, y: -3.906128}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -195,7 +208,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: -8, y: -4.0245056}
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
+      - {x: 8, y: -3.8938904}
+      - {x: -0.61530304, y: -4.083679}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -215,7 +234,13 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: -8, y: -3.939392}
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
+      - {x: 8, y: -3.9415588}
+      - {x: 6.196968, y: -3.9675598}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -235,7 +260,15 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: -5.777054, y: -3.9751282}
+      - {x: -8, y: -3.969696}
+      - {x: -8, y: -8}
+      - {x: 6.339821, y: -8}
+      - {x: 5.242424, y: -6.7337646}
+      - {x: 3.8593063, y: -5.96756}
+      - {x: -1.3549728, y: -3.8831177}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -9464,6 +9497,18 @@ ScriptedImporter:
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
   - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
     overridden: 0
     ignorePlatformSupport: 0
     maxTextureSize: 2048
