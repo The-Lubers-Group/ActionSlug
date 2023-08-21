@@ -15,8 +15,8 @@ MonoBehaviour:
   unitName: Lubeiro
   unitAvatar: {fileID: 0}
   totalHealth: 100
-  gravityStrength: -222.2222
-  gravityScale: 22.652618
+  gravityStrength: -199.99998
+  gravityScale: 20.387358
   linerDrag: 1
   fallGravityMult: 1.5
   maxFallSpeed: 25
@@ -33,10 +33,10 @@ MonoBehaviour:
   forceSwimming: 50
   linerDragSwimming: 10
   gravitySwimming: 1
-  jumpHeight: 10
+  jumpHeight: 9
   jumpTimeToApex: 0.3
-  jumpForce: 66.666664
-  jumpCutGravityMult: 2
+  jumpForce: 59.999996
+  jumpCutGravityMult: 5
   jumpHangGravityMult: 0.5
   jumpHangTimeThreshold: 1
   jumpHangAccelerationMult: 1.1
