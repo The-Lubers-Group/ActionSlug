@@ -12,6 +12,10 @@ public class TimeStop : MonoBehaviour
     [Header("Animation Settings")]
     [SerializeField] private UnitCharacterAnimationBehaviour characterAnimationBehaviour;
 
+    [Header("Visual Effect")]
+    [SerializeField] private GameObject impactEffect;
+
+
     private void Start()
     {
         RestoreTime = false;
@@ -47,8 +51,11 @@ public class TimeStop : MonoBehaviour
             RestoreTime =  true;
         }
 
+        //Vector2 newPosition = new Vector2(transform.position.x - 1, transform.position.y);
+
+        Instantiate(impactEffect, impactEffect.transform.position, Quaternion.identity);
         characterAnimationBehaviour.CharacterWasHit();
-        Debug.Log("Dano");
+        //Debug.Log("Dano");
 
         Time.timeScale = ChangeTime;
     }
