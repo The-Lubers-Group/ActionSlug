@@ -812,8 +812,6 @@ namespace LubyAdventure
                 
             }
         }
-        
-
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;

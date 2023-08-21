@@ -1,3 +1,4 @@
+using LubyAdventure;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,8 @@ public class Trap : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<TimeStop>().StopTime(0.5F, 10, 0.1F);
+            //collision.gameObject.GetComponent<UnitController>().GetHit();
+            collision.gameObject.GetComponent<GetHit>().StopTime(0.5F, 10, 0.1F);
         }
     }
 }
