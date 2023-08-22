@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Lubeiro
   unitAvatar: {fileID: 0}
-  totalHealth: 100
+  totalLife: 10
+  totalCoin: 99
+  fallGravityMult: 1.5
+  maxFallSpeed: 25
   gravityStrength: -222.2222
   gravityScale: 22.652618
   linerDrag: 1
-  fallGravityMult: 1.5
-  maxFallSpeed: 25
   fastFallGravityMult: 2
   maxFastFallSpeed: 30
   runMaxSpeed: 20

@@ -8,20 +8,17 @@ public class UnitInfoData : ScriptableObject
     [Header("Display Infos")]
     public string unitName;
     public Sprite unitAvatar;
-
-    [Space(5)]
-    [Header("Health Settings")] 
-    public int totalHealth;
-
-    [Space(5)]
+    public int totalLife;
+    public int totalCoin;
+    
+    [Space(20)]
     [Header("Gravity Settings")]
+    public float fallGravityMult;
+    public float maxFallSpeed;
     [HideInInspector] public float gravityStrength;
     [HideInInspector] public float gravityScale;
     [HideInInspector] public float linerDrag;
 
-    [Space(5)]
-    public float fallGravityMult;
-    public float maxFallSpeed;
     [Space(5)]
     public float fastFallGravityMult;
 
