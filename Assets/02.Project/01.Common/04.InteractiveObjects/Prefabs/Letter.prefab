@@ -125,8 +125,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3049804933304942186}
-  - component: {fileID: 6134941908437109058}
   - component: {fileID: 2232062776259144789}
+  - component: {fileID: 8290210241989730996}
   m_Layer: 0
   m_Name: Letter
   m_TagString: Untagged
@@ -150,22 +150,6 @@ Transform:
   - {fileID: 2423385928936089122}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6134941908437109058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8327568919536104120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8222d18d447f68b43afe151bcfcd0ee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Coin: {fileID: 3049804933304942186}
-  InteractLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!58 &2232062776259144789
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -201,3 +185,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.5
+--- !u!114 &8290210241989730996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8327568919536104120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564e42de061bdf141b26d10ac4aea8fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letter: {fileID: 3049804933304942186}
+  letterId: 3
+  InteractLayer:
+    serializedVersion: 2
+    m_Bits: 64
