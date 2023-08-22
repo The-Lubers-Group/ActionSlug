@@ -23,18 +23,17 @@ public class LadderMovement : MonoBehaviour
         moveInput = gameInput.getMovementVectorNormalized();
         vertical = Input.GetAxisRaw("Vertical");
 
+        //Debug.Log(isLadder);
+
         if (isLadder && Mathf.Abs(vertical) > 0f)
         {
             issClimbing = true;
         }
-        else if(isLadder && moveInput.y > 0)
+        else if(isLadder && moveInput.y > 0.0 )
         {
+            //Debug.Log(" moveInput.y: " + moveInput.y );
             issClimbing = true;
-
         }
-
-
-
     }
 
     private void FixedUpdate()
@@ -43,10 +42,10 @@ public class LadderMovement : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
+            Debug.Log("rb.velocity: " + rb.velocity);
         }
         else
         {
-            //rb.gravityScale = 4f;
             rb.gravityScale = Data.gravityScale;
         }
     }
@@ -55,7 +54,7 @@ public class LadderMovement : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            Debug.Log("Ladder");
+            //Debug.Log("Ladder");
             isLadder = true;
         }
     }

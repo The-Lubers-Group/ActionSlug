@@ -141,6 +141,9 @@ namespace LubyAdventure
 
             LastPressedJumpTime -= Time.deltaTime;
             LastPressedDashTime -= Time.deltaTime;
+
+            //Debug.Log(" moveInput.x: " + moveInput.x + " moveInput.y: " + moveInput.y);
+           
             
             IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
             //Debug.Log(Physics2D.gravity);
@@ -394,7 +397,6 @@ namespace LubyAdventure
 
         private void FixedUpdate()
         {
-            
 
             //Handle Run
             if (!IsDashing)
@@ -521,9 +523,20 @@ namespace LubyAdventure
             //Convert this to a vector and apply to rigidbody
             RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
 
+
+
+
+
             // Walk
-            Vector3 moveDir = new Vector3(moveInput.x, 0f, moveInput.y);
+            //Vector3 moveDir = new Vector3(moveInput.x,  moveInput.y, 0f);
+            Vector3 moveDir = new Vector3(moveInput.x,  0f, 0f);
+
+
+            //Debug.Log(moveInput.x);
             isWalking = moveDir != Vector3.zero;
+            //isWalking = moveDir != moveInput.x;
+
+
 
             /*
              * For those interested here is what AddForce() will do
