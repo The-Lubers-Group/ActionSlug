@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
     public LevelData Data;
     public List<int> listCoin = new List<int>();
     
-    public bool[] luby = new bool[4];
+    //public bool[] luby = new bool[4];
 
+    /*
     private void Update()
     {
         foreach (bool i in luby)
@@ -16,5 +17,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log(i.);
         }
     }
-
+    */
 }
+
+
