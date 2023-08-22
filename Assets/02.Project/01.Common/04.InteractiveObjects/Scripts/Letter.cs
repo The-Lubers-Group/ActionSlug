@@ -16,10 +16,12 @@ public class Letter : MonoBehaviour
     [SerializeField] private LayerMask InteractLayer;
 
     private GameManager gameManager;
+    private MenuManager menuManager;
 
     private void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
+        menuManager = FindAnyObjectByType<MenuManager>();
     }
 
     private void Update()
@@ -27,6 +29,7 @@ public class Letter : MonoBehaviour
         if (Physics2D.OverlapCircle(letter.position, 0, InteractLayer))
         {
             UpdateLetterStatus();
+            OnLetterAnim();
             Destroy(letter.gameObject);
         }
     }
@@ -37,6 +40,19 @@ public class Letter : MonoBehaviour
             if (lubyLetter.letterId == letterId)
             {
                 lubyLetter.letterStatus = true;
+            }
+        }
+    }
+
+
+    private void OnLetterAnim()
+    {
+        for (int i = 0; i < menuManager.lubyLetter.Count; i++)
+        {
+            if((i + 1) == letterId)
+            {
+                //letter.position = new Vector3(1.0f, 1.0f, 1.0f);
+                letter.position = menuManager.lubyLetter[i].transform.position ;
             }
         }
     }

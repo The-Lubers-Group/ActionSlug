@@ -14,6 +14,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TMP_Text totalLife;
     [SerializeField] private TMP_Text totalCoin;
 
+    [Space(5)]
+    public List<LetterManager> lubyLetter = new List<LetterManager>();
+
     private void Start()
     {
         UIPauseMenu.SetActive(false);
