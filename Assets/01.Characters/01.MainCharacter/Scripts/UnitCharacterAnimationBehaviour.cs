@@ -126,6 +126,13 @@ namespace LubyAdventure
             characterAnimator.SetBool("IsSlider", status);
         }
 
+        public void OnLedgeClimbAnim(bool status)
+        {
+            //Debug.Log("IsSlider: " + status);
+            characterAnimator.SetBool("LedgeClimb", status);
+
+        }
+
     }
 }
 

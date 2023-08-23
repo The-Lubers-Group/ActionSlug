@@ -957,26 +957,18 @@ namespace LubyAdventure
                     Debug.Log("Pode Subir na quina");
                     ledgePosBot = frontWallCheckPoint.position;
 
-                    ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + .5f) - ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1); ;
-                    ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + .5f) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
+                    ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) - ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1); ;
+                    ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
                 }
 
 
                 if (canClibLedge)
                 {
                     transform.position = ledgePos1;
+                    characterAnimationBehaviour.OnLedgeClimbAnim(canClibLedge);
                 }
 
-
-
-
-
-
             }
-
-            
-
-
             //CheckLedgeClimb();
         }
 
