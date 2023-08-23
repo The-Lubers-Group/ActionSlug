@@ -120,10 +120,6 @@ namespace LubyAdventure
         [SerializeField] private Transform ledgeCheckPoint;
         [SerializeField] private Vector2 ledgeClimbSize = new Vector2(1.3f, 0.5f);
 
-
-
-
-
         private bool canClibLedge = false;
         private bool ledgeDetected;
 
@@ -131,10 +127,10 @@ namespace LubyAdventure
         private Vector2 ledgePos1;
         private Vector2 ledgePos2;
 
-        private float ledgeClimbBoXOffset1 = 0f;
-        private float ledgeClimbBoYOffset1 = 0f;
-        private float ledgeClimbBoXOffset2 = 0f;
-        private float ledgeClimbBoYOffset2 = 0f;
+        [SerializeField] private float ledgeClimbBoXOffset1 = 0f;
+        [SerializeField] private float ledgeClimbBoYOffset1 = 0f;
+        [SerializeField] private float ledgeClimbBoXOffset2 = 0f;
+        [SerializeField] private float ledgeClimbBoYOffset2 = 0f;
 
 
         // LAYERS & TAGS
@@ -939,7 +935,7 @@ namespace LubyAdventure
 
         private void LedgeClimb()
         {
-            
+
             /*
             IsTouchingLedge = Physics2D.Raycast(ledgeCheck.position, transform.right, 0, groundLayer);
             if (Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !IsTouchingLedge && !ledgeDetected)
@@ -949,28 +945,49 @@ namespace LubyAdventure
             }
             */
 
-
-
-
-            if ((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer))  
-                && 
-                (!Physics2D.OverlapBox(ledgeCheckPoint.position, wallCheckSize, 0, groundLayer)) 
+            if (!IsSwimming)
+            {
+                if ((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer))
+                &&
+                (!Physics2D.OverlapBox(ledgeCheckPoint.position, wallCheckSize, 0, groundLayer))
                 &&
                 (!Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer)))
-            {
-                Debug.Log("Pode Subir na quina");
+                {
+                    canClibLedge = true;
+                    Debug.Log("Pode Subir na quina");
+                    ledgePosBot = frontWallCheckPoint.position;
+
+                    ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + .5f) - ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1); ;
+                    ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + .5f) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
+                }
+
+
+                if (canClibLedge)
+                {
+                    transform.position = ledgePos1;
+                }
+
+
+
+
+
+
             }
 
+            
 
 
-
-
-
-
-
-
-            CheckLedgeClimb();
+            //CheckLedgeClimb();
         }
+
+
+
+
+
+
+
+
+
 
         private void OnDrawGizmosSelected()
         {
