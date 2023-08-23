@@ -1,9 +1,8 @@
+using DG.Tweening;
 using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 public class Letter : MonoBehaviour
 {
     [Header("Main Object")]
@@ -17,11 +16,13 @@ public class Letter : MonoBehaviour
 
     private GameManager gameManager;
     private MenuManager menuManager;
+    private SpriteRenderer spriteIcon;
 
     private void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
         menuManager = FindAnyObjectByType<MenuManager>();
+        spriteIcon = letter.GetChild(0).GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -30,7 +31,8 @@ public class Letter : MonoBehaviour
         {
             UpdateLetterStatus();
             OnLetterAnim();
-            Destroy(letter.gameObject);
+            StartCoroutine(Wait(0.5f));
+
         }
     }
     private void UpdateLetterStatus()
@@ -43,17 +45,21 @@ public class Letter : MonoBehaviour
             }
         }
     }
-
-
     private void OnLetterAnim()
     {
         for (int i = 0; i < menuManager.lubyLetter.Count; i++)
         {
             if((i + 1) == letterId)
             {
-                //letter.position = new Vector3(1.0f, 1.0f, 1.0f);
-                letter.position = menuManager.lubyLetter[i].transform.position ;
+                spriteIcon.sortingOrder = 3;
+                letter.DOMove(menuManager.lubyLetter[i].transform.position, 1);
             }
         }
+    }
+    IEnumerator Wait(float amt)
+    {
+        yield return new WaitForSeconds(amt);
+        spriteIcon.sortingOrder = 0;
+        Destroy(letter.gameObject);
     }
 }

@@ -63,14 +63,6 @@ public class GetHit : MonoBehaviour
         OnMaterial(true);
         Time.timeScale = ChangeTime;
     }
-
-    IEnumerator StartTimeAgain(float amt)
-    {
-        yield return new WaitForSeconds(amt);
-        RestoreTime = true;
-    }
-
-
     private void OnMaterial(bool status)
     {
         foreach (Transform child in transform.GetChild(0).GetChild(0).GetComponentsInChildren<Transform>())
@@ -89,5 +81,10 @@ public class GetHit : MonoBehaviour
                 }
             }
         }
+    }
+    IEnumerator StartTimeAgain(float amt)
+    {
+        yield return new WaitForSeconds(amt);
+        RestoreTime = true;
     }
 }

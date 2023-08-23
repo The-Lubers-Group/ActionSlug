@@ -31,7 +31,9 @@ public class LetterManager : MonoBehaviour
             {
                 if (lubyLetter.letterStatus)
                 {
-                    iconLetter.sprite = enableLetter;
+                    //iconLetter.sprite = enableLetter;
+                    StartCoroutine(Wait(0.5f));
+
                 }
                 if (!lubyLetter.letterStatus)
                 {
@@ -39,5 +41,11 @@ public class LetterManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator Wait(float amt)
+    {
+        yield return new WaitForSeconds(amt);
+        iconLetter.sprite = enableLetter;
     }
 }
