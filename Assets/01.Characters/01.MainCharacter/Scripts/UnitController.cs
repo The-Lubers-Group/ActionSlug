@@ -36,7 +36,7 @@ namespace LubyAdventure
         [SerializeField] private Transform attachedTo;
         [SerializeField] private GameObject disregard;
 
-
+        
 
         [Header("Animation Settings")]
         public UnitCharacterAnimationBehaviour characterAnimationBehaviour;
@@ -60,6 +60,9 @@ namespace LubyAdventure
         public bool IsWallJumping { get; private set; }
         public bool IsDashing { get; private set; }
         public bool IsSliding { get; private set; }
+
+
+        public bool IsTouchingLedge { get; private set; }
 
 
         //Timers (also all fields, could be private and a method returning a bool could be used)
@@ -108,6 +111,32 @@ namespace LubyAdventure
         [SerializeField] private Transform backWallCheckPoint;
         [SerializeField] private Vector2 wallCheckSize = new Vector2(0.5f, 1f);
 
+        /// <summary>
+        /// Ledge Climb
+        /// </summary>
+        /// 
+        [Space(5)]
+        [Header("Checks - Ledge Climb")]
+        [SerializeField] private Transform ledgeCheckPoint;
+        [SerializeField] private Vector2 ledgeClimbSize = new Vector2(1.3f, 0.5f);
+
+
+
+
+
+        private bool canClibLedge = false;
+        private bool ledgeDetected;
+
+        private Vector2 ledgePosBot;
+        private Vector2 ledgePos1;
+        private Vector2 ledgePos2;
+
+        private float ledgeClimbBoXOffset1 = 0f;
+        private float ledgeClimbBoYOffset1 = 0f;
+        private float ledgeClimbBoXOffset2 = 0f;
+        private float ledgeClimbBoYOffset2 = 0f;
+
+
         // LAYERS & TAGS
         [Header("Layers & Tags")]
         [SerializeField] private LayerMask groundLayer;
@@ -127,6 +156,9 @@ namespace LubyAdventure
 
                 cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
                 SetGravityScale(Data.gravityScale);
+
+                
+
                 IsFacingRight = true;
             }
 
@@ -147,6 +179,8 @@ namespace LubyAdventure
             
             IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
             //Debug.Log(Physics2D.gravity);
+
+
 
             if (IsSwimming)
             {
@@ -178,6 +212,10 @@ namespace LubyAdventure
 
                 Physics2D.gravity = new Vector2(0, -9.81f);
             }
+
+
+
+            
 
             //Debug.Log(Physics2D.gravity);
 
@@ -280,7 +318,7 @@ namespace LubyAdventure
             }
 
             //SET Anim Wall sider
-            if (!IsSwimming && Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump())
+            if (!IsSwimming && Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump() && !canClibLedge)
             {
                 characterAnimationBehaviour.SetWallSliderAnim(true);
             }
@@ -293,6 +331,8 @@ namespace LubyAdventure
             {
                 characterAnimationBehaviour.SetWallSliderAnim(false);
             }
+
+            LedgeClimb();
 
 
 
@@ -866,13 +906,83 @@ namespace LubyAdventure
                 
             }
         }
+
+        private void CheckLedgeClimb()
+        {
+            if(!IsSwimming && ledgeDetected && !canClibLedge)
+            {
+                canClibLedge = true;
+
+                if(IsFacingRight)
+                {
+                    ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + 0) - ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1);
+                    ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + 0) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
+                }
+                else
+                {
+                    ledgePos1 = new Vector2(Mathf.Ceil(ledgePosBot.x + 0) + ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1);
+                    ledgePos2 = new Vector2(Mathf.Ceil(ledgePosBot.x + 0) - ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
+                }
+            }
+            if(canClibLedge)
+            {
+                transform.position = ledgePos1;
+            }
+        }
+
+        public void FinishLedgeClimb()
+        {
+            canClibLedge = false;
+            transform.position = ledgePos2;
+            ledgeDetected = false; 
+        }
+
+        private void LedgeClimb()
+        {
+            
+            /*
+            IsTouchingLedge = Physics2D.Raycast(ledgeCheck.position, transform.right, 0, groundLayer);
+            if (Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !IsTouchingLedge && !ledgeDetected)
+            {
+                ledgeDetected = true;
+                ledgePosBot = frontWallCheckPoint.position;
+            }
+            */
+
+
+
+
+            if ((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer))  
+                && 
+                (!Physics2D.OverlapBox(ledgeCheckPoint.position, wallCheckSize, 0, groundLayer)) 
+                &&
+                (!Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer)))
+            {
+                Debug.Log("Pode Subir na quina");
+            }
+
+
+
+
+
+
+
+
+
+            CheckLedgeClimb();
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(groundCheckPoint.position, groundCheckSize);
+            
             Gizmos.color = Color.blue;
             Gizmos.DrawWireCube(frontWallCheckPoint.position, wallCheckSize);
             Gizmos.DrawWireCube(backWallCheckPoint.position, wallCheckSize);
+            
+            Gizmos.color = Color.grey;
+            Gizmos.DrawWireCube(ledgeCheckPoint.position, ledgeClimbSize);
         }
 
     }
