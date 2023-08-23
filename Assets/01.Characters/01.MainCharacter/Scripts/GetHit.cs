@@ -67,7 +67,7 @@ public class GetHit : MonoBehaviour
     {
         foreach (Transform child in transform.GetChild(0).GetChild(0).GetComponentsInChildren<Transform>())
         {
-            Debug.Log(child.name);
+            //Debug.Log(child.name);
             if (child.GetComponent<SpriteRenderer>())
             {
                 if(status)

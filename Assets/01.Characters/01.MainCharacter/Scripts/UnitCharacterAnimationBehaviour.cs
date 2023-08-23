@@ -119,6 +119,15 @@ namespace LubyAdventure
             characterAnimator.SetBool("Swimming", status);
             //Debug.Log("SwimmingAnim: " +  status);
         }
+        
+        public void SetWallSliderAnim(bool status)
+        {
+            //Debug.Log("IsSlider: " + status);
+            characterAnimator.SetBool("IsSlider", status);
+        }
 
     }
 }
+
+//Set the animation
+//characterAnimationBehaviour.SetWallSliderAnim(true);

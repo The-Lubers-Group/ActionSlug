@@ -10070,7 +10070,7 @@ MonoBehaviour:
   cameraFollowObjectGO: {fileID: 0}
   moveInput: {x: 0, y: 0}
   groundCheckPoint: {fileID: 6352447992454759668}
-  groundCheckSize: {x: 4.3, y: 0.2}
+  groundCheckSize: {x: 2.3, y: 0.2}
   frontWallCheckPoint: {fileID: 8418926622664768546}
   backWallCheckPoint: {fileID: 8155562484074000629}
   wallCheckSize: {x: 0.5, y: 6}
@@ -10883,6 +10883,10 @@ PrefabInstance:
     - target: {fileID: 8606659026539209782, guid: 2c1a9501d2475714b98c2bc7bdb983a9, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.6483214
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606659026539209782, guid: 2c1a9501d2475714b98c2bc7bdb983a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8606659026539209782, guid: 2c1a9501d2475714b98c2bc7bdb983a9, type: 3}
       propertyPath: m_LocalRotation.z

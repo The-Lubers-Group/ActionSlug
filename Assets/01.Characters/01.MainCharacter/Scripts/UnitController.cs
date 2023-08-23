@@ -279,6 +279,23 @@ namespace LubyAdventure
                 LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
             }
 
+            //SET Anim Wall sider
+            if (!IsSwimming && Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump())
+            {
+                characterAnimationBehaviour.SetWallSliderAnim(true);
+            }
+            else
+            {
+                characterAnimationBehaviour.SetWallSliderAnim(false);
+            }
+
+            if (!IsSwimming && !Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump())
+            {
+                characterAnimationBehaviour.SetWallSliderAnim(false);
+            }
+
+
+
             if (!IsSwimming)
             {
 
@@ -303,6 +320,10 @@ namespace LubyAdventure
 
                 if (!IsDashing)
                 {
+                    //Debug.Log("(CanWallJump() && LastPressedJumpTime > 0): " + (CanWallJump() && LastPressedJumpTime > 0));
+                    //Debug.Log("(CanWallJump()): " + (CanWallJump()));
+                    //Debug.Log("(LastPressedJumpTime > 0): " + (LastPressedJumpTime > 0));
+
                     //Jump
                     if (CanJump() && LastPressedJumpTime > 0)
                     {
@@ -317,6 +338,7 @@ namespace LubyAdventure
                     //WALL JUMP
                     else if (CanWallJump() && LastPressedJumpTime > 0)
                     {
+                        
                         IsWallJumping = true;
                         IsJumping = false;
                         isJumpCut = false;
@@ -613,6 +635,9 @@ namespace LubyAdventure
 
         private void WallJump(int dir)
         {
+            //Debug.Log("private void WallJump(int dir)");
+            
+
             //Ensures we can't call Wall Jump multiple times from one press
             LastPressedJumpTime = 0;
             LastOnGroundTime = 0;
@@ -628,6 +653,7 @@ namespace LubyAdventure
             if (RB.velocity.y < 0) //checks whether player is falling, if so we subtract the velocity.y (counteracting force of gravity). This ensures the player always reaches our desired jump force or greater
                 force.y -= RB.velocity.y;
 
+            
             //Unlike in the run we want to use the Impulse mode.
             //The default mode will apply are force instantly ignoring masss
             RB.AddForce(force, ForceMode2D.Impulse);
@@ -719,6 +745,9 @@ namespace LubyAdventure
 
         private bool CanJump()
         {
+            //Debug.Log(" ========== private bool CanJump() ========== ");
+            //Debug.Log("(LastOnGroundTime > 0): " + (LastOnGroundTime > 0));
+            //Debug.Log("(!IsJumping): " + (!IsJumping));
             return LastOnGroundTime > 0 && !IsJumping;
         }
 
@@ -750,6 +779,18 @@ namespace LubyAdventure
 
         public bool CanSlide()
         {
+            /*
+            if (LastOnWallTime > 0 && !IsJumping && !IsWallJumping && !IsDashing && LastOnGroundTime <= 0)
+            {
+                Debug.Log("(public bool CanSlide()): " + (LastOnWallTime > 0 && !IsJumping && !IsWallJumping && !IsDashing && LastOnGroundTime <= 0));
+                characterAnimationBehaviour.SetWallSliderAnim(true);
+            }
+            else
+            {
+                characterAnimationBehaviour.SetWallSliderAnim(false);
+            }
+            */
+
             if (LastOnWallTime > 0 && !IsJumping && !IsWallJumping && !IsDashing && LastOnGroundTime <= 0)
                 return true;
             else
