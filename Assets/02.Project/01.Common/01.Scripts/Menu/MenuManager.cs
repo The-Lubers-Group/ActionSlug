@@ -14,6 +14,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TMP_Text totalLife;
     [SerializeField] private TMP_Text totalCoin;
 
+    public GameObject UICoin;
+
+
     [Space(5)]
     public List<LetterManager> lubyLetter = new List<LetterManager>();
 
