@@ -72,10 +72,23 @@ public class GetHit : MonoBehaviour
         }
 
 
+        GameObject obj = Instantiate(impactFX, transform.position - (Vector3.up * transform.localScale.y / 2), Quaternion.Euler(-40, 0, 0));
+        Destroy(obj, 1);
+
+
         ParticleSystem.MainModule jumpPSettings = _jumpParticle.main;
         jumpPSettings.startColor = new ParticleSystem.MinMaxGradient(Color.red);
 
         //Instantiate(impactFX, impactFX.transform.position, Quaternion.identity);
+
+        
+
+
+
+
+
+
+
 
 
 
