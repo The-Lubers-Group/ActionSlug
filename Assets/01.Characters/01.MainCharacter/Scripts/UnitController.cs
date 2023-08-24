@@ -36,11 +36,8 @@ namespace LubyAdventure
         [SerializeField] private Transform attachedTo;
         [SerializeField] private GameObject disregard;
 
-        
-
         [Header("Animation Settings")]
         public UnitCharacterAnimationBehaviour characterAnimationBehaviour;
-
 
         [Header("Audio Settings")]
 
@@ -70,8 +67,7 @@ namespace LubyAdventure
         public float LastOnWallTime { get; private set; }
         public float LastOnWallRightTime { get; private set; }
         public float LastOnWallLeftTime { get; private set; }
-        
-        
+
         public bool IsSwimming { get; private set; }
         public float swimmingTime { get; private set; }
 
@@ -101,7 +97,6 @@ namespace LubyAdventure
         public float LastPressedJumpTime { get; private set; }
         public float LastPressedDashTime { get; private set; }
 
-
         [Header("Checks")]
         [SerializeField] private Transform groundCheckPoint;
         //Size of groundCheck depends on the size of your character generally you want them slightly small than width (for ground) and height (for the wall check)
@@ -127,16 +122,16 @@ namespace LubyAdventure
         private Vector2 ledgePos1;
         private Vector2 ledgePos2;
 
-        [SerializeField] private float ledgeClimbBoXOffset1 = 0f;
+        [SerializeField] private float ledgeClimbBoXOffset1 = 0.3f;
         [SerializeField] private float ledgeClimbBoYOffset1 = 0f;
-        [SerializeField] private float ledgeClimbBoXOffset2 = 0f;
-        [SerializeField] private float ledgeClimbBoYOffset2 = 0f;
+        [SerializeField] private float ledgeClimbBoXOffset2 = 0.5f;
+        [SerializeField] private float ledgeClimbBoYOffset2 = 0.5f;
 
 
         // LAYERS & TAGS
         [Header("Layers & Tags")]
         [SerializeField] private LayerMask groundLayer;
-        
+
         [Header("Debug")]
         public bool initializeSelf;
 
@@ -146,15 +141,9 @@ namespace LubyAdventure
             if (initializeSelf)
             {
                 //SetAlive();
-
-                //groundLayer = LayerMask.GetMask("Ground");
-                //waterLayer = LayerMask.GetMask("Water");
-
                 cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
                 SetGravityScale(Data.gravityScale);
-
                 
-
                 IsFacingRight = true;
             }
 
@@ -170,68 +159,16 @@ namespace LubyAdventure
             LastPressedJumpTime -= Time.deltaTime;
             LastPressedDashTime -= Time.deltaTime;
 
-            //Debug.Log(" moveInput.x: " + moveInput.x + " moveInput.y: " + moveInput.y);
-           
-            
             IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
-            //Debug.Log(Physics2D.gravity);
 
-
-
-            if (IsSwimming)
-            {
-                characterAnimationBehaviour.SwimmingAnim(true);
-                RB.drag = Data.linerDragSwimming;
-
-                // Movemnt swimming
-                if (moveInput.x < 0)
-                {
-                    Physics2D.gravity = new Vector2(0, Data.gravitySwimming);
-                }
-                else if (moveInput.x > 0)
-                {
-                    Physics2D.gravity = new Vector2(0, -Data.gravitySwimming);
-                }
-                else if (moveInput.y < 0)
-                {
-                    Physics2D.gravity = new Vector2(-Data.gravitySwimming, 0);
-                }
-                else if (moveInput.y > 0)
-                {
-                    Physics2D.gravity = new Vector2(Data.gravitySwimming, 0);
-                }
-            }
-            else if (!IsSwimming){
-                characterAnimationBehaviour.SwimmingAnim(false);
-
-                RB.drag = Data.linerDrag;
-
-                Physics2D.gravity = new Vector2(0, -9.81f);
-            }
-
-
-
-            
-
-            //Debug.Log(Physics2D.gravity);
-
+            CanSwim();
 
             moveInput = gameInput.getMovementVectorNormalized();
 
             if (moveInput.x != 0)
                 CheckDirectionToFace(moveInput.x > 0);
 
-            /*
-            if(ladders.Count > 0 && moveInput.y > 0)
-            {
-                IsClimbing = true;
-            } else if(ladders.Count <= 0)
-            {
-                IsClimbing = false;
-            }
-            */
-
-            if(moveInput.x < 0 && attached)
+            if (moveInput.x < 0 && attached)
             {
                 RB.AddRelativeForce(new Vector3(-1, 0, 0) * PushForce);
             }
@@ -240,7 +177,6 @@ namespace LubyAdventure
             {
                 RB.AddRelativeForce(new Vector3(1, 0, 0) * PushForce);
             }
-
 
             // Climb Up
             if (moveInput.y > 0 && attached)
@@ -257,17 +193,19 @@ namespace LubyAdventure
             if (gameInput.IsJumpingPress())
             {
                 //Jump();
+
+
                 OnJumpInput();
-                if(IsSwimming)
+                if (IsSwimming)
                 {
-                  ForceSwimming();
+                    ForceSwimming();
                 }
 
             }
 
             if (gameInput.IsJumpingReleases())
             {
-               if(!IsSwimming)
+                if (!IsSwimming)
                 {
                     OnJumpUpInput();
 
@@ -280,17 +218,18 @@ namespace LubyAdventure
             }
 
             //Dash
+          
             if (gameInput.IsDash())
             {
                 OnDashInput();
             }
+          
 
             if (!IsDashing && !IsJumping)
             {
                 //Ground Check.GetMask("Player","Ground")
                 if (Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer)) //checks if set box overlaps with ground
                 {
-                   // Debug.Log("sadadasdsadasd");
                     if (LastOnGroundTime < -0.1f)
                     {
                         characterAnimationBehaviour.justLanded = true;
@@ -312,25 +251,9 @@ namespace LubyAdventure
                 //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
                 LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
             }
-
-            //SET Anim Wall sider
-            if (!IsSwimming && Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump() && !canClibLedge)
-            {
-                characterAnimationBehaviour.SetWallSliderAnim(true);
-            }
-            else
-            {
-                characterAnimationBehaviour.SetWallSliderAnim(false);
-            }
-
-            if (!IsSwimming && !Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump())
-            {
-                characterAnimationBehaviour.SetWallSliderAnim(false);
-            }
-
-            LedgeClimb();
-
-
+            
+            CanSlider();
+            CanLedgeClimb();
 
             if (!IsSwimming)
             {
@@ -356,10 +279,6 @@ namespace LubyAdventure
 
                 if (!IsDashing)
                 {
-                    //Debug.Log("(CanWallJump() && LastPressedJumpTime > 0): " + (CanWallJump() && LastPressedJumpTime > 0));
-                    //Debug.Log("(CanWallJump()): " + (CanWallJump()));
-                    //Debug.Log("(LastPressedJumpTime > 0): " + (LastPressedJumpTime > 0));
-
                     //Jump
                     if (CanJump() && LastPressedJumpTime > 0)
                     {
@@ -374,7 +293,7 @@ namespace LubyAdventure
                     //WALL JUMP
                     else if (CanWallJump() && LastPressedJumpTime > 0)
                     {
-                        
+
                         IsWallJumping = true;
                         IsJumping = false;
                         isJumpCut = false;
@@ -386,6 +305,17 @@ namespace LubyAdventure
                         WallJump(lastWallJumpDir);
                     }
                 }
+                
+                //Debug.Log("(CanDash() && LastPressedDashTime > 0): " + (CanDash() && LastPressedDashTime > 0));
+                //Debug.Log("(CanDash() ): " + (CanDash()));
+                //Debug.Log("(LastPressedDashTime > 0): " + (LastPressedDashTime > 0));
+                //Debug.Log("(LastPressedDashTime): " + (LastPressedDashTime));
+                /*
+                if (LastPressedDashTime > 0)
+                {
+                    Debug.Log("(LastPressedDashTime): " + (LastPressedDashTime));
+                }
+                */
 
                 if (CanDash() && LastPressedDashTime > 0)
                 {
@@ -472,20 +402,6 @@ namespace LubyAdventure
             //Handle Slide
             if (IsSliding)
                 Slide();
-
-            /*
-            if(IsClimbing)
-            {
-                //RB.gravityScale = 0f;
-                SetGravityScale(0);
-                RB.velocity = new Vector2(RB.velocity.x, moveInput.y * climbSpeed);
-
-            }
-            else
-            {
-                SetGravityScale(Data.gravityScale);
-            }
-            */
         }
 
 
@@ -493,12 +409,17 @@ namespace LubyAdventure
         public void OnJumpInput()
         {
             LastPressedJumpTime = Data.jumpInputBufferTime;
+            Debug.Log("LastPressedJumpTime: " + LastPressedJumpTime);
         }
 
         public void OnJumpUpInput()
         {
             if (CanJumpCut() || CanWallJumpCut())
                 isJumpCut = true;
+            
+            Debug.Log("(CanJumpCut() || CanWallJumpCut()): " + (CanJumpCut() || CanWallJumpCut()));
+            Debug.Log("(CanJumpCut()): " + (CanJumpCut()) );
+            Debug.Log("(CanWallJumpCut()): " + (CanWallJumpCut()));
         }
 
         public void OnDashInput()
@@ -580,16 +501,11 @@ namespace LubyAdventure
 
             //Convert this to a vector and apply to rigidbody
             RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
-
-
-
-
-
+            
             // Walk
             //Vector3 moveDir = new Vector3(moveInput.x,  moveInput.y, 0f);
-            Vector3 moveDir = new Vector3(moveInput.x,  0f, 0f);
-
-
+            Vector3 moveDir = new Vector3(moveInput.x, 0f, 0f);
+            
             //Debug.Log(moveInput.x);
             isWalking = moveDir != Vector3.zero;
             //isWalking = moveDir != moveInput.x;
@@ -652,10 +568,8 @@ namespace LubyAdventure
         {
             characterAnimationBehaviour.SwimmingAnim(false);
             RB.velocity = new Vector2(RB.velocity.x, 0);
-            
+
             float force = Data.forceSwimming;
-
-
 
             //RB.AddForce(new Vector2(0, Data.forceSwimming), ForceMode2D.Force);
             //RB.AddForce(Vector2.up * force, ForceMode2D.Force);
@@ -671,9 +585,6 @@ namespace LubyAdventure
 
         private void WallJump(int dir)
         {
-            //Debug.Log("private void WallJump(int dir)");
-            
-
             //Ensures we can't call Wall Jump multiple times from one press
             LastPressedJumpTime = 0;
             LastOnGroundTime = 0;
@@ -689,7 +600,7 @@ namespace LubyAdventure
             if (RB.velocity.y < 0) //checks whether player is falling, if so we subtract the velocity.y (counteracting force of gravity). This ensures the player always reaches our desired jump force or greater
                 force.y -= RB.velocity.y;
 
-            
+
             //Unlike in the run we want to use the Impulse mode.
             //The default mode will apply are force instantly ignoring masss
             RB.AddForce(force, ForceMode2D.Impulse);
@@ -771,7 +682,7 @@ namespace LubyAdventure
             {
                 Turn();
             }
-            
+
         }
 
         public bool IsWalking()
@@ -781,9 +692,6 @@ namespace LubyAdventure
 
         private bool CanJump()
         {
-            //Debug.Log(" ========== private bool CanJump() ========== ");
-            //Debug.Log("(LastOnGroundTime > 0): " + (LastOnGroundTime > 0));
-            //Debug.Log("(!IsJumping): " + (!IsJumping));
             return LastOnGroundTime > 0 && !IsJumping;
         }
 
@@ -815,18 +723,6 @@ namespace LubyAdventure
 
         public bool CanSlide()
         {
-            /*
-            if (LastOnWallTime > 0 && !IsJumping && !IsWallJumping && !IsDashing && LastOnGroundTime <= 0)
-            {
-                Debug.Log("(public bool CanSlide()): " + (LastOnWallTime > 0 && !IsJumping && !IsWallJumping && !IsDashing && LastOnGroundTime <= 0));
-                characterAnimationBehaviour.SetWallSliderAnim(true);
-            }
-            else
-            {
-                characterAnimationBehaviour.SetWallSliderAnim(false);
-            }
-            */
-
             if (LastOnWallTime > 0 && !IsJumping && !IsWallJumping && !IsDashing && LastOnGroundTime <= 0)
                 return true;
             else
@@ -840,8 +736,7 @@ namespace LubyAdventure
             HJ.enabled = true;
             attached = true;
             attachedTo = ropeBone.gameObject.transform.parent;
-
-            Debug.Log("Attach: " + attached);
+            //Debug.Log("Attach: " + attached);
         }
 
         void Detach()
@@ -856,11 +751,11 @@ namespace LubyAdventure
         {
             RopeSegment myConnection = HJ.connectedBody.gameObject.GetComponent<RopeSegment>();
             GameObject newSeg = null;
-            if(direction > 0)
+            if (direction > 0)
             {
-                if(myConnection.connectAbove != null)
+                if (myConnection.connectAbove != null)
                 {
-                    if(myConnection.connectAbove.gameObject.GetComponent<RopeSegment>() != null)
+                    if (myConnection.connectAbove.gameObject.GetComponent<RopeSegment>() != null)
                     {
                         newSeg = myConnection.connectAbove;
                     }
@@ -873,7 +768,7 @@ namespace LubyAdventure
                     newSeg = myConnection.connectBelow;
                 }
             }
-            if(newSeg != null) 
+            if (newSeg != null)
             {
                 transform.position = newSeg.transform.position;
                 myConnection.isPlayerAttached = false;
@@ -882,70 +777,81 @@ namespace LubyAdventure
             }
         }
 
-        
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(!attached)
+            if (!attached)
             {
                 //if (GameObject.FindWithTag("Rope"))
-               
+
                 if (collision.CompareTag("Rope"))
                 {
-                    if(attachedTo != collision.gameObject.transform.parent)
+                    if (attachedTo != collision.gameObject.transform.parent)
                     {
-                        if(disregard == null || collision.gameObject.transform.parent.gameObject != disregard)
+                        if (disregard == null || collision.gameObject.transform.parent.gameObject != disregard)
                         {
                             Attach(collision.gameObject.GetComponent<Rigidbody2D>());
                         }
                     }
                 }
-                
+
             }
         }
 
-        private void CheckLedgeClimb()
+        private void CanSwim()
         {
-            if(!IsSwimming && ledgeDetected && !canClibLedge)
+            if (IsSwimming)
             {
-                canClibLedge = true;
+                characterAnimationBehaviour.SwimmingAnim(true);
+                RB.drag = Data.linerDragSwimming;
 
-                if(IsFacingRight)
+                // Movemnt swimming
+                if (moveInput.x < 0)
                 {
-                    ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + 0) - ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1);
-                    ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + 0) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
+                    Physics2D.gravity = new Vector2(0, Data.gravitySwimming);
                 }
-                else
+                else if (moveInput.x > 0)
                 {
-                    ledgePos1 = new Vector2(Mathf.Ceil(ledgePosBot.x + 0) + ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1);
-                    ledgePos2 = new Vector2(Mathf.Ceil(ledgePosBot.x + 0) - ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
+                    Physics2D.gravity = new Vector2(0, -Data.gravitySwimming);
+                }
+                else if (moveInput.y < 0)
+                {
+                    Physics2D.gravity = new Vector2(-Data.gravitySwimming, 0);
+                }
+                else if (moveInput.y > 0)
+                {
+                    Physics2D.gravity = new Vector2(Data.gravitySwimming, 0);
                 }
             }
-            if(canClibLedge)
+            else if (!IsSwimming)
             {
-                transform.position = ledgePos1;
+                characterAnimationBehaviour.SwimmingAnim(false);
+
+                RB.drag = Data.linerDrag;
+
+                Physics2D.gravity = new Vector2(0, -9.81f);
             }
         }
 
-        public void FinishLedgeClimb()
+        private void CanSlider()
         {
-            canClibLedge = false;
-            transform.position = ledgePos2;
-            ledgeDetected = false; 
-        }
-
-        private void LedgeClimb()
-        {
-
-            /*
-            IsTouchingLedge = Physics2D.Raycast(ledgeCheck.position, transform.right, 0, groundLayer);
-            if (Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !IsTouchingLedge && !ledgeDetected)
+            //SET Anim Wall sider
+            if (!IsSwimming && Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
             {
-                ledgeDetected = true;
-                ledgePosBot = frontWallCheckPoint.position;
+                characterAnimationBehaviour.SetWallSliderAnim(true);
             }
-            */
+            else
+            {
+                characterAnimationBehaviour.SetWallSliderAnim(false);
+            }
 
-            if (!IsSwimming)
+            if (!IsSwimming && !Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump())
+            {
+                characterAnimationBehaviour.SetWallSliderAnim(false);
+            }
+        }
+        private void CanLedgeClimb()
+        {
+            if (!IsSwimming && LastOnGroundTime < -.5f)
             {
                 if ((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer))
                 &&
@@ -961,7 +867,6 @@ namespace LubyAdventure
                     ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
                 }
 
-
                 if (canClibLedge)
                 {
                     transform.position = ledgePos1;
@@ -969,27 +874,24 @@ namespace LubyAdventure
                 }
 
             }
-            //CheckLedgeClimb();
         }
 
-
-
-
-
-
-
-
-
+        public void FinishLedgeClimb()
+        {
+            canClibLedge = false;
+            transform.position = ledgePos2;
+            ledgeDetected = false;
+        }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(groundCheckPoint.position, groundCheckSize);
-            
+
             Gizmos.color = Color.blue;
             Gizmos.DrawWireCube(frontWallCheckPoint.position, wallCheckSize);
             Gizmos.DrawWireCube(backWallCheckPoint.position, wallCheckSize);
-            
+
             Gizmos.color = Color.grey;
             Gizmos.DrawWireCube(ledgeCheckPoint.position, ledgeClimbSize);
         }

@@ -18,26 +18,26 @@ MonoBehaviour:
   totalCoin: 99
   fallGravityMult: 1.5
   maxFallSpeed: 25
-  gravityStrength: -222.2222
-  gravityScale: 22.652618
+  gravityStrength: -211.1111
+  gravityScale: 21.519989
   linerDrag: 1
   fastFallGravityMult: 2
   maxFastFallSpeed: 30
   runMaxSpeed: 20
-  runAcceleration: 2
-  runAccelAmount: 5
-  runDecceleration: 2
-  runDeccelAmount: 5
+  runAcceleration: 2.5
+  runAccelAmount: 6.25
+  runDecceleration: 5
+  runDeccelAmount: 12.5
   accelInAir: 0.65
   deccelInAir: 0.65
   doConserveMomentum: 1
   forceSwimming: 50
   linerDragSwimming: 10
   gravitySwimming: 1
-  jumpHeight: 10
+  jumpHeight: 9.5
   jumpTimeToApex: 0.3
-  jumpForce: 66.666664
-  jumpCutGravityMult: 5
+  jumpForce: 63.333332
+  jumpCutGravityMult: 2
   jumpHangGravityMult: 0.5
   jumpHangTimeThreshold: 1
   jumpHangAccelerationMult: 1.1
@@ -46,16 +46,16 @@ MonoBehaviour:
   wallJumpRunLerp: 0.5
   wallJumpTime: 0.15
   doTurnOnWallJump: 0
-  slideSpeed: 1
-  slideAccel: 1
+  slideSpeed: 0
+  slideAccel: 0
   coyoteTime: 0.1
   jumpInputBufferTime: 0.1
   dashAmount: 1
-  dashSpeed: 20
+  dashSpeed: 90
   dashSleepTime: 0.05
   dashAttackTime: 0.15
   dashEndTime: 0.15
   dashEndSpeed: {x: 15, y: 15}
   dashEndRunLerp: 0.5
-  dashRefillTime: 0
-  dashInputBufferTime: 0
+  dashRefillTime: 0.1
+  dashInputBufferTime: 0.1

@@ -49,7 +49,8 @@ public class GameInput : MonoBehaviour
         }
 
         //Jump PRESS
-        if (playerControls.PlayerMap.Jump.WasPerformedThisFrame())
+        //if (playerControls.PlayerMap.Jump.WasPerformedThisFrame())
+        if (playerControls.PlayerMap.Jump.WasPressedThisFrame())
             isJumpingPress = true;
         else isJumpingPress = false;
 
@@ -60,8 +61,13 @@ public class GameInput : MonoBehaviour
 
 
         // Dash 
-        if (playerControls.PlayerMap.Dash.IsPressed())
+        //if (playerControls.PlayerMap.Dash.IsPressed())
+        if (playerControls.PlayerMap.Dash.WasPressedThisFrame())
+        {
+            //Debug.Log("playerControls.PlayerMap.Dash.IsPressed()" + playerControls.PlayerMap.Dash.IsPressed());
             isDash = true;
+
+        }
         else isDash = false;
 
         

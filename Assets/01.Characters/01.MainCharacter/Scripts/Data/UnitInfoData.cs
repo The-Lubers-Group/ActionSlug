@@ -94,7 +94,6 @@ public class UnitInfoData : ScriptableObject
     [Space(5)]
     [Range(0.01f, 0.5f)] public float dashInputBufferTime;
 
-
     private void OnValidate()
     {
         gravityStrength = -(2 * jumpHeight) / (jumpTimeToApex * jumpTimeToApex);
