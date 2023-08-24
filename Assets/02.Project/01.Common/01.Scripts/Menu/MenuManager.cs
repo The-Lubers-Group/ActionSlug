@@ -54,5 +54,6 @@ public class MenuManager : MonoBehaviour
     public void OnLevelsMenu()
     {
         SceneManager.LoadSceneAsync(1);
+        Time.timeScale = 1;
     }
 }
