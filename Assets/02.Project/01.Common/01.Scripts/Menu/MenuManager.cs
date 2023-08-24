@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -48,5 +49,10 @@ public class MenuManager : MonoBehaviour
     {
         UIPauseMenu.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void OnLevelsMenu()
+    {
+        SceneManager.LoadSceneAsync(1);
     }
 }
