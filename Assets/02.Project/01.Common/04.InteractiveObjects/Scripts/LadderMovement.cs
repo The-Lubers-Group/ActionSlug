@@ -42,7 +42,7 @@ public class LadderMovement : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
-            Debug.Log("rb.velocity: " + rb.velocity);
+            //Debug.Log("rb.velocity: " + rb.velocity);
         }
         else
         {
