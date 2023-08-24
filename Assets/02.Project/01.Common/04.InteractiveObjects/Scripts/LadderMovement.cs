@@ -1,60 +1,49 @@
+using LubyAdventure;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LadderMovement : MonoBehaviour
 {
-    private float vertical;
-    private float speed = 8f;
-    private bool isLadder;
-    private bool issClimbing;
-
-    public UnitInfoData Data;
-
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private UnitController unitController;
     
-    [SerializeField] private GameInput gameInput;
+    [Space(5)]
+    [SerializeField] private float speed = 10f;
+
+    private Rigidbody2D RB;
+    private bool isLadder;
     private Vector2 moveInput;
 
-
+    private void Start()
+    {
+        RB = this.transform.GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
-        moveInput = gameInput.getMovementVectorNormalized();
-        vertical = Input.GetAxisRaw("Vertical");
 
-        //Debug.Log(isLadder);
-
-        if (isLadder && Mathf.Abs(vertical) > 0f)
+        moveInput = unitController.moveInput;
+        if (isLadder && moveInput.y > 0)
         {
-            issClimbing = true;
-        }
-        else if(isLadder && moveInput.y > 0.0 )
-        {
-            //Debug.Log(" moveInput.y: " + moveInput.y );
-            issClimbing = true;
+            unitController.IsClimbing = true;
         }
     }
 
     private void FixedUpdate()
     {
-        if (issClimbing)
+       
+        if(unitController.IsClimbing)
         {
-            rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
-            //Debug.Log("rb.velocity: " + rb.velocity);
+            unitController.SetGravityScale(0);
+            RB.velocity = new Vector2(RB.velocity.x, moveInput.y * speed);
         }
-        else
-        {
-            rb.gravityScale = Data.gravityScale;
-        }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ladder"))
         {
-            //Debug.Log("Ladder");
             isLadder = true;
         }
     }
@@ -64,7 +53,7 @@ public class LadderMovement : MonoBehaviour
         if (collision.CompareTag("Ladder"))
         {
             isLadder = false;
-            issClimbing = false;
+            unitController.IsClimbing = false;
         }
     }
 }

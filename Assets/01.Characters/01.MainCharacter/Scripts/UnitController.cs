@@ -18,15 +18,13 @@ namespace LubyAdventure
         public UnitInfoData Data;
 
         [Header("Movement")]
-        [SerializeField] private GameInput gameInput;
-        public Rigidbody2D RB;
-        public HingeJoint2D HJ;
+        [HideInInspector] public GameInput gameInput;
+        [HideInInspector] public Rigidbody2D RB;
+        [HideInInspector] public HingeJoint2D HJ;
 
         [Header("Health Settings")]
         public UnitHealthBehaviour healthBehaviour;
         private bool unitIsAlive;
-
-        [Header("Ability Settings")]
 
         //Climb
         //[SerializeField] private float climbSpeed = 4f;
@@ -57,6 +55,9 @@ namespace LubyAdventure
         public bool IsWallJumping { get; private set; }
         public bool IsDashing { get; private set; }
         public bool IsSliding { get; private set; }
+        public bool IsSwimming { get; private set; }
+        
+        public bool IsClimbing;
 
 
         public bool IsTouchingLedge { get; private set; }
@@ -68,7 +69,6 @@ namespace LubyAdventure
         public float LastOnWallRightTime { get; private set; }
         public float LastOnWallLeftTime { get; private set; }
 
-        public bool IsSwimming { get; private set; }
         public float swimmingTime { get; private set; }
 
         //[SerializeField] private float forceSwimming = 4f;
@@ -137,13 +137,19 @@ namespace LubyAdventure
 
         private void Start()
         {
+            RB = this.transform.GetComponent<Rigidbody2D>();
+            HJ = this.transform.GetComponent<HingeJoint2D>();
+            gameInput = GameObject.FindAnyObjectByType<GameInput>();
+            cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
+
+
+
+
 
             if (initializeSelf)
             {
                 //SetAlive();
-                cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
                 SetGravityScale(Data.gravityScale);
-                
                 IsFacingRight = true;
             }
 
@@ -253,7 +259,7 @@ namespace LubyAdventure
             }
             
             CanSlider();
-            CanLedgeClimb();
+            //CanLedgeClimb();
 
             if (!IsSwimming)
             {
@@ -305,17 +311,6 @@ namespace LubyAdventure
                         WallJump(lastWallJumpDir);
                     }
                 }
-                
-                //Debug.Log("(CanDash() && LastPressedDashTime > 0): " + (CanDash() && LastPressedDashTime > 0));
-                //Debug.Log("(CanDash() ): " + (CanDash()));
-                //Debug.Log("(LastPressedDashTime > 0): " + (LastPressedDashTime > 0));
-                //Debug.Log("(LastPressedDashTime): " + (LastPressedDashTime));
-                /*
-                if (LastPressedDashTime > 0)
-                {
-                    Debug.Log("(LastPressedDashTime): " + (LastPressedDashTime));
-                }
-                */
 
                 if (CanDash() && LastPressedDashTime > 0)
                 {
@@ -336,8 +331,6 @@ namespace LubyAdventure
                     StartCoroutine(nameof(StartDash), lastDashDir);
                 }
 
-                Debug.Log("(CanSlide() && ((LastOnWallLeftTime > 0 && moveInput.x < 0) || (LastOnWallRightTime > 0 && moveInput.x > 0))): " + (CanSlide() && ((LastOnWallLeftTime > 0 && moveInput.x < 0) || (LastOnWallRightTime > 0 && moveInput.x > 0))));
-
                 if (CanSlide() && ((LastOnWallLeftTime > 0 && moveInput.x < 0) || (LastOnWallRightTime > 0 && moveInput.x > 0)))
                 {
                     IsSliding = true;
@@ -346,14 +339,6 @@ namespace LubyAdventure
                 {
                     IsSliding = false;
                 }
-
-
-
-
-
-
-
-
 
                 // GRAVITY
                 if (!isDashAttacking)
@@ -380,6 +365,10 @@ namespace LubyAdventure
                     {
                         SetGravityScale(Data.gravityScale * Data.fallGravityMult);
                         RB.velocity = new Vector2(RB.velocity.x, Mathf.Max(RB.velocity.y, -Data.maxFallSpeed));
+                    }
+                    else if (!IsClimbing)
+                    {
+                        SetGravityScale(Data.gravityScale);
                     }
                     else
                     {
@@ -421,7 +410,7 @@ namespace LubyAdventure
         public void OnJumpInput()
         {
             LastPressedJumpTime = Data.jumpInputBufferTime;
-            Debug.Log("LastPressedJumpTime: " + LastPressedJumpTime);
+            //Debug.Log("LastPressedJumpTime: " + LastPressedJumpTime);
         }
 
         public void OnJumpUpInput()
@@ -429,9 +418,9 @@ namespace LubyAdventure
             if (CanJumpCut() || CanWallJumpCut())
                 isJumpCut = true;
             
-            Debug.Log("(CanJumpCut() || CanWallJumpCut()): " + (CanJumpCut() || CanWallJumpCut()));
-            Debug.Log("(CanJumpCut()): " + (CanJumpCut()) );
-            Debug.Log("(CanWallJumpCut()): " + (CanWallJumpCut()));
+            //Debug.Log("(CanJumpCut() || CanWallJumpCut()): " + (CanJumpCut() || CanWallJumpCut()));
+            //Debug.Log("(CanJumpCut()): " + (CanJumpCut()) );
+            //Debug.Log("(CanWallJumpCut()): " + (CanWallJumpCut()));
         }
 
         public void OnDashInput()
@@ -449,12 +438,6 @@ namespace LubyAdventure
             {
                 RB.gravityScale = scale;
             }
-
-            if (RB.gravityScale == 0)
-            {
-                Debug.Log("RB.gravityScale: " + RB.gravityScale);
-            }
-            //RB.gravityScale = 0;
         }
 
         private void Sleep(float duration)
