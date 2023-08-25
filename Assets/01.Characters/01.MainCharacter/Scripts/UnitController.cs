@@ -13,10 +13,10 @@ namespace LubyAdventure
     public class UnitController : MonoBehaviour
     {
         [Header("Data")]
-        //Scriptable object which holds all the player's movement parameters. If you don't want to use it
-        //just paste in all the parameters, though you will need to manuly change all references in this script
         public UnitInfoData Data;
-
+        
+        private CollisionManager coll;
+        
         [Header("Movement")]
         [HideInInspector] public GameInput gameInput;
         [HideInInspector] public Rigidbody2D RB;
@@ -26,8 +26,6 @@ namespace LubyAdventure
         public UnitHealthBehaviour healthBehaviour;
         private bool unitIsAlive;
 
-        //Climb
-        //[SerializeField] private float climbSpeed = 4f;
         [SerializeField] private float PushForce = 10f;
         [SerializeField] private bool attached = false;
 
@@ -43,13 +41,6 @@ namespace LubyAdventure
         [SerializeField] private CameraFollowObject cameraFollowObject;
         [SerializeField] private GameObject cameraFollowObjectGO;
 
-        //private float vertical;
-        //private HashSet<GameObject> ladders = new HashSet<GameObject>();
-
-        //STATE PARAMETERS
-        //Variables control the various actions the player can perform at any time.
-        //These are fields which can are public allowing for other sctipts to read them
-        //but can only be privately written to.
         public bool IsFacingRight { get; private set; }
         public bool IsJumping { get; private set; }
         public bool IsWallJumping { get; private set; }
@@ -63,7 +54,6 @@ namespace LubyAdventure
         public bool IsTouchingLedge { get; private set; }
 
 
-        //Timers (also all fields, could be private and a method returning a bool could be used)
         public float LastOnGroundTime { get; private set; }
         public float LastOnWallTime { get; private set; }
         public float LastOnWallRightTime { get; private set; }
@@ -71,22 +61,14 @@ namespace LubyAdventure
 
         public float swimmingTime { get; private set; }
 
-        //[SerializeField] private float forceSwimming = 4f;
-
-        //private bool IsSwimming = false;
-
-        //Walk
         private bool isWalking;
 
-        //Jump
         private bool isJumpCut;
         private bool isJumpFalling;
 
-        //Wall Jump
         private float wallJumpStartTime;
         private int lastWallJumpDir;
 
-        //Dash
         private int dashesLeft;
         private bool dashRefilling;
         private Vector2 lastDashDir;
@@ -97,19 +79,6 @@ namespace LubyAdventure
         public float LastPressedJumpTime { get; private set; }
         public float LastPressedDashTime { get; private set; }
 
-        [Header("Checks")]
-        [SerializeField] private Transform groundCheckPoint;
-        //Size of groundCheck depends on the size of your character generally you want them slightly small than width (for ground) and height (for the wall check)
-        [SerializeField] private Vector2 groundCheckSize = new Vector2(0.49f, 0.03f);
-        [Space(5)]
-        [SerializeField] private Transform frontWallCheckPoint;
-        [SerializeField] private Transform backWallCheckPoint;
-        [SerializeField] private Vector2 wallCheckSize = new Vector2(0.5f, 1f);
-
-        /// <summary>
-        /// Ledge Climb
-        /// </summary>
-        /// 
         [Space(5)]
         [Header("Checks - Ledge Climb")]
         [SerializeField] private Transform ledgeCheckPoint;
@@ -137,9 +106,10 @@ namespace LubyAdventure
 
         private void Start()
         {
-            RB = this.transform.GetComponent<Rigidbody2D>();
-            HJ = this.transform.GetComponent<HingeJoint2D>();
-            gameInput = GameObject.FindAnyObjectByType<GameInput>();
+            coll = GetComponent<CollisionManager>();
+            RB = GetComponent<Rigidbody2D>();
+            HJ = GetComponent<HingeJoint2D>();
+            gameInput = FindAnyObjectByType<GameInput>();
             cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
 
 
@@ -233,26 +203,27 @@ namespace LubyAdventure
 
             if (!IsDashing && !IsJumping)
             {
-                //Ground Check.GetMask("Player","Ground")
-                if (Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer)) //checks if set box overlaps with ground
+                if (coll.onGround) 
                 {
                     if (LastOnGroundTime < -0.1f)
                     {
                         characterAnimationBehaviour.justLanded = true;
                     }
 
-                    LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
+                    LastOnGroundTime = Data.coyoteTime;
                 }
 
                 //Right Wall Check
-                if (((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && IsFacingRight)
-                        || (Physics2D.OverlapBox(backWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !IsFacingRight)) && !IsWallJumping)
+                if( (coll.onLeftWall && IsFacingRight || coll.onRightWall && !IsFacingRight) && !IsWallJumping)
+                {
                     LastOnWallRightTime = Data.coyoteTime;
+                }
 
-                //Right Wall Check
-                if (((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !IsFacingRight)
-                    || (Physics2D.OverlapBox(backWallCheckPoint.position, wallCheckSize, 0, groundLayer) && IsFacingRight)) && !IsWallJumping)
+                if((coll.onLeftWall && !IsFacingRight || coll.onRightWall && IsFacingRight) && !IsWallJumping)
+                {
                     LastOnWallLeftTime = Data.coyoteTime;
+                }
+
 
                 //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
                 LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
@@ -550,13 +521,9 @@ namespace LubyAdventure
 
         private void Jump()
         {
-            //Ensures we can't call Jump multiple times from one press
             LastPressedJumpTime = 0;
             LastOnGroundTime = 0;
-
-            //We increase the force applied if we are falling
-            //This means we'll always feel like we jump the same amount 
-            //(setting the player's Y velocity to 0 beforehand will likely work the same, but I find this more elegant :D)
+          
             float force = Data.jumpForce;
             if (RB.velocity.y < 0)
                 force -= RB.velocity.y;
@@ -571,21 +538,12 @@ namespace LubyAdventure
 
             float force = Data.forceSwimming;
 
-            //RB.AddForce(new Vector2(0, Data.forceSwimming), ForceMode2D.Force);
-            //RB.AddForce(Vector2.up * force, ForceMode2D.Force);
             RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
             swimmingTime = 0.3f;
-            //LastPressedJumpTime = 0;
-            //LastOnGroundTime = 0;
-            //float force = Data.jumpForce;
-            //if (RB.velocity.y < 0)
-            //    force -= RB.velocity.y;
-            //RB.AddForce(new Vector2(RB.velocity.y, forceSwimming), ForceMode2D.Impulse);
         }
 
         private void WallJump(int dir)
         {
-            //Ensures we can't call Wall Jump multiple times from one press
             LastPressedJumpTime = 0;
             LastOnGroundTime = 0;
             LastOnWallRightTime = 0;
@@ -600,17 +558,12 @@ namespace LubyAdventure
             if (RB.velocity.y < 0) //checks whether player is falling, if so we subtract the velocity.y (counteracting force of gravity). This ensures the player always reaches our desired jump force or greater
                 force.y -= RB.velocity.y;
 
-
-            //Unlike in the run we want to use the Impulse mode.
-            //The default mode will apply are force instantly ignoring masss
             RB.AddForce(force, ForceMode2D.Impulse);
         }
 
 
         private IEnumerator StartDash(Vector2 dir)
         {
-            //Overall this method of dashing aims to mimic Celeste, if you're looking for
-            // a more physics-based approach try a method similar to that used in the jump
 
             LastOnGroundTime = 0;
             LastPressedDashTime = 0;
@@ -622,12 +575,9 @@ namespace LubyAdventure
 
             SetGravityScale(0);
 
-            //We keep the player's velocity at the dash speed during the "attack" phase (in celeste the first 0.15s)
             while (Time.time - startTime <= Data.dashAttackTime)
             {
                 RB.velocity = dir.normalized * Data.dashSpeed;
-                //Pauses the loop until the next frame, creating something of a Update loop. 
-                //This is a cleaner implementation opposed to multiple timers and this coroutine approach is actually what is used in Celeste :D
                 yield return null;
             }
 
@@ -635,7 +585,6 @@ namespace LubyAdventure
 
             isDashAttacking = false;
 
-            //Begins the "end" of our dash where we return some control to the player but still limit run acceleration (see Update() and Run())
             SetGravityScale(Data.gravityScale);
             RB.velocity = Data.dashEndSpeed * dir.normalized;
 
@@ -644,12 +593,10 @@ namespace LubyAdventure
                 yield return null;
             }
 
-            //Dash over
             IsDashing = false;
         }
         private IEnumerator RefillDash(int amount)
         {
-            //SHoet cooldown, so we can't constantly dash along the ground, again this is the implementation in Celeste, feel free to change it up
             dashRefilling = true;
             yield return new WaitForSeconds(Data.dashRefillTime);
             dashRefilling = false;
@@ -831,7 +778,9 @@ namespace LubyAdventure
         private void CanSlider()
         {
             //SET Anim Wall sider
-            if (!IsSwimming && Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
+            
+            //if (!IsSwimming && Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
+            if (!IsSwimming && coll.onLeftWall && !coll.onGround && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
             {
                 characterAnimationBehaviour.SetWallSliderAnim(true);
             }
@@ -840,7 +789,7 @@ namespace LubyAdventure
                 characterAnimationBehaviour.SetWallSliderAnim(false);
             }
 
-            if (!IsSwimming && !Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump())
+            if (!IsSwimming && !coll.onLeftWall && !coll.onGround && !CanJump())
             {
                 characterAnimationBehaviour.SetWallSliderAnim(false);
             }
@@ -849,15 +798,22 @@ namespace LubyAdventure
         {
             if (!IsSwimming && LastOnGroundTime < -.5f)
             {
-                if ((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer))
-                &&
-                (!Physics2D.OverlapBox(ledgeCheckPoint.position, wallCheckSize, 0, groundLayer))
-                &&
-                (!Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer)))
+                //if ((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer)) && (!Physics2D.OverlapBox(ledgeCheckPoint.position, wallCheckSize, 0, groundLayer)) && (!Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer)))
+
+
+                if(coll.onLeftWall && coll.onGround)
+                {
+
+                }
+
+
+
+
+                
                 {
                     canClibLedge = true;
                     Debug.Log("Pode Subir na quina");
-                    ledgePosBot = frontWallCheckPoint.position;
+                    //ledgePosBot = coll.onLeftWall.;
 
                     ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) - ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1); ;
                     ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
@@ -879,6 +835,7 @@ namespace LubyAdventure
             ledgeDetected = false;
         }
 
+        /*
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
@@ -891,6 +848,7 @@ namespace LubyAdventure
             Gizmos.color = Color.grey;
             Gizmos.DrawWireCube(ledgeCheckPoint.position, ledgeClimbSize);
         }
+        */
 
     }
 
