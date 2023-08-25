@@ -230,7 +230,7 @@ namespace LubyAdventure
             }
             
             CanSlider();
-            //CanLedgeClimb();
+            CanLedgeClimb();
 
             if (!IsSwimming)
             {
@@ -429,72 +429,36 @@ namespace LubyAdventure
 
         private void Run(float lerpAmount)
         {
-            //Calculate the direction we want to move in and our desired velocity
             float targetSpeed = moveInput.x * Data.runMaxSpeed;
-            //We can reduce are control using Lerp() this smooths changes to are direction and speed
             targetSpeed = Mathf.Lerp(RB.velocity.x, targetSpeed, lerpAmount);
-
-            #region Calculate AccelRate
             float accelRate;
 
-            //Gets an acceleration value based on if we are accelerating (includes turning) 
-            //or trying to decelerate (stop). As well as applying a multiplier if we're air borne.
             if (LastOnGroundTime > 0)
                 accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDeccelAmount;
             else
                 accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount * Data.accelInAir : Data.runDeccelAmount * Data.deccelInAir;
-            #endregion
 
-            #region Add Bonus Jump Apex Acceleration
-            //Increase are acceleration and maxSpeed when at the apex of their jump, makes the jump feel a bit more bouncy, responsive and natural
             if ((IsJumping || IsWallJumping || isJumpFalling) && Mathf.Abs(RB.velocity.y) < Data.jumpHangTimeThreshold)
             {
                 accelRate *= Data.jumpHangAccelerationMult;
                 targetSpeed *= Data.jumpHangMaxSpeedMult;
             }
-            #endregion
 
-            #region Conserve Momentum
-            //We won't slow the player down if they are moving in their desired direction but at a greater speed than their maxSpeed
             if (Data.doConserveMomentum && Mathf.Abs(RB.velocity.x) > Mathf.Abs(targetSpeed) && Mathf.Sign(RB.velocity.x) == Mathf.Sign(targetSpeed) && Mathf.Abs(targetSpeed) > 0.01f && LastOnGroundTime < 0)
             {
-                //Prevent any deceleration from happening, or in other words conserve are current momentum
-                //You could experiment with allowing for the player to slightly increae their speed whilst in this "state"
                 accelRate = 0;
             }
-            #endregion
 
-            //Calculate difference between current velocity and desired velocity
             float speedDif = targetSpeed - RB.velocity.x;
-            //Calculate force along x-axis to apply to thr player
-
             float movement = speedDif * accelRate;
-
-            //Convert this to a vector and apply to rigidbody
             RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
-            
-            // Walk
-            //Vector3 moveDir = new Vector3(moveInput.x,  moveInput.y, 0f);
             Vector3 moveDir = new Vector3(moveInput.x, 0f, 0f);
-            
-            //Debug.Log(moveInput.x);
             isWalking = moveDir != Vector3.zero;
-            //isWalking = moveDir != moveInput.x;
-
-
-
-            /*
-             * For those interested here is what AddForce() will do
-             * RB.velocity = new Vector2(RB.velocity.x + (Time.fixedDeltaTime  * speedDif * accelRate) / RB.mass, RB.velocity.y);
-             * Time.fixedDeltaTime is by default in Unity 0.02 seconds equal to 50 FixedUpdate() calls per second
-            */
         }
 
 
         private void Turn()
         {
-            //stores scale and flips the player along the x axis, 
-
             if (IsFacingRight)
             {
                 Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
@@ -550,12 +514,12 @@ namespace LubyAdventure
             LastOnWallLeftTime = 0;
 
             Vector2 force = new Vector2(Data.wallJumpForce.x, Data.wallJumpForce.y);
-            force.x *= dir; //apply force in opposite direction of wall
+            force.x *= dir; 
 
             if (Mathf.Sign(RB.velocity.x) != Mathf.Sign(force.x))
                 force.x -= RB.velocity.x;
 
-            if (RB.velocity.y < 0) //checks whether player is falling, if so we subtract the velocity.y (counteracting force of gravity). This ensures the player always reaches our desired jump force or greater
+            if (RB.velocity.y < 0) 
                 force.y -= RB.velocity.y;
 
             RB.AddForce(force, ForceMode2D.Impulse);
@@ -796,35 +760,21 @@ namespace LubyAdventure
         }
         private void CanLedgeClimb()
         {
-            if (!IsSwimming && LastOnGroundTime < -.5f)
+            //print(!coll.onSpaceGround && !coll.onLedge && coll.onLeftWall && !IsSwimming);
+            if (!coll.onSpaceGround && !coll.onLedge && coll.onLeftWall && !IsSwimming)
             {
-                //if ((Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer)) && (!Physics2D.OverlapBox(ledgeCheckPoint.position, wallCheckSize, 0, groundLayer)) && (!Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer)))
+                //Debug.Log("pode subir");
+                canClibLedge = true;
+                ledgePosBot = coll.leftOffset.position;
 
-
-                if(coll.onLeftWall && coll.onGround)
-                {
-
-                }
-
-
-
-
-                
-                {
-                    canClibLedge = true;
-                    Debug.Log("Pode Subir na quina");
-                    //ledgePosBot = coll.onLeftWall.;
-
-                    ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) - ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1); ;
-                    ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
-                }
+                ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) - ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1); ;
+                ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);
 
                 if (canClibLedge)
                 {
                     transform.position = ledgePos1;
                     characterAnimationBehaviour.OnLedgeClimbAnim(canClibLedge);
                 }
-
             }
         }
 
@@ -834,22 +784,5 @@ namespace LubyAdventure
             transform.position = ledgePos2;
             ledgeDetected = false;
         }
-
-        /*
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(groundCheckPoint.position, groundCheckSize);
-
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireCube(frontWallCheckPoint.position, wallCheckSize);
-            Gizmos.DrawWireCube(backWallCheckPoint.position, wallCheckSize);
-
-            Gizmos.color = Color.grey;
-            Gizmos.DrawWireCube(ledgeCheckPoint.position, ledgeClimbSize);
-        }
-        */
-
     }
-
 }
