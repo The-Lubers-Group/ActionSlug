@@ -282,7 +282,7 @@ namespace LubyAdventure
                 {
                     Camera.main.transform.DOComplete();
                     Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
-
+                    print("dasd");
 
                     Sleep(Data.dashSleepTime);
 
@@ -296,6 +296,7 @@ namespace LubyAdventure
                     IsWallJumping = false;
                     isJumpCut = false;
 
+                    characterAnimationBehaviour.OnIsDashingAnim(IsDashing);
                     StartCoroutine(nameof(StartDash), lastDashDir);
                 }
 
@@ -308,7 +309,6 @@ namespace LubyAdventure
                     IsSliding = false;
                 }
 
-                // GRAVITY
                 if (!isDashAttacking)
                 {
                     if (IsSliding)
@@ -354,8 +354,6 @@ namespace LubyAdventure
 
         private void FixedUpdate()
         {
-
-            //Handle Run
             if (!IsDashing)
             {
                 if (IsWallJumping)
@@ -368,27 +366,18 @@ namespace LubyAdventure
                 Run(Data.dashEndRunLerp);
             }
 
-            //Handle Slide
             if (IsSliding)
                 Slide();
         }
-
-
-        //Methods which whandle input detected in Update()
         public void OnJumpInput()
         {
             LastPressedJumpTime = Data.jumpInputBufferTime;
-            //Debug.Log("LastPressedJumpTime: " + LastPressedJumpTime);
         }
 
         public void OnJumpUpInput()
         {
             if (CanJumpCut() || CanWallJumpCut())
                 isJumpCut = true;
-            
-            //Debug.Log("(CanJumpCut() || CanWallJumpCut()): " + (CanJumpCut() || CanWallJumpCut()));
-            //Debug.Log("(CanJumpCut()): " + (CanJumpCut()) );
-            //Debug.Log("(CanWallJumpCut()): " + (CanWallJumpCut()));
         }
 
         public void OnDashInput()
@@ -410,13 +399,8 @@ namespace LubyAdventure
 
         private void Sleep(float duration)
         {
-            //Method used so we don't need to call StartCoroutine everywhere
-            //nameof() notation means we don't need to input a string directly.
-            //Removes chance of spelling mistakes and will improve error messages if any
             StartCoroutine(nameof(PerformSleep), duration);
         }
-
-
         private IEnumerator PerformSleep(float duration)
         {
             Time.timeScale = 0;
@@ -470,14 +454,6 @@ namespace LubyAdventure
                 IsFacingRight = !IsFacingRight;
                 cameraFollowObject.CallTurn();
             }
-
-            /*
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-
-            IsFacingRight = !IsFacingRight;
-            */
         }
 
         private void Jump()
@@ -522,9 +498,10 @@ namespace LubyAdventure
             RB.AddForce(force, ForceMode2D.Impulse);
         }
 
-
+      
         private IEnumerator StartDash(Vector2 dir)
         {
+            //FindObjectOfType<GhostTrail>().ShowGhost();
 
             LastOnGroundTime = 0;
             LastPressedDashTime = 0;
@@ -542,6 +519,8 @@ namespace LubyAdventure
                 yield return null;
             }
 
+            DOVirtual.Float(14, 0, .8f, RigidbodyDrag);
+
             startTime = Time.time;
 
             isDashAttacking = false;
@@ -555,6 +534,9 @@ namespace LubyAdventure
             }
 
             IsDashing = false;
+            characterAnimationBehaviour.OnIsDashingAnim(IsDashing);
+
+
         }
         private IEnumerator RefillDash(int amount)
         {
@@ -640,7 +622,6 @@ namespace LubyAdventure
             HJ.enabled = true;
             attached = true;
             attachedTo = ropeBone.gameObject.transform.parent;
-            //Debug.Log("Attach: " + attached);
         }
 
         void Detach()
@@ -685,8 +666,6 @@ namespace LubyAdventure
         {
             if (!attached)
             {
-                //if (GameObject.FindWithTag("Rope"))
-
                 if (collision.CompareTag("Rope"))
                 {
                     if (attachedTo != collision.gameObject.transform.parent)
@@ -738,9 +717,6 @@ namespace LubyAdventure
 
         private void CanSlider()
         {
-            //SET Anim Wall sider
-            
-            //if (!IsSwimming && Physics2D.OverlapBox(frontWallCheckPoint.position, wallCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
             if (!IsSwimming && coll.onLeftWall && !coll.onGround && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
             {
                 characterAnimationBehaviour.SetWallSliderAnim(true);
@@ -757,10 +733,8 @@ namespace LubyAdventure
         }
         private void CanLedgeClimb()
         {
-            // print(!coll.onSpaceGround && !coll.onLedge && coll.onLeftWall && !IsSwimming);
             if (!coll.onSpaceGround && !coll.onLedge && coll.onLeftWall && !IsSwimming)
             {
-                //Debug.Log("pode subir");
                 canClibLedge = true;
                 ledgePosBot = coll.leftOffset.position;
 
@@ -770,7 +744,6 @@ namespace LubyAdventure
                 if (canClibLedge)
                 {
                    // characterAnimationBehaviour.OnLedgeClimbAnim(canClibLedge);
-                   // Sleep(1f);
                     transform.position = ledgePos1;
                     canClibLedge = false;
 
@@ -786,5 +759,10 @@ namespace LubyAdventure
             ledgeDetected = false;
             characterAnimationBehaviour.OnLedgeClimbAnim(canClibLedge);
         }
+        void RigidbodyDrag(float x)
+        {
+            RB.drag = x;
+        }
     }
+
 }

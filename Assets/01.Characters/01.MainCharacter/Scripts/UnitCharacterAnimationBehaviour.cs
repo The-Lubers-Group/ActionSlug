@@ -39,6 +39,9 @@ namespace LubyAdventure
         private string animLandParameter = "Land";
         private int animLandID;
 
+        private string animIsDashingParameter = "IsDashing";
+        private int animIsDashingID;
+
 
         public bool startedJumping { private get; set; }
         public bool justLanded { private get; set; }
@@ -86,6 +89,7 @@ namespace LubyAdventure
             animWalkingID = Animator.StringToHash(animWalkingParameter);
             animJumpID = Animator.StringToHash(animJumpParameter);
             animLandID = Animator.StringToHash(animLandParameter);
+            animIsDashingID = Animator.StringToHash(animIsDashingParameter);
         }
 
         public void CharacterWasHit()
@@ -135,6 +139,11 @@ namespace LubyAdventure
         public void OnLedgeClimbAnim(bool status)
         {
             characterAnimator.SetBool("LedgeClimb", status);
+
+        }
+        public void OnIsDashingAnim(bool status)
+        {
+            characterAnimator.SetBool(animIsDashingID, status);
 
         }
 
