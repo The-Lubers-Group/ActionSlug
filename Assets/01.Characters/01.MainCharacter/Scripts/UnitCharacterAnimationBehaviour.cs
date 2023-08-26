@@ -19,6 +19,11 @@ namespace LubyAdventure
         [SerializeField][Range(0, 1)] private float tiltSpeed;
 
 
+        [Header("Particle FX")]
+        [SerializeField] private GameObject jumpFX;
+        [SerializeField] private GameObject landFX;
+
+
         private string animGetHitParameter = "Get Hit";
         private int animGetHitID;
 
@@ -99,6 +104,8 @@ namespace LubyAdventure
             if (startedJumping)
             {
                 characterAnimator.SetTrigger(animJumpID);
+                GameObject obj = Instantiate(jumpFX, transform.position - (Vector3.up * transform.localScale.y / 2), Quaternion.Euler(-90, 0, 0));
+                Destroy(obj,1);
                 startedJumping = false;
                 return;
             }
@@ -106,6 +113,8 @@ namespace LubyAdventure
             if (justLanded)
             {
                 characterAnimator.SetTrigger(animLandID);
+                GameObject obj = Instantiate(landFX, transform.position - (Vector3.up * transform.localScale.y / 1.5f), Quaternion.Euler(-90, 0, 0));
+                Destroy(obj, 1);
                 justLanded = false;
                 return;
             }
@@ -115,26 +124,19 @@ namespace LubyAdventure
 
         public void SwimmingAnim(bool status)
         {
-            //characterAnimator.SetTrigger("Swimming");
             characterAnimator.SetBool("Swimming", status);
-            //Debug.Log("SwimmingAnim: " +  status);
         }
         
         public void SetWallSliderAnim(bool status)
         {
-            //Debug.Log("IsSlider: " + status);
             characterAnimator.SetBool("IsSlider", status);
         }
 
         public void OnLedgeClimbAnim(bool status)
         {
-            //Debug.Log("IsSlider: " + status);
             characterAnimator.SetBool("LedgeClimb", status);
 
         }
 
     }
 }
-
-//Set the animation
-//characterAnimationBehaviour.SetWallSliderAnim(true);

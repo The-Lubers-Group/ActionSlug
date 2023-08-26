@@ -6,6 +6,7 @@ using System.Collections;
 using UnityEngine;
 
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 namespace LubyAdventure
 {
@@ -112,10 +113,6 @@ namespace LubyAdventure
             gameInput = FindAnyObjectByType<GameInput>();
             cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
 
-
-
-
-
             if (initializeSelf)
             {
                 //SetAlive();
@@ -169,8 +166,6 @@ namespace LubyAdventure
             if (gameInput.IsJumpingPress())
             {
                 //Jump();
-
-
                 OnJumpInput();
                 if (IsSwimming)
                 {
@@ -285,10 +280,12 @@ namespace LubyAdventure
 
                 if (CanDash() && LastPressedDashTime > 0)
                 {
-                    //Freeze game for split second. Adds juiciness and a bit of forgiveness over directional input
+                    Camera.main.transform.DOComplete();
+                    Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
+
+
                     Sleep(Data.dashSleepTime);
 
-                    //If not direction pressed, dash forward
                     if (moveInput != Vector2.zero)
                         lastDashDir = moveInput;
                     else

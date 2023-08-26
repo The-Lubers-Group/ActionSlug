@@ -16,7 +16,6 @@ public class GameInput : MonoBehaviour
     private bool moveLeftRight;
 
     private Vector2 moveInput;
-
     private void Awake()
     {
         playerControls = new PlayerControls();
