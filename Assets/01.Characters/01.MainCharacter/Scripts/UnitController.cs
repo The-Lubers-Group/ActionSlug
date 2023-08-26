@@ -760,7 +760,7 @@ namespace LubyAdventure
         }
         private void CanLedgeClimb()
         {
-            //print(!coll.onSpaceGround && !coll.onLedge && coll.onLeftWall && !IsSwimming);
+            // print(!coll.onSpaceGround && !coll.onLedge && coll.onLeftWall && !IsSwimming);
             if (!coll.onSpaceGround && !coll.onLedge && coll.onLeftWall && !IsSwimming)
             {
                 //Debug.Log("pode subir");
@@ -772,17 +772,22 @@ namespace LubyAdventure
 
                 if (canClibLedge)
                 {
+                   // characterAnimationBehaviour.OnLedgeClimbAnim(canClibLedge);
+                   // Sleep(1f);
                     transform.position = ledgePos1;
-                    characterAnimationBehaviour.OnLedgeClimbAnim(canClibLedge);
+                    canClibLedge = false;
+
                 }
             }
         }
 
         public void FinishLedgeClimb()
         {
+            transform.position = ledgePos1;
             canClibLedge = false;
             transform.position = ledgePos2;
             ledgeDetected = false;
+            characterAnimationBehaviour.OnLedgeClimbAnim(canClibLedge);
         }
     }
 }
