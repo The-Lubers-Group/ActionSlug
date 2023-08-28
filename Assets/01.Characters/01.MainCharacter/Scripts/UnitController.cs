@@ -786,9 +786,9 @@ namespace LubyAdventure
 
         public void Hit()
         {
-            playerLife--;
+            Data.totalLife--;
             GetComponent<GetHit>().StopTime(0.5F, 10, 0.1F);
-            if (playerLife <= 0)
+            if (Data.totalLife <= 0)
             {
                 Die();
             }
@@ -805,14 +805,9 @@ namespace LubyAdventure
 
         public void Die()
         {
-            if(Data.totalLife <= 0)
-            {
-                print("Acabou todas as vida!");
-            }
-            else
-            {
-                GameObject.FindAnyObjectByType<MenuManager>().OnGameOverMenu();
-            }
+            GameObject.FindAnyObjectByType<MenuManager>().OnGameOverMenu();
+            if (Data.totalLife <= 0)
+                Data.totalLife = 3;
         }
     }
 }
