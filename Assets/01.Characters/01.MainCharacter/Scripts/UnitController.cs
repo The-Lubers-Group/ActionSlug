@@ -805,7 +805,14 @@ namespace LubyAdventure
 
         public void Die()
         {
-            GameObject.FindAnyObjectByType<MenuManager>().OnGameOverMenu();
+            if(Data.totalLife <= 0)
+            {
+                print("Acabou todas as vida!");
+            }
+            else
+            {
+                GameObject.FindAnyObjectByType<MenuManager>().OnGameOverMenu();
+            }
         }
     }
 }

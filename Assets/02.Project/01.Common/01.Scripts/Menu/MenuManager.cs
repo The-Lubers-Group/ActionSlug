@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private UnitController mainCharacter;
+    private UnitController mainCharacter;
 
+    [Space(5)]
     [SerializeField] private GameObject UIPauseMenu;
+    [SerializeField] private GameObject UIRespawnMenu;
     [SerializeField] private GameObject UIGameOverMenu;
+    [Space(5)]
 
     // UI Text 
     [SerializeField] private TMP_Text totalLife;
@@ -25,7 +28,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         UIPauseMenu.SetActive(false);
-        UIGameOverMenu.SetActive(false);
+        UIRespawnMenu.SetActive(false);
         mainCharacter = FindAnyObjectByType<UnitController>();
     }
 
@@ -62,13 +65,14 @@ public class MenuManager : MonoBehaviour
     public void OnGameOverMenu()
     {
         Time.timeScale = 0;
-        UIGameOverMenu.SetActive(true);
+        UIRespawnMenu.SetActive(true);
+        mainCharacter.Data.totalLife--;
     }
 
     public void RestartGame()
     {
         mainCharacter.Restart();
-        UIGameOverMenu.SetActive(false);
+        UIRespawnMenu.SetActive(false);
         mainCharacter.SetAlive();
         Time.timeScale = 1;
     }
