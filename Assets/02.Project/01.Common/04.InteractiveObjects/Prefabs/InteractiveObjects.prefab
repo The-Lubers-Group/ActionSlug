@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5755518209717683486}
   - component: {fileID: 3318359308017674564}
   - component: {fileID: 6768188259147146684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: InteractiveObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,10 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2510a5685c8a2d34ba8a71ec00dc639b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTransform: {fileID: 8747290827603182354}
+  visualTransform: {fileID: 0}
+  force: 80
   InteractLayer:
     serializedVersion: 2
     m_Bits: 64
+  anim: {fileID: 0}
 --- !u!1 &4926192010138127073
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +128,7 @@ GameObject:
   - component: {fileID: 8747290827603182354}
   - component: {fileID: 5690225747598479313}
   - component: {fileID: 5310212954188710585}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

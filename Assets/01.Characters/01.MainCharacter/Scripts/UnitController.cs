@@ -806,8 +806,7 @@ namespace LubyAdventure
         public void Die()
         {
             GameObject.FindAnyObjectByType<MenuManager>().OnGameOverMenu();
-            if (Data.totalLife <= 0)
-                Data.totalLife = 3;
+            Data.totalLife = 3;
         }
     }
 }
