@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private UnitController mainCharacter;
 
     [SerializeField] private GameObject UIPauseMenu;
+    [SerializeField] private GameObject UIGameOverMenu;
 
     // UI Text 
     [SerializeField] private TMP_Text totalLife;
@@ -24,6 +25,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         UIPauseMenu.SetActive(false);
+        UIGameOverMenu.SetActive(false);
         mainCharacter = FindAnyObjectByType<UnitController>();
     }
 
@@ -54,6 +56,20 @@ public class MenuManager : MonoBehaviour
     public void OnLevelsMenu()
     {
         SceneManager.LoadSceneAsync(1);
+        Time.timeScale = 1;
+    }
+
+    public void OnGameOverMenu()
+    {
+        Time.timeScale = 0;
+        UIGameOverMenu.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        mainCharacter.Restart();
+        UIGameOverMenu.SetActive(false);
+        mainCharacter.SetAlive();
         Time.timeScale = 1;
     }
 }

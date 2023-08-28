@@ -17,6 +17,7 @@ namespace LubyAdventure
         public UnitInfoData Data;
         
         private CollisionManager coll;
+        [SerializeField] private GameObject startPoint;
         
         [Header("Movement")]
         [HideInInspector] public GameInput gameInput;
@@ -41,6 +42,8 @@ namespace LubyAdventure
         [Header("Camera Stuff")]
         [SerializeField] private CameraFollowObject cameraFollowObject;
         [SerializeField] private GameObject cameraFollowObjectGO;
+
+        private int playerLife;
 
         public bool IsFacingRight { get; private set; }
         public bool IsJumping { get; private set; }
@@ -105,6 +108,11 @@ namespace LubyAdventure
         [Header("Debug")]
         public bool initializeSelf;
 
+        private void Awake()
+        {
+                transform.position = startPoint.transform.position;
+        }
+
         private void Start()
         {
             coll = GetComponent<CollisionManager>();
@@ -113,12 +121,18 @@ namespace LubyAdventure
             gameInput = FindAnyObjectByType<GameInput>();
             cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
 
+            SetAlive();
+            SetGravityScale(Data.gravityScale);
+            IsFacingRight = true;
+
+            /*
             if (initializeSelf)
             {
-                //SetAlive();
+                SetAlive();
                 SetGravityScale(Data.gravityScale);
                 IsFacingRight = true;
             }
+            */
 
         }
 
@@ -763,6 +777,35 @@ namespace LubyAdventure
         {
             RB.drag = x;
         }
-    }
 
+        public void SetAlive()
+        {
+            Debug.Log(" Data.totalLife: " + Data.totalLife);
+            playerLife = Data.totalLife;
+        }
+
+        public void Hit()
+        {
+            playerLife--;
+            GetComponent<GetHit>().StopTime(0.5F, 10, 0.1F);
+            if (playerLife <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                Restart();
+            }
+        }
+
+        public void Restart()
+        {
+            transform.position = startPoint.transform.position;
+        }
+
+        public void Die()
+        {
+            GameObject.FindAnyObjectByType<MenuManager>().OnGameOverMenu();
+        }
+    }
 }
