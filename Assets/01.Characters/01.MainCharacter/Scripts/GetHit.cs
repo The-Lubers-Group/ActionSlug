@@ -20,12 +20,6 @@ public class GetHit : MonoBehaviour
 
     private ParticleSystem _jumpParticle;
 
-
-
-
-
-
-
     [Tooltip("Material to switch to during the flash.")]
     [SerializeField] private Material flashMaterial;
     [SerializeField] private Material originalMaterial;
@@ -33,10 +27,6 @@ public class GetHit : MonoBehaviour
     private void Start()
     {
         RestoreTime = false;
-
-
-
-
         _jumpParticle = impactFX.GetComponent<ParticleSystem>();
     }
 
@@ -78,22 +68,7 @@ public class GetHit : MonoBehaviour
 
         ParticleSystem.MainModule jumpPSettings = _jumpParticle.main;
         jumpPSettings.startColor = new ParticleSystem.MinMaxGradient(Color.red);
-
         //Instantiate(impactFX, impactFX.transform.position, Quaternion.identity);
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
         characterAnimationBehaviour.CharacterWasHit();
         
         transform.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5f, ForceMode2D.Impulse);

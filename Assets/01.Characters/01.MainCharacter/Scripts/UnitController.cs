@@ -18,6 +18,8 @@ namespace LubyAdventure
         
         private CollisionManager coll;
         [SerializeField] private GameObject startPoint;
+
+        private ShadowDash shadowDash;
         
         [Header("Movement")]
         [HideInInspector] public GameInput gameInput;
@@ -100,14 +102,9 @@ namespace LubyAdventure
         [SerializeField] private float ledgeClimbBoXOffset2 = 0.5f;
         [SerializeField] private float ledgeClimbBoYOffset2 = 0.5f;
 
-
         // LAYERS & TAGS
         [Header("Layers & Tags")]
         [SerializeField] private LayerMask groundLayer;
-
-        [Header("Debug")]
-        public bool initializeSelf;
-
         private void Awake()
         {
                 transform.position = startPoint.transform.position;
@@ -124,16 +121,6 @@ namespace LubyAdventure
             SetAlive();
             SetGravityScale(Data.gravityScale);
             IsFacingRight = true;
-
-            /*
-            if (initializeSelf)
-            {
-                SetAlive();
-                SetGravityScale(Data.gravityScale);
-                IsFacingRight = true;
-            }
-            */
-
         }
 
         private void Update()
@@ -280,7 +267,7 @@ namespace LubyAdventure
                     else if (CanWallJump() && LastPressedJumpTime > 0)
                     {
 
-                        IsWallJumping = true;
+                        IsWallJumping = true; 
                         IsJumping = false;
                         isJumpCut = false;
                         isJumpFalling = false;
@@ -296,7 +283,13 @@ namespace LubyAdventure
                 {
                     Camera.main.transform.DOComplete();
                     Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
-                    print("dasd");
+                    
+                    ShadowDash.main.Dash();
+                    
+                    //print("dasd");
+                    //shadowDash.Dash();
+                    //shadowDash.shadowDash.Dash();
+
 
                     Sleep(Data.dashSleepTime);
 
