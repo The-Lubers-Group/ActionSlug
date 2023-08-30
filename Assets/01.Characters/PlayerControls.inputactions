@@ -175,6 +175,17 @@
                 },
                 {
                     "name": "",
+                    "id": "be35b1bd-2326-4b6b-b773-882d0df47b2d",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7fb3d73e-11f7-4811-a123-6a2d8caf6aa8",
                     "path": "<Keyboard>/space",
                     "interactions": "",
