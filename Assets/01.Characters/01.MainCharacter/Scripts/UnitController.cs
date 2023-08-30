@@ -47,6 +47,10 @@ namespace LubyAdventure
         [SerializeField] private CameraFollowObject cameraFollowObject;
         [SerializeField] private GameObject cameraFollowObjectGO;
 
+
+        [SerializeField] private AudioClip _jumpClip;
+        [SerializeField] private AudioSource _audioSource;
+
         private int playerLife;
 
         public bool IsFacingRight { get; private set; }
@@ -469,7 +473,7 @@ namespace LubyAdventure
             float force = Data.jumpForce;
             if (RB.velocity.y < 0)
                 force -= RB.velocity.y;
-
+            _audioSource.PlayOneShot(_jumpClip);
             RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         }
 
