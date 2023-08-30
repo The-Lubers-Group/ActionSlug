@@ -285,11 +285,6 @@ namespace LubyAdventure
                     Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
                     
                     ShadowDash.main.Dash();
-                    
-                    //print("dasd");
-                    //shadowDash.Dash();
-                    //shadowDash.shadowDash.Dash();
-
 
                     Sleep(Data.dashSleepTime);
 
@@ -508,8 +503,6 @@ namespace LubyAdventure
       
         private IEnumerator StartDash(Vector2 dir)
         {
-            //FindObjectOfType<GhostTrail>().ShowGhost();
-
             LastOnGroundTime = 0;
             LastPressedDashTime = 0;
 
@@ -773,14 +766,15 @@ namespace LubyAdventure
 
         public void SetAlive()
         {
-            Debug.Log(" Data.totalLife: " + Data.totalLife);
             playerLife = Data.totalLife;
         }
 
         public void Hit()
         {
             Data.totalLife--;
-            GetComponent<GetHit>().StopTime(0.5F, 10, 0.1F);
+            //GetComponent<GetHit>().StopTime(0.5F, 10, 0.1F);
+            GetHit.main.StopTime(0.5F, 10, 0.1F);
+
             if (Data.totalLife <= 0)
             {
                 Die();

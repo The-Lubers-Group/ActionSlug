@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GetHit : MonoBehaviour
 {
+    public static GetHit main;
 
     private float Speed;
     private bool RestoreTime;
@@ -23,6 +24,11 @@ public class GetHit : MonoBehaviour
     [Tooltip("Material to switch to during the flash.")]
     [SerializeField] private Material flashMaterial;
     [SerializeField] private Material originalMaterial;
+
+    private void Awake()
+    {
+        main = this;
+    }
 
     private void Start()
     {
