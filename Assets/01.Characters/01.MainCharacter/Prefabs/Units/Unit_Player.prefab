@@ -281,6 +281,7 @@ MonoBehaviour:
   cameraFollowObject: {fileID: 0}
   cameraFollowObjectGO: {fileID: 0}
   _jumpClip: {fileID: 8300000, guid: 37981cd96a239a349a058b36e6e563f5, type: 3}
+  _runClip: {fileID: 8300000, guid: a5ab049110daed640ac58062bebf6e02, type: 3}
   _audioSource: {fileID: 2906399238364775341}
   IsClimbing: 0
   moveInput: {x: 0, y: 0}

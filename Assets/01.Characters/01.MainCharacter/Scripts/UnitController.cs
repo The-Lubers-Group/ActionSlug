@@ -49,6 +49,7 @@ namespace LubyAdventure
 
 
         [SerializeField] private AudioClip _jumpClip;
+        [SerializeField] private AudioClip _runClip;
         [SerializeField] private AudioSource _audioSource;
 
         private int playerLife;
@@ -441,9 +442,17 @@ namespace LubyAdventure
 
             float speedDif = targetSpeed - RB.velocity.x;
             float movement = speedDif * accelRate;
+
+            if(isWalking)
+            {
+                //_audioSource.PlayOneShot(_runClip);
+             //   StartCoroutine(_audioSource.PlayOneShot(_runClip));
+            }
+
             RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
             Vector3 moveDir = new Vector3(moveInput.x, 0f, 0f);
             isWalking = moveDir != Vector3.zero;
+            
         }
 
 
