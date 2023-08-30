@@ -981,7 +981,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2f8c313a4165949bfce61f57dc60e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCharacter: {fileID: 0}
   UIPauseMenu: {fileID: 6235833453607231983}
   UIGameOverMenu: {fileID: 2057551035353274445}
   totalLife: {fileID: 6508581601732954342}
@@ -1740,6 +1739,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8349826770525171293}
     m_Modifications:
+    - target: {fileID: 2228351698936800620, guid: 41adea587f4e4b241b9522e32b233322, type: 3}
+      propertyPath: m_Name
+      value: PFAnalog
+      objectReference: {fileID: 0}
     - target: {fileID: 6079065334824666949, guid: 41adea587f4e4b241b9522e32b233322, type: 3}
       propertyPath: m_Pivot.x
       value: 0

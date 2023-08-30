@@ -15,6 +15,8 @@ namespace LubyAdventure
     {
         [Header("Data")]
         public UnitInfoData Data;
+
+        public static UnitController main;
         
         private CollisionManager coll;
         [SerializeField] private GameObject startPoint;
@@ -107,7 +109,8 @@ namespace LubyAdventure
         [SerializeField] private LayerMask groundLayer;
         private void Awake()
         {
-                transform.position = startPoint.transform.position;
+            main = this;
+            transform.position = startPoint.transform.position;
         }
 
         private void Start()
