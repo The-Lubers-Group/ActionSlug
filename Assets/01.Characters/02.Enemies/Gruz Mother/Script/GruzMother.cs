@@ -1,9 +1,13 @@
+using LubyAdventure;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GruzMother : MonoBehaviour
 {
+    [Header("Layers & Tags")]
+    [SerializeField] private LayerMask interactLayer;
+
     [Header("idle")]
     [SerializeField] float idleMovementSpeed;
     [SerializeField] Vector2 idleMovementDirection;
@@ -177,6 +181,14 @@ public class GruzMother : MonoBehaviour
         transform.Rotate(0, 180, 0);
         checks.Rotate(0, 180, 0);
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if ((interactLayer.value & 1 << collision.gameObject.layer) == interactLayer.value)
+        {
+            collision.gameObject.GetComponent<UnitController>().Hit();
+        }
     }
 
     private void OnDrawGizmosSelected()
