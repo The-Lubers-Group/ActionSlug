@@ -17,7 +17,7 @@ public class ShadowDash : MonoBehaviour
 
     public GameObject GetShadow()
     {
-        Debug.Log("GetShadow()");
+        //Debug.Log("GetShadow()");
         for(int i = 0; i < list.Count; i++)
         {
             if (!list[i].activeInHierarchy)

@@ -11,7 +11,7 @@ namespace LubyAdventure
     {
         [Header("Animator")]
         public Animator characterAnimator;
-        public UnitController unitController;
+        [HideInInspector] public UnitController unitController;
         private SpriteRenderer spriteRend;
 
         [Header("Movement Tilt")]
@@ -55,6 +55,7 @@ namespace LubyAdventure
         private void Start()
         {
             spriteRend = GetComponentInChildren<SpriteRenderer>();
+            unitController = UnitController.main;
         }
 
 

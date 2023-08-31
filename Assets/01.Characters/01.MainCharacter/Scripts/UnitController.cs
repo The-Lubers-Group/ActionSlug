@@ -19,8 +19,11 @@ namespace LubyAdventure
         public static UnitController main;
         
         private CollisionManager coll;
-        [SerializeField] private GameObject startPoint;
 
+        [Space(5)]
+        [SerializeField] private GameObject startPoint;
+        
+        [Space(5)]
         private ShadowDash shadowDash;
         
         [Header("Movement")]
@@ -28,15 +31,15 @@ namespace LubyAdventure
         [HideInInspector] public Rigidbody2D RB;
         [HideInInspector] public HingeJoint2D HJ;
 
-        [Header("Health Settings")]
-        public UnitHealthBehaviour healthBehaviour;
-        private bool unitIsAlive;
+        //[Header("Health Settings")]
+        //public UnitHealthBehaviour healthBehaviour;
+        //private bool unitIsAlive;
 
         [SerializeField] private float PushForce = 10f;
-        [SerializeField] private bool attached = false;
+        private bool attached = false;
 
-        [SerializeField] private Transform attachedTo;
-        [SerializeField] private GameObject disregard;
+        private Transform attachedTo;
+        private GameObject disregard;
 
         [Header("Animation Settings")]
         public UnitCharacterAnimationBehaviour characterAnimationBehaviour;
@@ -60,8 +63,8 @@ namespace LubyAdventure
         public bool IsDashing { get; private set; }
         public bool IsSliding { get; private set; }
         public bool IsSwimming { get; private set; }
-        
-        public bool IsClimbing;
+
+        [HideInInspector] public bool IsClimbing;
 
 
         public bool IsTouchingLedge { get; private set; }
@@ -87,7 +90,7 @@ namespace LubyAdventure
         private Vector2 lastDashDir;
         private bool isDashAttacking;
 
-        public Vector2 moveInput;
+        [HideInInspector] public Vector2 moveInput;
 
         public float LastPressedJumpTime { get; private set; }
         public float LastPressedDashTime { get; private set; }

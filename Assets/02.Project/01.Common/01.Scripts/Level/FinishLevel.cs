@@ -15,7 +15,14 @@ public class FinishLevel : MonoBehaviour
 
     public void ClickNext()
     {
-        SceneManager.LoadSceneAsync(levelData.LevelID + 2);
+        if(levelData.LevelID <= 4)
+        {
+            SceneManager.LoadSceneAsync(levelData.LevelID + 2);
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync(0);
+        }
     }
 
     public void ClickRetry()
