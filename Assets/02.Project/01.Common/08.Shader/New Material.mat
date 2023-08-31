@@ -58,7 +58,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BlendValue: 0.03
-    - _CellDensity: 14.69
+    - _CellDensity: 14
     - _EnableExternalAlpha: 0
     - _PixelateAmount: 800
     - _Speed: 0.7

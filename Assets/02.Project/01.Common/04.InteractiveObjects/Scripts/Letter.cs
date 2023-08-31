@@ -20,7 +20,7 @@ public class Letter : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindAnyObjectByType<GameManager>();
+        //gameManager = FindAnyObjectByType<GameManager>();
         menuManager = FindAnyObjectByType<MenuManager>();
         spriteIcon = letter.GetChild(0).GetComponentInChildren<SpriteRenderer>();
     }
@@ -37,7 +37,7 @@ public class Letter : MonoBehaviour
     }
     private void UpdateLetterStatus()
     {
-        foreach (LubyLetter lubyLetter in gameManager.Data.lubyLetter)
+        foreach (LubyLetter lubyLetter in GameManager.levelData.lubyLetter)
         {
             if (lubyLetter.letterId == letterId)
             {

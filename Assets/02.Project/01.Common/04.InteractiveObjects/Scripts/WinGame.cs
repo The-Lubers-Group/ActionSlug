@@ -18,7 +18,7 @@ public class WinGame : MonoBehaviour
         if (Physics2D.OverlapCircle(visualTransform.position,  0, InteractLayer))
         {
             //Application.LoadLevel("GameOver");
-            scenesToLoad.Add(SceneManager.LoadSceneAsync("GameOver"));
+            scenesToLoad.Add(SceneManager.LoadSceneAsync("LevelFinish"));
         }
     }
 }

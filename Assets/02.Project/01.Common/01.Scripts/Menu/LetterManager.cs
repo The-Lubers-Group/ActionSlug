@@ -14,7 +14,8 @@ public class LetterManager : MonoBehaviour
     private GameManager gameManager;
     private void Start()
     {
-        gameManager = FindAnyObjectByType<GameManager>();
+        //gameManager = FindAnyObjectByType<GameManager>();
+        //gameManager = GameManager.main;
     }
 
     private void Update()
@@ -25,7 +26,7 @@ public class LetterManager : MonoBehaviour
 
     private void GetLetterStatus()
     {
-        foreach (LubyLetter lubyLetter in gameManager.Data.lubyLetter)
+        foreach (LubyLetter lubyLetter in GameManager.levelData.lubyLetter)
         {
             if(lubyLetter.letterId == ID)
             {
@@ -33,7 +34,6 @@ public class LetterManager : MonoBehaviour
                 {
                     //iconLetter.sprite = enableLetter;
                     StartCoroutine(Wait(0.5f));
-
                 }
                 if (!lubyLetter.letterStatus)
                 {

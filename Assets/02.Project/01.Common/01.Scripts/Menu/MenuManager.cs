@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public static MenuManager main;
     private UnitController mainCharacter;
 
     [Space(5)]
@@ -25,11 +26,19 @@ public class MenuManager : MonoBehaviour
     [Space(5)]
     public List<LetterManager> lubyLetter = new List<LetterManager>();
 
+    private void Awake()
+    {
+        if (main == null)
+        {
+            main = this;
+        }
+    }
     private void Start()
     {
         UIPauseMenu.SetActive(false);
         //UIRespawnMenu.SetActive(false);
-        mainCharacter = FindAnyObjectByType<UnitController>();
+        //mainCharacter = FindAnyObjectByType<UnitController>();
+        mainCharacter = UnitController.main;
     }
 
     private void Update()

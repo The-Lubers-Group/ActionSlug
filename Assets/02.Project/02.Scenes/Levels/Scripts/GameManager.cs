@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public LevelData Data;
-    //public List<int> listCoin = new List<int>();
- 
+    public static LevelData levelData;
+
+    public static GameManager main;
+    private void Awake()
+    {
+        if(main == null)
+        {
+            main = this;
+        }
+        levelData = Data;
+    }
+     
 }
 
 
