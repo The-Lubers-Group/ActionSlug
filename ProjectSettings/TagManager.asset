@@ -8,6 +8,7 @@ TagManager:
   - Undefined
   - Ladder
   - Box
+  - GruzMother
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1096188113
+    locked: 0
+  - name: Foreground
+    uniqueID: 2017415797
     locked: 0

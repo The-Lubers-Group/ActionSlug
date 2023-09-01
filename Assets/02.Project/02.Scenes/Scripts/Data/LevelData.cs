@@ -16,7 +16,8 @@ public class LevelData : ScriptableObject
     public bool isCompleted;
     public int Score;
     public int nStar;
-    
+    public bool isBlocked;
+
     //public bool[] lubyIcon = new bool[4];
     public List<LubyLetter> lubyLetter = new List<LubyLetter>()
     {

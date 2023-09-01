@@ -18,3 +18,4 @@ MonoBehaviour:
   isCompleted: 0
   Score: 0
   nStar: 0
+  isBlocked: 1

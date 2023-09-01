@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class ButtonManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         _img.sprite = _press;
         _source.PlayOneShot(_compressClip);
+        transform.DOShakePosition(3.0f, strength: new Vector3(0, 4, 0), vibrato: 5, randomness: 1, snapping: false, fadeOut: true);
     }
 
     public void OnPointerUp(PointerEventData eventData)
