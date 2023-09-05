@@ -1,3 +1,4 @@
+using Collections.Shaders.CircleTransition;
 using LubyAdventure;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ public class GetHit : MonoBehaviour
         }
     }
 
-    public void StopTime(float ChangeTime, int RestoreSpeed, float Delay)
+    public void Hit(float ChangeTime, int RestoreSpeed, float Delay)
     {
         Speed = RestoreSpeed;
 
@@ -81,6 +82,7 @@ public class GetHit : MonoBehaviour
         
         OnMaterial(true);
         Time.timeScale = ChangeTime;
+
     }
     private void OnMaterial(bool status)
     {

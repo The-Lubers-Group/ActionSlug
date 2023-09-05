@@ -7,6 +7,7 @@ using UnityEngine;
 
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using Collections.Shaders.CircleTransition;
 
 namespace LubyAdventure
 {
@@ -47,15 +48,15 @@ namespace LubyAdventure
         [Header("Audio Settings")]
 
         [Header("Camera Stuff")]
-        [SerializeField] private CameraFollowObject cameraFollowObject;
-        [SerializeField] private GameObject cameraFollowObjectGO;
+        public CameraFollowObject cameraFollowObject;
+        //[SerializeField] private GameObject cameraFollowObjectGO;
 
 
         [SerializeField] private AudioClip _jumpClip;
         [SerializeField] private AudioClip _runClip;
         [SerializeField] private AudioSource _audioSource;
 
-        private int playerLife;
+        public static int playerLife;
 
         public bool IsFacingRight { get; private set; }
         public bool IsJumping { get; private set; }
@@ -118,7 +119,7 @@ namespace LubyAdventure
         private void Awake()
         {
             main = this;
-            transform.position = startPoint.transform.position;
+            //transform.position = startPoint.transform.position;
         }
 
         private void Start()
@@ -127,7 +128,7 @@ namespace LubyAdventure
             RB = GetComponent<Rigidbody2D>();
             HJ = GetComponent<HingeJoint2D>();
             gameInput = FindAnyObjectByType<GameInput>();
-            cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
+            //cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
 
             SetAlive();
             SetGravityScale(Data.gravityScale);
@@ -695,7 +696,6 @@ namespace LubyAdventure
                         }
                     }
                 }
-
             }
         }
 
@@ -765,7 +765,6 @@ namespace LubyAdventure
                    // characterAnimationBehaviour.OnLedgeClimbAnim(canClibLedge);
                     transform.position = ledgePos1;
                     canClibLedge = false;
-
                 }
             }
         }
@@ -785,34 +784,19 @@ namespace LubyAdventure
 
         public void SetAlive()
         {
-            playerLife = Data.totalLife;
+            playerLife = Data.life;
         }
 
-        public void Hit()
+        public void PlayerHit()
         {
-            Data.totalLife--;
-            //GetComponent<GetHit>().StopTime(0.5F, 10, 0.1F);
-            GetHit.main.StopTime(0.5F, 10, 0.1F);
-
-            if (Data.totalLife <= 0)
+            playerLife--;
+            GetHit.main.Hit(0.5F, 10, 0.1F);
+            
+            if (playerLife <= 0)
             {
-                Die();
+                Data.totalLife--;
+                //Destroy(gameObject);
             }
-            else
-            {
-                Restart();
-            }
-        }
-
-        public void Restart()
-        {
-            transform.position = startPoint.transform.position;
-        }
-
-        public void Die()
-        {
-            GameObject.FindAnyObjectByType<MenuManager>().OnGameOverMenu();
-            Data.totalLife = 3;
         }
     }
 }

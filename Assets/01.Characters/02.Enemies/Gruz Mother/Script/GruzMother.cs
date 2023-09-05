@@ -187,7 +187,7 @@ public class GruzMother : MonoBehaviour
     {
         if ((interactLayer.value & 1 << collision.gameObject.layer) == interactLayer.value)
         {
-            collision.gameObject.GetComponent<UnitController>().Hit();
+            collision.gameObject.GetComponent<UnitController>().PlayerHit();
         }
     }
 

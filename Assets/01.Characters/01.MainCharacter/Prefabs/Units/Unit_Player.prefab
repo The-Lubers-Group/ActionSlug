@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 2547904548363120857}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -30, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -272,14 +272,9 @@ MonoBehaviour:
   gameInput: {fileID: 0}
   RB: {fileID: 0}
   HJ: {fileID: 951765949166720060}
-  healthBehaviour: {fileID: 0}
   PushForce: 10
-  attached: 0
-  attachedTo: {fileID: 0}
-  disregard: {fileID: 0}
   characterAnimationBehaviour: {fileID: 409074661959511370}
   cameraFollowObject: {fileID: 0}
-  cameraFollowObjectGO: {fileID: 0}
   _jumpClip: {fileID: 8300000, guid: 5510193f4a463394993478f0d7957a66, type: 3}
   _runClip: {fileID: 8300000, guid: a5ab049110daed640ac58062bebf6e02, type: 3}
   _audioSource: {fileID: 2906399238364775341}

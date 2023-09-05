@@ -10,15 +10,20 @@ public class MenuManager : MonoBehaviour
     public static MenuManager main;
     private UnitController mainCharacter;
 
+    [SerializeField] private Canvas _menuCanvas;
+    [SerializeField] private Canvas _mobileCanvas;
+    [SerializeField] private Canvas _masterCanvas;
+    [SerializeField] private Canvas _transitionsCanvas;
+
     [Space(5)]
-    [SerializeField] private GameObject UIPauseMenu;
-    //[SerializeField] private GameObject UIRespawnMenu;
-    [SerializeField] private GameObject UIGameOverMenu;
+    [SerializeField] private GameObject _UIPauseMenu;
+    [SerializeField] private GameObject _UIRespawnMenu;
+    [SerializeField] private GameObject _UIGameOverMenu;
     [Space(5)]
 
     // UI Text 
-    [SerializeField] private TMP_Text totalLife;
-    [SerializeField] private TMP_Text totalCoin;
+    [SerializeField] private TMP_Text _totalLife;
+    [SerializeField] private TMP_Text _totalCoin;
 
     public GameObject UICoin;
 
@@ -32,19 +37,24 @@ public class MenuManager : MonoBehaviour
         {
             main = this;
         }
+
+        _menuCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        _mobileCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        _masterCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        _transitionsCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        
     }
     private void Start()
     {
-        UIPauseMenu.SetActive(false);
-        //UIRespawnMenu.SetActive(false);
-        //mainCharacter = FindAnyObjectByType<UnitController>();
+        _UIPauseMenu.SetActive(false);
+        _UIRespawnMenu.SetActive(false);
         mainCharacter = UnitController.main;
     }
 
     private void Update()
     {
-        totalLife.text = "x " + mainCharacter.Data.totalLife.ToString();
-        totalCoin.text = "x " + mainCharacter.Data.totalCoin.ToString();
+        _totalLife.text = "x " + mainCharacter.Data.totalLife.ToString();
+        _totalCoin.text = "x " + mainCharacter.Data.totalCoin.ToString();
 
         if(mainCharacter.Data.totalCoin == 100)
         {
@@ -56,12 +66,12 @@ public class MenuManager : MonoBehaviour
     public void OnClickPauseMenu()
     {
         Time.timeScale = 0;
-        UIPauseMenu.SetActive(true);
+        _UIPauseMenu.SetActive(true);
     }
 
     public void CancelPauseMenu()
     {
-        UIPauseMenu.SetActive(false);
+        _UIPauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -71,18 +81,28 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void OnGameOverMenu()
+    public void OpenGameOverMenu()
     {
         Time.timeScale = 0;
-        UIGameOverMenu.SetActive(true);
-        mainCharacter.Data.totalLife--;
+        _UIGameOverMenu.SetActive(true);
+        //mainCharacter.Data.totalLife--;
     }
-
+     
     public void RestartGame()
     {
-        mainCharacter.Restart();
-        UIGameOverMenu.SetActive(false);
+        GameManager.main.RestartGame();
         mainCharacter.SetAlive();
+        //mainCharacter.RestartGame();
+        _UIGameOverMenu.SetActive(false);
+        _UIRespawnMenu.SetActive(false);
+        
         Time.timeScale = 1;
+    }
+
+
+    public void OpenRestartMenu()
+    {
+        Time.timeScale = 0;
+        _UIRespawnMenu.SetActive(true);
     }
 }

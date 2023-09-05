@@ -9,7 +9,8 @@ public class LevelSelection : MonoBehaviour
 {
     [SerializeField] private List<LevelData> _levelList = new List<LevelData>();
     [SerializeField] private List<Button> _buttonlevelList = new List<Button>();
-    [SerializeField] private LineRenderer _lineRenderer;
+    
+    private LineRenderer _lineRenderer;
     private Vector3 pos;
     public void OnMenu()
     {
@@ -18,11 +19,13 @@ public class LevelSelection : MonoBehaviour
 
     private void Start()
     {
-        _lineRenderer.positionCount = _buttonlevelList.Count;
-
-        Options();
-
-      
+        for (int i = 0; i < _levelList.Count; i++)
+        {
+            if (!_levelList[i].isBlocked)
+            {
+                print(_buttonlevelList[i].name);
+            }
+        }
     }
 
 
@@ -33,6 +36,8 @@ public class LevelSelection : MonoBehaviour
 
     private void Options()
     {
+        _lineRenderer.positionCount = _buttonlevelList.Count;
+
         for (int i = 0; i < _buttonlevelList.Count; i++)
         {
             print(_levelList[i].isBlocked);

@@ -6,32 +6,27 @@ using LubyAdventure;
 public class CameraFollowObject : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Transform playerTranform;
+    [SerializeField] private UnitController _mainPlayer;
 
     [Header("Flip Rotation Stats")]
     [SerializeField] private float flipYRotationTime = 0.5f;
 
-    //private PlayerManager player;
-    private UnitController player;
     private bool isFacingRight;
-    private Coroutine turnCoroutine;
-    
-    private void Awake()
-    {
-        player = playerTranform.gameObject.GetComponent<UnitController>();
-        isFacingRight = player.IsFacingRight;
-    }
-
+    //private Coroutine turnCoroutine;
+   
     private void Update()
     {
-        // Make the cameraFollowObject follow the player's position 
-        transform.position = playerTranform.position;
+
+        if (_mainPlayer == null)
+        {
+            _mainPlayer = UnitController.main;
+            isFacingRight = _mainPlayer.IsFacingRight;
+            transform.position = _mainPlayer.transform.position;
+        }
     }
 
     public void CallTurn()
     {
-        // turnCoroutine = StartCoroutine(FlipYLerp());
-        //transform.DORotate(gameObject, DetermineEndRotation(), flipYRotationTime);
         LeanTween.rotateY(gameObject, DetermineEndRotation(), flipYRotationTime).setEaseInOutSine();
 
     }

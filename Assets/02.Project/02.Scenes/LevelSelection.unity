@@ -439,7 +439,6 @@ MonoBehaviour:
   - {fileID: 1082985635}
   - {fileID: 1774215148}
   - {fileID: 1288234089}
-  _lineRenderer: {fileID: 1247856482}
 --- !u!1 &895391344
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!120 &1247856482
 LineRenderer:
   serializedVersion: 2

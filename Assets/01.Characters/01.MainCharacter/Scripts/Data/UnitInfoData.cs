@@ -8,6 +8,7 @@ public class UnitInfoData : ScriptableObject
     [Header("Display Infos")]
     public string unitName;
     public Sprite unitAvatar;
+    public int life = 2;
     public int totalLife;
     public int totalCoin;
     
