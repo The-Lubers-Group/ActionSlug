@@ -19,15 +19,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _UIPauseMenu;
     [SerializeField] private GameObject _UIRespawnMenu;
     [SerializeField] private GameObject _UIGameOverMenu;
+    
     [Space(5)]
-
-    // UI Text 
     [SerializeField] private TMP_Text _totalLife;
     [SerializeField] private TMP_Text _totalCoin;
 
+    [Space(5)]
     public GameObject UICoin;
-
-
+    
     [Space(5)]
     public List<LetterManager> lubyLetter = new List<LetterManager>();
 
@@ -37,18 +36,23 @@ public class MenuManager : MonoBehaviour
         {
             main = this;
         }
-
-        _menuCanvas.renderMode = RenderMode.ScreenSpaceCamera;
-        _mobileCanvas.renderMode = RenderMode.ScreenSpaceCamera;
-        _masterCanvas.renderMode = RenderMode.ScreenSpaceCamera;
-        _transitionsCanvas.renderMode = RenderMode.ScreenSpaceCamera;
-        
     }
     private void Start()
     {
         _UIPauseMenu.SetActive(false);
         _UIRespawnMenu.SetActive(false);
         mainCharacter = UnitController.main;
+
+        _menuCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        _mobileCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        _masterCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        _transitionsCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+
+        _menuCanvas.worldCamera = Camera.main;
+        _mobileCanvas.worldCamera = Camera.main;
+        _masterCanvas.worldCamera = Camera.main;
+        _transitionsCanvas.worldCamera = Camera.main;
+
     }
 
     private void Update()
@@ -85,14 +89,12 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 0;
         _UIGameOverMenu.SetActive(true);
-        //mainCharacter.Data.totalLife--;
     }
      
     public void RestartGame()
     {
         GameManager.main.RestartGame();
         mainCharacter.SetAlive();
-        //mainCharacter.RestartGame();
         _UIGameOverMenu.SetActive(false);
         _UIRespawnMenu.SetActive(false);
         
