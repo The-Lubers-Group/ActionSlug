@@ -1,3 +1,4 @@
+using Cinemachine;
 using Collections.Shaders.CircleTransition;
 using DG.Tweening;
 using LubyAdventure;
@@ -19,8 +20,7 @@ public class GameManager : MonoBehaviour
     
     [Space(10)]
     public GameObject startPoint;
-
-
+    
     private void Awake()
     {
         if(main == null)
@@ -31,22 +31,20 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        _UIMenu = Instantiate(_UIMenu, new Vector3(0,0,0), Quaternion.identity);
-        _mainPlayer = Instantiate(_mainPlayer, startPoint.transform.position, Quaternion.identity);
+        Instantiate(_UIMenu, new Vector3(0,0,0), Quaternion.identity);
 
-        //cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
-        //_mainPlayer.cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
-        _mainPlayer.cameraFollowObject = GameManager.FindAnyObjectByType<CameraFollowObject>();
-    }
+        _mainPlayer = Instantiate(_mainPlayer, startPoint.transform.position, Quaternion.identity);
+        _mainPlayer.cameraFollowObject = FindAnyObjectByType<CameraFollowObject>();
+        FindAnyObjectByType<CinemachineVirtualCamera>().m_Follow = _mainPlayer.transform;
+}
 
     private void Update()
     {
-       
-        // Set Menus 
         if(_mainPlayer.Data.totalLife <= 0)
         {
-            _mainPlayer.Data.totalLife = 0;
             //CircleTransition.main.CloseBlackScreen();
+            
+            _mainPlayer.Data.totalLife = 0;
             MenuManager.main.OpenGameOverMenu();
         }
         else if (UnitController.playerLife <= 0)
