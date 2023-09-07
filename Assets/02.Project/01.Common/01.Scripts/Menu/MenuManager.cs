@@ -4,6 +4,8 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using System.Text;
 
 public class MenuManager : MonoBehaviour
 {
@@ -106,5 +108,29 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 0;
         _UIRespawnMenu.SetActive(true);
+    }
+
+
+    public void AddCoin(int number)
+    {
+        //F6C322
+        //936900
+        _totalCoin.color = new Color32(246, 195, 34, 255);
+        //_totalCoin.color = Color.yellow;
+        _totalCoin.transform.DOShakePosition(2.0f, strength: new Vector3(0, 10, 0), vibrato: 5, randomness: 1, snapping: false, fadeOut: true);
+        StartCoroutine(Countdown(1));
+        UnitController.main.Data.totalCoin += number;
+    }
+
+
+    IEnumerator Countdown(int seconds)
+    {
+        int counter = seconds;
+        while (counter > 0)
+        {
+            yield return new WaitForSeconds(1);
+            counter--;
+        }
+        _totalCoin.color = Color.white;
     }
 }

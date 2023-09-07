@@ -20,7 +20,8 @@ public class CoinManager : MonoBehaviour
     {
         if((interactLayer.value & 1 << collision.gameObject.layer) == interactLayer.value)
         {
-            UnitController.main.Data.totalCoin += 1;
+            //UnitController.main.Data.totalCoin += 1;
+            MenuManager.main.AddCoin(1);
             spriteIcon.sortingOrder = 3;
             coin.DOMove(MenuManager.main.UICoin.transform.position, 1);
             StartCoroutine(Wait(0.5f));

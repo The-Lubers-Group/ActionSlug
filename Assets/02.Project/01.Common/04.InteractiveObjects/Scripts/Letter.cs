@@ -14,14 +14,12 @@ public class Letter : MonoBehaviour
     [Header("Layers & Tags")]
     [SerializeField] private LayerMask InteractLayer;
 
-    private GameManager gameManager;
-    private MenuManager menuManager;
     private SpriteRenderer spriteIcon;
+
+    [SerializeField] private ParticleSystem _particle;
 
     private void Start()
     {
-        //gameManager = FindAnyObjectByType<GameManager>();
-        menuManager = FindAnyObjectByType<MenuManager>();
         spriteIcon = letter.GetChild(0).GetComponentInChildren<SpriteRenderer>();
     }
 
@@ -42,17 +40,18 @@ public class Letter : MonoBehaviour
             if (lubyLetter.letterId == letterId)
             {
                 lubyLetter.letterStatus = true;
+                Destroy(_particle);
             }
         }
     }
     private void OnLetterAnim()
     {
-        for (int i = 0; i < menuManager.lubyLetter.Count; i++)
+        for (int i = 0; i < MenuManager.main.lubyLetter.Count; i++)
         {
             if((i + 1) == letterId)
             {
                 spriteIcon.sortingOrder = 3;
-                letter.DOMove(menuManager.lubyLetter[i].transform.position, 1);
+                letter.DOMove(MenuManager.main.lubyLetter[i].transform.position, 1);
             }
         }
     }
@@ -60,6 +59,7 @@ public class Letter : MonoBehaviour
     {
         yield return new WaitForSeconds(amt);
         spriteIcon.sortingOrder = 0;
-        Destroy(letter.gameObject);
+        //Destroy(letter.gameObject);
+        Destroy(letter);
     }
 }
