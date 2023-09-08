@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System.Text;
+using Unity.VisualScripting;
 
 public class MenuManager : MonoBehaviour
 {
@@ -64,8 +65,7 @@ public class MenuManager : MonoBehaviour
 
         if(mainCharacter.Data.totalCoin == 100)
         {
-            mainCharacter.Data.totalLife += 1;
-            mainCharacter.Data.totalCoin = 0;
+            AddLife(1);
         }
     }
 
@@ -92,7 +92,13 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 0;
         _UIGameOverMenu.SetActive(true);
     }
-     
+
+    public void CloseGameOverMenu()
+    {
+        Time.timeScale = 0;
+        _UIGameOverMenu.SetActive(false);
+    }
+
     public void RestartGame()
     {
         GameManager.main.RestartGame();
@@ -110,20 +116,33 @@ public class MenuManager : MonoBehaviour
         _UIRespawnMenu.SetActive(true);
     }
 
-
+    public void AddLife(int number)
+    {
+        TextAnimation(_totalLife, new Color32(0, 124, 255, 255), 1);
+        UnitController.main.Data.totalLife += number;
+        UnitController.main.Data.totalCoin = 0;
+    }
     public void AddCoin(int number)
     {
-        //F6C322
-        //936900
-        _totalCoin.color = new Color32(246, 195, 34, 255);
-        //_totalCoin.color = Color.yellow;
-        _totalCoin.transform.DOShakePosition(2.0f, strength: new Vector3(0, 10, 0), vibrato: 5, randomness: 1, snapping: false, fadeOut: true);
-        StartCoroutine(Countdown(1));
+        TextAnimation(_totalCoin, new Color32(246, 195, 34, 255), 1);
         UnitController.main.Data.totalCoin += number;
     }
 
+    public void Purchase(int number)
+    {
+        UnitController.main.Data.totalLife += number;
+        CloseGameOverMenu();
+        Time.timeScale = 1;
+    }
 
-    IEnumerator Countdown(int seconds)
+    public void TextAnimation(TMP_Text text, Color32 color, int time)
+    {
+        text.color = color;
+        text.transform.DOShakePosition(2.0f, strength: new Vector3(0, 10, 0), vibrato: 5, randomness: 1, snapping: false, fadeOut: true);
+        StartCoroutine(Countdown(text, time));
+    }
+
+    IEnumerator Countdown(TMP_Text text, int seconds)
     {
         int counter = seconds;
         while (counter > 0)
@@ -131,6 +150,6 @@ public class MenuManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             counter--;
         }
-        _totalCoin.color = Color.white;
+        text.color = Color.white;
     }
 }

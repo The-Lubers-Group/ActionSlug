@@ -18,6 +18,9 @@ public class Letter : MonoBehaviour
 
     [SerializeField] private ParticleSystem _particle;
 
+    [SerializeField] private AudioClip _soundFX;
+    [SerializeField] private AudioSource _audioSource;
+
     private void Start()
     {
         spriteIcon = letter.GetChild(0).GetComponentInChildren<SpriteRenderer>();
@@ -39,6 +42,7 @@ public class Letter : MonoBehaviour
         {
             if (lubyLetter.letterId == letterId)
             {
+                _audioSource.PlayOneShot(_soundFX);
                 lubyLetter.letterStatus = true;
                 Destroy(_particle);
             }
@@ -59,7 +63,7 @@ public class Letter : MonoBehaviour
     {
         yield return new WaitForSeconds(amt);
         spriteIcon.sortingOrder = 0;
-        //Destroy(letter.gameObject);
-        Destroy(letter);
+        Destroy(letter.gameObject);
+        //Destroy(letter);
     }
 }

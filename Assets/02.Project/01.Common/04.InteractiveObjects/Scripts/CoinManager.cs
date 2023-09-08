@@ -11,6 +11,10 @@ public class CoinManager : MonoBehaviour
     [Header("Layers & Tags")]
     [SerializeField] private LayerMask interactLayer;
 
+    [SerializeField] private AudioClip _soundFX;
+    [SerializeField] private AudioSource _audioSource;
+
+
     private SpriteRenderer spriteIcon;
     private void Start()
     {
@@ -20,7 +24,7 @@ public class CoinManager : MonoBehaviour
     {
         if((interactLayer.value & 1 << collision.gameObject.layer) == interactLayer.value)
         {
-            //UnitController.main.Data.totalCoin += 1;
+            _audioSource.PlayOneShot(_soundFX);
             MenuManager.main.AddCoin(1);
             spriteIcon.sortingOrder = 3;
             coin.DOMove(MenuManager.main.UICoin.transform.position, 1);
