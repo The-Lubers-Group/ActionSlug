@@ -33,7 +33,15 @@ public class GameManager : MonoBehaviour
     {
         Instantiate(_UIMenu, new Vector3(0,0,0), Quaternion.identity);
 
-        _mainPlayer = Instantiate(_mainPlayer, startPoint.transform.position, Quaternion.identity);
+        if(GameObject.FindAnyObjectByType<UnitController>() != null)
+        {
+            _mainPlayer = GameObject.FindAnyObjectByType<UnitController>();
+        } 
+        else
+        {
+            _mainPlayer = Instantiate(_mainPlayer, startPoint.transform.position, Quaternion.identity);
+        }
+
         _mainPlayer.cameraFollowObject = FindAnyObjectByType<CameraFollowObject>();
         FindAnyObjectByType<CinemachineVirtualCamera>().m_Follow = _mainPlayer.transform;
 }
