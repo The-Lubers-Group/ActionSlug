@@ -18,8 +18,13 @@ public class Checkpoint : MonoBehaviour
 
     [Header("Animator")]
     [SerializeField] private Animator anim;
-    private string ANIM_TAG = "Trigger";
-    
+    private static string ANIM_TAG = "Trigger";
+    private static string ANIM_START_POINT = "StartPoint";
+
+    private void Start()
+    {
+        startPoint = GameObject.FindWithTag(ANIM_START_POINT).transform;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

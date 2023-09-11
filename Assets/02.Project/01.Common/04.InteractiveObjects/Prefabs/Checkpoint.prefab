@@ -187,6 +187,7 @@ MonoBehaviour:
   startPoint: {fileID: 0}
   textCheckpoint: {fileID: 8497730339904693101, guid: 6e7d4063c8e2af643880b542a6844736, type: 3}
   destroyTime: 3
+  Offset: {x: 0, y: 5, z: 0}
   InteractLayer:
     serializedVersion: 2
     m_Bits: 64
