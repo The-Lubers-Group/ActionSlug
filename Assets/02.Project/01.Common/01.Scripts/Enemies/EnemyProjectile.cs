@@ -5,8 +5,21 @@ public class EnemyProjectile : EnemyDamage
     [SerializeField] private float _speed;
     [SerializeField] private float _resetTime;
     
+    [Space(5)]
+    [SerializeField] private AudioClip _soundFX;
+
     private float _lifetime;
+    private Animator _animator;
+    private AudioSource _audioSource;
+
     private static string TAG_IGNORE = "Ignore";
+    private static string TAG_TRIGGER = "HitTrigger";
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     public void SetDirection()
     {
@@ -25,6 +38,7 @@ public class EnemyProjectile : EnemyDamage
             gameObject.SetActive(false);
         }
     }
+
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,7 +46,13 @@ public class EnemyProjectile : EnemyDamage
         
         if (collision.gameObject.tag != TAG_IGNORE)
         {
-            gameObject.SetActive(false);
+            _animator.SetTrigger(TAG_TRIGGER);
+            _audioSource.PlayOneShot(_soundFX);
         }
+    }
+
+    public void DisableObject()
+    {
+        gameObject.SetActive(false);
     }
 }
