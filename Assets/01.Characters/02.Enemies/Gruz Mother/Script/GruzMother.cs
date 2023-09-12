@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GruzMother : MonoBehaviour
+public class GruzMother : EnemyDamage
 {
-    [Header("Layers & Tags")]
-    [SerializeField] private LayerMask interactLayer;
+    //[Header("Layers & Tags")]
+    //[SerializeField] private LayerMask interactLayer;
 
     [Header("idle")]
     [SerializeField] float idleMovementSpeed;
@@ -18,7 +18,7 @@ public class GruzMother : MonoBehaviour
 
     [Header("AttackPlayer")]
     [SerializeField] float attackPlayerSpeed;
-    [SerializeField] Transform player;
+    [SerializeField] UnitController player;
     private Vector2 playerPosition;
     private bool hasPlayerPosition;
 
@@ -45,6 +45,8 @@ public class GruzMother : MonoBehaviour
 
         idleMovementDirection.Normalize(); 
         attackMovementDirection.Normalize();
+
+        player = FindAnyObjectByType<UnitController>();
 
          //enemyRB = GetComponent<Rigidbody2D>();
         //enemyAnim = GetComponent<Animator>();
@@ -133,7 +135,7 @@ public class GruzMother : MonoBehaviour
     {
         if (!hasPlayerPosition)
         {
-            playerPosition = player.position - transform.position;
+            playerPosition = player.transform.position - transform.position;
             playerPosition.Normalize();
             hasPlayerPosition = true;
         }
@@ -154,7 +156,7 @@ public class GruzMother : MonoBehaviour
 
     void FlipTowardsPlayer()
     {
-        float playerDirection = player.position.x - transform.position.x;
+        float playerDirection = player.transform.position.x - transform.position.x;
 
         if(playerDirection > 0 && facingLeft)
         {
@@ -183,14 +185,15 @@ public class GruzMother : MonoBehaviour
 
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((interactLayer.value & 1 << collision.gameObject.layer) == interactLayer.value)
         {
-            collision.gameObject.GetComponent<UnitController>().PlayerHit();
+            collision.gameObject.GetComponent<UnitController>().PlayerHit(1);
         }
     }
-
+    */
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

@@ -787,9 +787,9 @@ namespace LubyAdventure
             playerLife = Data.life;
         }
 
-        public void PlayerHit()
+        public void PlayerHit(int damage)
         {
-            playerLife--;
+            playerLife -= damage;
             GetHit.main.Hit(0.5F, 10, 0.1F);
             
             if (playerLife <= 0)
