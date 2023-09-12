@@ -45,8 +45,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca36b18fb9dc2344b9eae2e076b9a422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myGameObject: {fileID: 0}
-  _timer: 2
+  timeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.056380987
+      value: 2.0318415
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.056381
+      value: 3.0318415
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _time: 1
 --- !u!1 &2496661434248347996
 GameObject:
   m_ObjectHideFlags: 0
