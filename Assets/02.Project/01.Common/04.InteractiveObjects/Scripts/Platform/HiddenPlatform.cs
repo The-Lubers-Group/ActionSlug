@@ -9,12 +9,9 @@ using UnityEngine.UIElements;
 public class HiddenPlatform : MonoBehaviour
 {
     //[SerializeField] private float _wait = 5f;
-
-
     public AnimationCurve timeCurve;
-
-    [SerializeField] private float _time = 1f;
     
+    private float _time = 1f;
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _spriteRenderer;
 
@@ -29,7 +26,8 @@ public class HiddenPlatform : MonoBehaviour
     private void Update()
     {
         _platformTimer -= Time.deltaTime;
-        print(timeCurve.Evaluate(_platformTimer));
+        //print(timeCurve.Evaluate(_platformTimer));
+
         if (_platformTimer < -timeCurve.Evaluate(_platformTimer))
         {
             if (_spriteRenderer.enabled)
