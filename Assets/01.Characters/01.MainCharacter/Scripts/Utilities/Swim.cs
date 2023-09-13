@@ -22,6 +22,8 @@ public class Swim : MonoBehaviour
         _characterAnim = _mainController.characterAnimationBehaviour;
     }
 
+
+    // Function enchanvher Swiming
     public void CanSwim(bool isSwimming, Vector2 moveInput, CapsuleCollider2D capsuleCollider2D)
     {
         if (capsuleCollider2D.direction == CapsuleDirection2D.Vertical)
