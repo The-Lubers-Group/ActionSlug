@@ -30,9 +30,8 @@ public class Swim : MonoBehaviour
             _defaultOffset = capsuleCollider2D.offset;
         }
 
-        capsuleCollider2D.offset = new Vector2(4.6f, .26f);
+        capsuleCollider2D.offset = new Vector2(3f, .26f);
         capsuleCollider2D.size = new Vector2(8.5f, 3.2f);
-        
         
         if (isSwimming)
         {
@@ -44,14 +43,20 @@ public class Swim : MonoBehaviour
 
             if (moveInput.x == 0 && moveInput.y == 0)
             {
-                Physics2D.gravity = new Vector2(0, 0);
+                //Physics2D.gravity = new Vector2(0, 0);
+                Physics2D.gravity = new Vector2(0, -_data.gravitySwimming/2);
+
             }
 
-            if (moveInput.y != 0)
+            if (moveInput.x > 0) //Right
             {
                 Physics2D.gravity = new Vector2(_data.gravitySwimming, 0);
             }
-            
+            else if (moveInput.x < 0) //Left
+            {
+                Physics2D.gravity = new Vector2(-_data.gravitySwimming, 0);
+            }
+
             if (moveInput.y > 0)
             {
                 Physics2D.gravity = new Vector2(0, _data.gravitySwimming);
@@ -74,9 +79,6 @@ public class Swim : MonoBehaviour
         }
     }
 }
-
-
-
 
                  //_moveInput = _mainController.moveInput;
                 //Physics2D.gravity = new Vector2(-_data.gravitySwimming, 0);

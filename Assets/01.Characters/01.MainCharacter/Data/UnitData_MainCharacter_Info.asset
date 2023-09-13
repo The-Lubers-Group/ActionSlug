@@ -34,7 +34,7 @@ MonoBehaviour:
   doConserveMomentum: 1
   forceSwimming: 50
   linerDragSwimming: 10
-  gravitySwimming: 1
+  gravitySwimming: 2
   jumpHeight: 10
   jumpTimeToApex: 0.3
   jumpForce: 66.666664
