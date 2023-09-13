@@ -9,8 +9,10 @@ public class Swim : MonoBehaviour
     private UnitInfoData _data;
     private UnitCharacterAnimationBehaviour _characterAnim;
     private UnitController _mainController;
-    [SerializeField] private Vector2 _moveInput;
 
+    [SerializeField] private Vector2 _defaultOffset;
+    [SerializeField] private Vector2 _defaultSize;
+    
     private void Start()
     {
         _mainController = GetComponent<UnitController>();
@@ -20,12 +22,23 @@ public class Swim : MonoBehaviour
         _characterAnim = _mainController.characterAnimationBehaviour;
     }
 
-    public void CanSwim(bool isSwimming, Vector2 moveInput)
+    public void CanSwim(bool isSwimming, Vector2 moveInput, CapsuleCollider2D capsuleCollider2D)
     {
-        _moveInput = moveInput;
+        if (capsuleCollider2D.direction == CapsuleDirection2D.Vertical)
+        {
+            _defaultSize = capsuleCollider2D.size;
+            _defaultOffset = capsuleCollider2D.offset;
+        }
 
+        capsuleCollider2D.offset = new Vector2(4.6f, .26f);
+        capsuleCollider2D.size = new Vector2(8.5f, 3.2f);
+        
+        
         if (isSwimming)
         {
+
+            capsuleCollider2D.direction = CapsuleDirection2D.Horizontal;
+
             _characterAnim.SwimmingAnim(true);
             _mainController.RB.drag = _data.linerDragSwimming;
 
@@ -51,6 +64,10 @@ public class Swim : MonoBehaviour
         }
         else if (!isSwimming)
         {
+            capsuleCollider2D.direction = CapsuleDirection2D.Vertical;
+            capsuleCollider2D.size = _defaultSize;
+            capsuleCollider2D.offset = _defaultOffset;
+
             _characterAnim.SwimmingAnim(false);
             _mainController.RB.drag = _data.linerDrag;
             Physics2D.gravity = new Vector2(0, -9.81f);

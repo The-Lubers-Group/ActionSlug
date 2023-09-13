@@ -115,6 +115,9 @@ namespace LubyAdventure
         [SerializeField] private float ledgeClimbBoXOffset2 = 0.5f;
         [SerializeField] private float ledgeClimbBoYOffset2 = 0.5f;
 
+
+        public CapsuleCollider2D capsuleCollider2D;
+
         // LAYERS & TAGS
         [Header("Layers & Tags")]
         [SerializeField] private LayerMask groundLayer;
@@ -130,6 +133,8 @@ namespace LubyAdventure
             RB = GetComponent<Rigidbody2D>();
             HJ = GetComponent<HingeJoint2D>();
             gameInput = FindAnyObjectByType<GameInput>();
+
+            capsuleCollider2D = GetComponent<CapsuleCollider2D>();
 
             _playerSwim = GetComponent<Swim>();
             //cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
@@ -150,7 +155,7 @@ namespace LubyAdventure
             LastPressedDashTime -= Time.deltaTime;
 
             IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
-            _playerSwim.CanSwim(IsSwimming, moveInput);
+            _playerSwim.CanSwim(IsSwimming, moveInput, capsuleCollider2D);
 
 
 
