@@ -18,8 +18,10 @@ namespace LubyAdventure
         public UnitInfoData Data;
 
         public static UnitController main;
-        
-        private CollisionManager coll;
+
+        private CollisionManager _coll;
+
+        private Swim _playerSwim;
 
         [Space(5)]
         [SerializeField] private GameObject startPoint;
@@ -37,10 +39,10 @@ namespace LubyAdventure
         //private bool unitIsAlive;
 
         [SerializeField] private float PushForce = 10f;
-        private bool attached = false;
+        private bool _attached = false;
 
-        private Transform attachedTo;
-        private GameObject disregard;
+        private Transform _attachedTo;
+        private GameObject _disregard;
 
         [Header("Animation Settings")]
         public UnitCharacterAnimationBehaviour characterAnimationBehaviour;
@@ -124,10 +126,12 @@ namespace LubyAdventure
 
         private void Start()
         {
-            coll = GetComponent<CollisionManager>();
+            _coll = GetComponent<CollisionManager>();
             RB = GetComponent<Rigidbody2D>();
             HJ = GetComponent<HingeJoint2D>();
             gameInput = FindAnyObjectByType<GameInput>();
+
+            _playerSwim = GetComponent<Swim>();
             //cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
 
             SetAlive();
@@ -146,31 +150,32 @@ namespace LubyAdventure
             LastPressedDashTime -= Time.deltaTime;
 
             IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
+            _playerSwim.CanSwim(IsSwimming, moveInput);
 
-            CanSwim();
+
 
             moveInput = gameInput.getMovementVectorNormalized();
 
             if (moveInput.x != 0)
                 CheckDirectionToFace(moveInput.x > 0);
 
-            if (moveInput.x < 0 && attached)
+            if (moveInput.x < 0 && _attached)
             {
                 RB.AddRelativeForce(new Vector3(-1, 0, 0) * PushForce);
             }
 
-            if (moveInput.x > 0 && attached)
+            if (moveInput.x > 0 && _attached)
             {
                 RB.AddRelativeForce(new Vector3(1, 0, 0) * PushForce);
             }
 
             // Climb Up
-            if (moveInput.y > 0 && attached)
+            if (moveInput.y > 0 && _attached)
             {
                 SlideRope(1);
             }
 
-            if (moveInput.y < 0 && attached)
+            if (moveInput.y < 0 && _attached)
             {
                 SlideRope(-1);
             }
@@ -193,7 +198,7 @@ namespace LubyAdventure
                 {
                     OnJumpUpInput();
 
-                    if (attached)
+                    if (_attached)
                     {
                         Detach();
                         //attached = false;
@@ -211,7 +216,7 @@ namespace LubyAdventure
 
             if (!IsDashing && !IsJumping)
             {
-                if (coll.onGround) 
+                if (_coll.onGround) 
                 {
                     if (LastOnGroundTime < -0.1f)
                     {
@@ -222,12 +227,12 @@ namespace LubyAdventure
                 }
 
                 //Right Wall Check
-                if( (coll.onLeftWall && IsFacingRight || coll.onRightWall && !IsFacingRight) && !IsWallJumping)
+                if( (_coll.onLeftWall && IsFacingRight || _coll.onRightWall && !IsFacingRight) && !IsWallJumping)
                 {
                     LastOnWallRightTime = Data.coyoteTime;
                 }
 
-                if((coll.onLeftWall && !IsFacingRight || coll.onRightWall && IsFacingRight) && !IsWallJumping)
+                if((_coll.onLeftWall && !IsFacingRight || _coll.onRightWall && IsFacingRight) && !IsWallJumping)
                 {
                     LastOnWallLeftTime = Data.coyoteTime;
                 }
@@ -640,14 +645,14 @@ namespace LubyAdventure
             ropeBone.gameObject.GetComponent<RopeSegment>().isPlayerAttached = true;
             HJ.connectedBody = ropeBone;
             HJ.enabled = true;
-            attached = true;
-            attachedTo = ropeBone.gameObject.transform.parent;
+            _attached = true;
+            _attachedTo = ropeBone.gameObject.transform.parent;
         }
 
         void Detach()
         {
             HJ.connectedBody.gameObject.GetComponent<RopeSegment>().isPlayerAttached = false;
-            attached = false;
+            _attached = false;
             HJ.enabled = false;
             HJ.connectedBody = null;
         }
@@ -684,13 +689,13 @@ namespace LubyAdventure
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!attached)
+            if (!_attached)
             {
                 if (collision.CompareTag("Rope"))
                 {
-                    if (attachedTo != collision.gameObject.transform.parent)
+                    if (_attachedTo != collision.gameObject.transform.parent)
                     {
-                        if (disregard == null || collision.gameObject.transform.parent.gameObject != disregard)
+                        if (_disregard == null || collision.gameObject.transform.parent.gameObject != _disregard)
                         {
                             Attach(collision.gameObject.GetComponent<Rigidbody2D>());
                         }
@@ -699,44 +704,10 @@ namespace LubyAdventure
             }
         }
 
-        private void CanSwim()
-        {
-            if (IsSwimming)
-            {
-                characterAnimationBehaviour.SwimmingAnim(true);
-                RB.drag = Data.linerDragSwimming;
-
-                // Movemnt swimming
-                if (moveInput.x < 0)
-                {
-                    Physics2D.gravity = new Vector2(0, Data.gravitySwimming);
-                }
-                else if (moveInput.x > 0)
-                {
-                    Physics2D.gravity = new Vector2(0, -Data.gravitySwimming);
-                }
-                else if (moveInput.y < 0)
-                {
-                    Physics2D.gravity = new Vector2(-Data.gravitySwimming, 0);
-                }
-                else if (moveInput.y > 0)
-                {
-                    Physics2D.gravity = new Vector2(Data.gravitySwimming, 0);
-                }
-            }
-            else if (!IsSwimming)
-            {
-                characterAnimationBehaviour.SwimmingAnim(false);
-
-                RB.drag = Data.linerDrag;
-
-                Physics2D.gravity = new Vector2(0, -9.81f);
-            }
-        }
 
         private void CanSlider()
         {
-            if (!IsSwimming && coll.onLeftWall && !coll.onGround && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
+            if (!IsSwimming && _coll.onLeftWall && !_coll.onGround && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
             {
                 characterAnimationBehaviour.SetWallSliderAnim(true);
             }
@@ -745,17 +716,17 @@ namespace LubyAdventure
                 characterAnimationBehaviour.SetWallSliderAnim(false);
             }
 
-            if (!IsSwimming && !coll.onLeftWall && !coll.onGround && !CanJump())
+            if (!IsSwimming && !_coll.onLeftWall && !_coll.onGround && !CanJump())
             {
                 characterAnimationBehaviour.SetWallSliderAnim(false);
             }
         }
         private void CanLedgeClimb()
         {
-            if (!coll.onSpaceGround && !coll.onLedge && coll.onLeftWall && !IsSwimming)
+            if (!_coll.onSpaceGround && !_coll.onLedge && _coll.onLeftWall && !IsSwimming)
             {
                 canClibLedge = true;
-                ledgePosBot = coll.leftOffset.position;
+                ledgePosBot = _coll.leftOffset.position;
 
                 ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) - ledgeClimbBoXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset1); ;
                 ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + 1f) + ledgeClimbBoXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbBoYOffset2);

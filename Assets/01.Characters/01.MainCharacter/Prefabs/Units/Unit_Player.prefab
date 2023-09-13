@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 42596122054393149}
   - component: {fileID: 1755447235541591971}
   - component: {fileID: 409074661959511370}
+  - component: {fileID: 6889142803608000586}
   - component: {fileID: 8380815507783741677}
   - component: {fileID: 34959203555090512}
   - component: {fileID: 5196583629380811692}
@@ -335,6 +336,18 @@ MonoBehaviour:
   tiltSpeed: 0.08
   jumpFX: {fileID: 3234584074981126610, guid: 996a689f9431c2b45b1dd6c2721f2be2, type: 3}
   landFX: {fileID: 3234584074981126610, guid: b47d049b49eb2064a9f52b58cbf086d3, type: 3}
+--- !u!114 &6889142803608000586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2547904548363120857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4510fe333e5c1a43913cea043fe6e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8380815507783741677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,7 +975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5537967031787501219, guid: 2c1a9501d2475714b98c2bc7bdb983a9, type: 3}
       propertyPath: m_SortingLayer
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 5537967031787501219, guid: 2c1a9501d2475714b98c2bc7bdb983a9, type: 3}
       propertyPath: m_SortingLayerID
