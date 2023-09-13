@@ -17,7 +17,6 @@ public class Swim : MonoBehaviour
 
         _data = _mainController.Data;
         _isSwimming = _mainController.IsSwimming;
-        //_moveInput = _mainController.moveInput;
         _characterAnim = _mainController.characterAnimationBehaviour;
     }
 
@@ -30,22 +29,25 @@ public class Swim : MonoBehaviour
             _characterAnim.SwimmingAnim(true);
             _mainController.RB.drag = _data.linerDragSwimming;
 
-            if (moveInput.x < 0)
+            if (moveInput.x == 0 && moveInput.y == 0)
             {
-                Physics2D.gravity = new Vector2(0, _data.gravitySwimming);
+                Physics2D.gravity = new Vector2(0, 0);
             }
-            else if (moveInput.x > 0)
-            {
-                Physics2D.gravity = new Vector2(0, -_data.gravitySwimming);
-            }
-            else if (moveInput.y < 0)
-            {
-                Physics2D.gravity = new Vector2(-_data.gravitySwimming, 0);
-            }
-            else if (moveInput.y > 0)
+
+            if (moveInput.y != 0)
             {
                 Physics2D.gravity = new Vector2(_data.gravitySwimming, 0);
             }
+            
+            if (moveInput.y > 0)
+            {
+                Physics2D.gravity = new Vector2(0, _data.gravitySwimming);
+            }
+            else if (moveInput.y < 0)
+            {
+                Physics2D.gravity = new Vector2(0, -_data.gravitySwimming);
+            }
+            
         }
         else if (!isSwimming)
         {
@@ -55,3 +57,10 @@ public class Swim : MonoBehaviour
         }
     }
 }
+
+
+
+
+                 //_moveInput = _mainController.moveInput;
+                //Physics2D.gravity = new Vector2(-_data.gravitySwimming, 0);
+                //Physics2D.gravity = new Vector2(_data.gravitySwimming, 0);
