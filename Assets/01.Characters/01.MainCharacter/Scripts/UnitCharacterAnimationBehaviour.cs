@@ -123,8 +123,9 @@ namespace LubyAdventure
                 justLanded = false;
                 return;
             }
-
+            print(unitController.RB.velocity.x);
             characterAnimator.SetFloat("Vel Y", unitController.RB.velocity.y);
+            characterAnimator.SetFloat("Vel X", unitController.RB.velocity.x);
         }
 
         public void SwimmingAnim(bool status)
