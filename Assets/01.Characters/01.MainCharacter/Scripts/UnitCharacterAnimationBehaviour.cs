@@ -42,6 +42,13 @@ namespace LubyAdventure
         private string animIsDashingParameter = "IsDashing";
         private int animIsDashingID;
 
+        private string animVelXParameter = "Vel X";
+        private int animVelXID;
+
+        private string animVelYParameter = "Vel Y";
+        private int animVelYID;
+
+
 
         public bool startedJumping { private get; set; }
         public bool justLanded { private get; set; }
@@ -91,6 +98,8 @@ namespace LubyAdventure
             animJumpID = Animator.StringToHash(animJumpParameter);
             animLandID = Animator.StringToHash(animLandParameter);
             animIsDashingID = Animator.StringToHash(animIsDashingParameter);
+            animVelXID = Animator.StringToHash(animVelXParameter);
+            animVelYID = Animator.StringToHash(animVelYParameter);
         }
 
         public void CharacterWasHit()
@@ -105,6 +114,7 @@ namespace LubyAdventure
 
         private void CheckAnimationState()
         {
+
             characterAnimator.SetBool(animWalkingID, unitController.IsWalking());
             if (startedJumping)
             {
@@ -123,9 +133,9 @@ namespace LubyAdventure
                 justLanded = false;
                 return;
             }
-            print(unitController.RB.velocity.x);
-            characterAnimator.SetFloat("Vel Y", unitController.RB.velocity.y);
-            characterAnimator.SetFloat("Vel X", unitController.RB.velocity.x);
+            
+            characterAnimator.SetFloat(animVelYID, unitController.RB.velocity.y);
+            characterAnimator.SetFloat(animVelXID, unitController.RB.velocity.x);
         }
 
         public void SwimmingAnim(bool status)

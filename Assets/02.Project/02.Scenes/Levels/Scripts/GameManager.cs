@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [Space(5)]
     [SerializeField] private Transform _UIMenu;
     [SerializeField] private UnitController _mainPlayer;
+
+
+    //public bool underWaterLevel;
     
     [Space(10)]
     public GameObject startPoint;
@@ -44,6 +47,8 @@ public class GameManager : MonoBehaviour
 
         _mainPlayer.cameraFollowObject = FindAnyObjectByType<CameraFollowObject>();
         FindAnyObjectByType<CinemachineVirtualCamera>().m_Follow = _mainPlayer.transform;
+
+        //_mainPlayer.IsSwimming = underWaterLevel;
 }
 
     private void Update()

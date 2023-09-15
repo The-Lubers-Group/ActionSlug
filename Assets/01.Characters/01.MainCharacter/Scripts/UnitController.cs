@@ -66,7 +66,7 @@ namespace LubyAdventure
         public bool IsDashing { get; private set; }
         public bool IsSliding { get; private set; }
         public bool IsSwimming { get; private set; }
-
+        
         [HideInInspector] public bool IsClimbing;
 
 
@@ -125,6 +125,7 @@ namespace LubyAdventure
         {
             main = this;
             //transform.position = startPoint.transform.position;
+            
         }
 
         private void Start()
@@ -142,6 +143,8 @@ namespace LubyAdventure
             SetAlive();
             SetGravityScale(Data.gravityScale);
             IsFacingRight = true;
+
+
         }
 
         private void Update()
@@ -154,9 +157,9 @@ namespace LubyAdventure
             LastPressedJumpTime -= Time.deltaTime;
             LastPressedDashTime -= Time.deltaTime;
 
+            
             IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
-            _playerSwim.CanSwim(IsSwimming, moveInput, capsuleCollider2D);
-
+            _playerSwim.CanSwim(IsSwimming, moveInput);
 
 
             moveInput = gameInput.getMovementVectorNormalized();
