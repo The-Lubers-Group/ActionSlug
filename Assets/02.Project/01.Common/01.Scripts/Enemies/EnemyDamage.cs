@@ -13,8 +13,6 @@ public class EnemyDamage : MonoBehaviour
     
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        print("collision.gameObject.tag: " + collision.gameObject.tag);
-
         if (collision.gameObject.tag == "Player")
         {
             //collision.gameObject.GetComponent<UnitController>().PlayerHit(damage);

@@ -9,6 +9,8 @@ public class Swim : MonoBehaviour
     private UnitCharacterAnimationBehaviour _characterAnim;
     private UnitController _mainController;
     
+    public static float LastPressedSwimXTime;
+
     private void Start()
     {
         _mainController = GetComponent<UnitController>();
@@ -16,21 +18,41 @@ public class Swim : MonoBehaviour
         _data = _mainController.Data;
         _characterAnim = _mainController.characterAnimationBehaviour;
     }
-    
     public void CanSwim(bool isSwimming, Vector2 moveInput)
     {
+        
+
         if (isSwimming)
         {
             _characterAnim.SwimmingAnim(true);
             _mainController.RB.drag = _data.linerDragSwimming;
 
-            if (moveInput.x == 0 && moveInput.y == 0) Physics2D.gravity = new Vector2(0, -_data.gravitySwimming / 2);
-            if (moveInput.x > 0) Physics2D.gravity = new Vector2(_data.gravitySwimming, 0);
-            else if (moveInput.x < 0) Physics2D.gravity = new Vector2(-_data.gravitySwimming, 0);
+            if (moveInput.x == 0 && moveInput.y == 0)
+            {
+                Physics2D.gravity = new Vector2(0, -_data.gravitySwimming / 2);
+                LastPressedSwimXTime = 0;
+            }
+            if (moveInput.x > 0)
+            {
+                Physics2D.gravity = new Vector2(_data.gravitySwimming, 0);
+                LastPressedSwimXTime += Time.deltaTime;
+
+            }
+            else if (moveInput.x < 0)
+            {
+                Physics2D.gravity = new Vector2(-_data.gravitySwimming, 0);
+                LastPressedSwimXTime += Time.deltaTime;
+            }
 
 
-            if (moveInput.y > 0) Physics2D.gravity = new Vector2(0, _data.gravitySwimming);
-            else if (moveInput.y < 0) Physics2D.gravity = new Vector2(0, -_data.gravitySwimming);
+            if (moveInput.y > 0)
+            {
+                Physics2D.gravity = new Vector2(0, _data.gravitySwimming);
+            }
+            else if (moveInput.y < 0)
+            {
+                Physics2D.gravity = new Vector2(0, -_data.gravitySwimming);
+            }
 
 
         }
