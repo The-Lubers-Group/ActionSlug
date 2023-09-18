@@ -20,8 +20,6 @@ public class Swim : MonoBehaviour
     }
     public void CanSwim(bool isSwimming, Vector2 moveInput)
     {
-        
-
         if (isSwimming)
         {
             _characterAnim.SwimmingAnim(true);

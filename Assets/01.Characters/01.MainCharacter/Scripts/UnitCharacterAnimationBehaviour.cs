@@ -140,7 +140,6 @@ namespace LubyAdventure
             
             characterAnimator.SetFloat(animVelYID, unitController.RB.velocity.y);
             characterAnimator.SetFloat(animVelXID, unitController.RB.velocity.x);
-
             characterAnimator.SetFloat(animSwimXTimeID, Swim.LastPressedSwimXTime);
         }
 
