@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 1793306513416934658}
   m_Layer: 6
   m_Name: Unit_CharacterVisuals
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,8 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4510fe333e5c1a43913cea043fe6e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultOffset: {x: 0, y: 0}
-  _defaultSize: {x: 0, y: 0}
 --- !u!114 &8380815507783741677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +953,10 @@ PrefabInstance:
     - target: {fileID: 3699208829038384144, guid: 2c1a9501d2475714b98c2bc7bdb983a9, type: 3}
       propertyPath: m_Name
       value: PV_Character_Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699208829038384144, guid: 2c1a9501d2475714b98c2bc7bdb983a9, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3779274693827601794, guid: 2c1a9501d2475714b98c2bc7bdb983a9, type: 3}
       propertyPath: m_LocalRotation.w
