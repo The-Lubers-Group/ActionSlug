@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     
     [Space(5)]
     [SerializeField] private Transform _UIMenu;
-    [SerializeField] private UnitController _mainPlayer;
+    [SerializeField] protected UnitController _mainPlayer;
 
 
     //public bool underWaterLevel;
