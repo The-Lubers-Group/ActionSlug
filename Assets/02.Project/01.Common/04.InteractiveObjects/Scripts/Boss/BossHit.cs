@@ -17,6 +17,8 @@ public class BossHit : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameObject.FindAnyObjectByType<GruzMother>().GetDamage();
+            //this.enabled = false;
+            Destroy(this.gameObject);
         }
     }
 

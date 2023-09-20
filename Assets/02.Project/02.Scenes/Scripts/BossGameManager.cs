@@ -46,9 +46,15 @@ public class BossGameManager : GameManager
     public void EndCutscene()
     {
         _endCutscene.Play();
-        _cinemachineConfiner.m_BoundingShape2D = _confine;
+        StartCoroutine(Wait(9f));
     }
 
+
+    IEnumerator Wait(float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        _cinemachineConfiner.m_BoundingShape2D = _confine;
+    }
 
 
     private void OnDrawGizmos()
