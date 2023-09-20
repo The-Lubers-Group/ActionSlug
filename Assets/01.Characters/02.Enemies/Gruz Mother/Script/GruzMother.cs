@@ -38,8 +38,12 @@ public class GruzMother : EnemyDamage
     private bool goingUp = true;
 
     [SerializeField] private Rigidbody2D enemyRB;
+    [SerializeField] private BoxCollider2D _collider;
     [SerializeField] private Animator enemyAnim;
     [SerializeField] private Transform checks;
+
+
+    [SerializeField] GameObject _boomFX;
 
     private void Start()
     {
@@ -192,19 +196,24 @@ public class GruzMother : EnemyDamage
         print(_life);
         if ( _life <= 0)
         {
-            GameObject.FindAnyObjectByType<BossGameManager>().EndCutscene();
+            Die();
         }
     }
 
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void Die()
     {
-        if ((interactLayer.value & 1 << collision.gameObject.layer) == interactLayer.value)
-        {
-            collision.gameObject.GetComponent<UnitController>().PlayerHit(1);
-        }
+        GameObject.FindAnyObjectByType<BossGameManager>().EndCutscene();
+        enemyRB.velocity = Vector2.zero;
+        _collider.enabled = false;
     }
-    */
+
+    public void BoomFX()
+    {
+        GameObject obj = Instantiate(_boomFX, transform.position - (Vector3.up * transform.localScale.y / 2), Quaternion.Euler(-90, 0, 0));
+        Destroy(obj, 4);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

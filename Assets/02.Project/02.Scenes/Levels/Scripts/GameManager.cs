@@ -34,7 +34,12 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        Instantiate(_UIMenu, new Vector3(0,0,0), Quaternion.identity);
+        if(GameObject.FindAnyObjectByType<MenuManager>() == null)
+        {
+            Instantiate(_UIMenu, new Vector3(0,0,0), Quaternion.identity);
+        }
+        
+
 
         if(GameObject.FindAnyObjectByType<UnitController>() != null)
         {
