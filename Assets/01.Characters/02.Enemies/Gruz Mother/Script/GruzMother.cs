@@ -192,8 +192,8 @@ public class GruzMother : EnemyDamage
 
     public void GetDamage()
     {
+        enemyAnim.SetTrigger("Hit");
         _life -= 1;
-        print(_life);
         if ( _life <= 0)
         {
             Die();
