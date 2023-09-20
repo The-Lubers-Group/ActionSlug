@@ -3,6 +3,7 @@ using LubyAdventure;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BossGameManager : GameManager
@@ -19,7 +20,8 @@ public class BossGameManager : GameManager
     [Header("Layers & Tags")]
     [SerializeField] private LayerMask _colliderLayer;
 
- 
+    [SerializeField] PlayableDirector _playableDirector;
+
 
     private bool aux = false;
 
@@ -37,7 +39,11 @@ public class BossGameManager : GameManager
         _cinemachineConfiner.m_BoundingShape2D = _bossConfine;
         //_pointDoor.GetComponent<BoxCollider2D>().isTrigger = false;
         aux = true;
+
+        _playableDirector.Play();
     }
+
+   
 
     private void OnDrawGizmos()
     {
