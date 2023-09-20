@@ -20,30 +20,36 @@ public class BossGameManager : GameManager
     [Header("Layers & Tags")]
     [SerializeField] private LayerMask _colliderLayer;
 
-    [SerializeField] PlayableDirector _playableDirector;
-
-
+    [SerializeField] PlayableDirector _beginCutscene;
+    [SerializeField] PlayableDirector _endCutscene;
+    
     private bool aux = false;
 
     private void LateUpdate()
     {
         if (Physics2D.OverlapBox(_pointDoor.position, _collisionSize, _collisionRadius, _colliderLayer) && aux == false )
         {
-            UpdateCameraBoss();
+            BeginCutscene();
         }
     }
 
-    private void UpdateCameraBoss()
+    private void BeginCutscene()
     {
-        print(_colliderLayer);
+        //print(_colliderLayer);
         _cinemachineConfiner.m_BoundingShape2D = _bossConfine;
         //_pointDoor.GetComponent<BoxCollider2D>().isTrigger = false;
         aux = true;
 
-        _playableDirector.Play();
+        _beginCutscene.Play();
     }
 
-   
+    public void EndCutscene()
+    {
+        _endCutscene.Play();
+        _cinemachineConfiner.m_BoundingShape2D = _confine;
+    }
+
+
 
     private void OnDrawGizmos()
     {

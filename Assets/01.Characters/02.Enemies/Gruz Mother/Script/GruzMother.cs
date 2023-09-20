@@ -7,6 +7,7 @@ public class GruzMother : EnemyDamage
 {
     //[Header("Layers & Tags")]
     //[SerializeField] private LayerMask interactLayer;
+    private int _life = 3; 
 
     [Header("idle")]
     [SerializeField] float idleMovementSpeed;
@@ -183,6 +184,16 @@ public class GruzMother : EnemyDamage
         transform.Rotate(0, 180, 0);
         checks.Rotate(0, 180, 0);
 
+    }
+
+    public void GetDamage()
+    {
+        _life -= 1;
+        print(_life);
+        if ( _life <= 0)
+        {
+            GameObject.FindAnyObjectByType<BossGameManager>().EndCutscene();
+        }
     }
 
     /*
