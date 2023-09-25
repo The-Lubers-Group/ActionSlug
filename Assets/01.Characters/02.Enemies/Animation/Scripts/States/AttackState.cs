@@ -1,18 +1,25 @@
+using LabLuby.FSM;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityHFSM;
 
-public class AttackState : MonoBehaviour
+namespace LabLuby.FSM
 {
-    // Start is called before the first frame update
-    void Start()
+    public class AttackState : EnemyStateBase
     {
-        
-    }
+        public AttackState(
+                bool needsExitTime,
+                BaseEnemy enemy,
+                Action<State<EnemyState, StateEvent>> onEnter,
+                float exitTime = 0.33f) : base(needsExitTime, enemy, exitTime, onEnter) { }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void OnEnter()
+        {
+            _agent.isStopped = true;
+            base.OnEnter();
+            _animator.Play("Attack");
+        }
     }
 }
