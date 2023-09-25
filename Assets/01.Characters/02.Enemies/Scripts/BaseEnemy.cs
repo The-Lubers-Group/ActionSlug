@@ -22,7 +22,7 @@ namespace LabLuby.FSM
             _animator = GetComponent<Animator>();
             _enemyFSM = new StateMachine<EnemyState, StateEvent>();
 
-            _enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
+            //_enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
 
             _enemyFSM.SetStartState(EnemyState.Idle);
             _enemyFSM.Init();
