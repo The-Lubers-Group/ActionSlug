@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Swim : MonoBehaviour
 {
+    public static Swim main;
     private UnitInfoData _data;
     private UnitCharacterAnimationBehaviour _characterAnim;
     private UnitController _mainController;
@@ -13,6 +14,11 @@ public class Swim : MonoBehaviour
 
     private void Start()
     {
+        if (main == null)
+        {
+            main = this;
+        }
+
         _mainController = GetComponent<UnitController>();
 
         _data = _mainController.Data;

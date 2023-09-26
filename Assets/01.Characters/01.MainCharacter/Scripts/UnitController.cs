@@ -21,7 +21,7 @@ namespace LubyAdventure
 
         private CollisionManager _coll;
 
-        private Swim _playerSwim;
+        [SerializeField] private Swim _playerSwim;
 
         [Space(5)]
         [SerializeField] private GameObject startPoint;
@@ -123,9 +123,16 @@ namespace LubyAdventure
         [SerializeField] private LayerMask groundLayer;
         private void Awake()
         {
-            main = this;
-            //transform.position = startPoint.transform.position;
-            
+            if(main  == null)
+            {
+                main = this;
+
+            }
+
+            if (_playerSwim != null)
+            {
+                _playerSwim = GetComponent<Swim>();
+            }
         }
 
         private void Start()
@@ -137,8 +144,10 @@ namespace LubyAdventure
 
             capsuleCollider2D = GetComponent<CapsuleCollider2D>();
 
-            _playerSwim = GetComponent<Swim>();
-            //cameraFollowObject = cameraFollowObjectGO.GetComponent<CameraFollowObject>();
+            
+
+
+            
 
             SetAlive();
             SetGravityScale(Data.gravityScale);
@@ -157,12 +166,13 @@ namespace LubyAdventure
             LastPressedJumpTime -= Time.deltaTime;
             LastPressedDashTime -= Time.deltaTime;
 
+            moveInput = gameInput.getMovementVectorNormalized();
+            
             
             IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
-            _playerSwim.CanSwim(IsSwimming, moveInput);
 
+            //_playerSwim.CanSwim(IsSwimming, moveInput);
 
-            moveInput = gameInput.getMovementVectorNormalized();
 
             if (moveInput.x != 0)
                 CheckDirectionToFace(moveInput.x > 0);

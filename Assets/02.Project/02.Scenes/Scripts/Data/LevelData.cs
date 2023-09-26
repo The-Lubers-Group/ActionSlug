@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 [CreateAssetMenu(fileName = "Data_Level_", menuName = "Level/Unit/Level Data", order = 1)]
@@ -18,7 +17,6 @@ public class LevelData : ScriptableObject
     public int nStar;
     public bool isBlocked;
 
-    //public bool[] lubyIcon = new bool[4];
     public List<LubyLetter> lubyLetter = new List<LubyLetter>()
     {
         new LubyLetter(){ letter  = "L", letterId = 1, letterStatus = false},

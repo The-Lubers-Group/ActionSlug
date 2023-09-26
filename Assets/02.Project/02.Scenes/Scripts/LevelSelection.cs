@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class LevelSelection : MonoBehaviour
 {
@@ -49,17 +48,3 @@ public class LevelSelection : MonoBehaviour
         }
     }
 }
-
-
-/**
-
-  for (int i = 0; i < _buttonlevelList.Count; i++) {
-            //if ((i % 2 == 0) && i == 0)
-            ///{
-                ///Debug.Log("_buttonlevelList[i]: " + _buttonlevelList[i].name);
-                pos = _buttonlevelList[i].transform.position;
-                _lineRenderer.SetPosition(i, new Vector3(pos.x, pos.y, 0));
-            //}
-        }
-
- */
