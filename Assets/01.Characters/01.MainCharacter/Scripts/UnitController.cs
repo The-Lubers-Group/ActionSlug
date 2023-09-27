@@ -1,15 +1,11 @@
 using LubyAdventure;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 
 using System.Collections;
 using UnityEngine;
 
-using UnityEngine.EventSystems;
 using DG.Tweening;
-using Collections.Shaders.CircleTransition;
 
-namespace LubyAdventure
+namespace LabLuby
 {
 
     public class UnitController : MonoBehaviour
@@ -104,7 +100,7 @@ namespace LubyAdventure
         [SerializeField] private Vector2 ledgeClimbSize = new Vector2(1.3f, 0.5f);
 
         private bool canClibLedge = false;
-        private bool ledgeDetected;
+        //private bool ledgeDetected;
 
         private Vector2 ledgePosBot;
         private Vector2 ledgePos1;
@@ -143,11 +139,6 @@ namespace LubyAdventure
             gameInput = FindAnyObjectByType<GameInput>();
 
             capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-
-            
-
-
-            
 
             SetAlive();
             SetGravityScale(Data.gravityScale);
@@ -261,7 +252,7 @@ namespace LubyAdventure
             }
             
             CanSlider();
-            CanLedgeClimb();
+            //CanLedgeClimb();
 
             if (!IsSwimming)
             {
@@ -316,9 +307,15 @@ namespace LubyAdventure
 
                 if (CanDash() && LastPressedDashTime > 0)
                 {
+                    
                     Camera.main.transform.DOComplete();
                     Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
-                    
+
+                    /*
+                    cameraFollowObject.DOComplete();
+                    cameraFollowObject.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
+                     */
+
                     ShadowDash.main.Dash();
 
                     Sleep(Data.dashSleepTime);
@@ -763,7 +760,7 @@ namespace LubyAdventure
             transform.position = ledgePos1;
             canClibLedge = false;
             transform.position = ledgePos2;
-            ledgeDetected = false;
+            //ledgeDetected = false;
             characterAnimationBehaviour.OnLedgeClimbAnim(canClibLedge);
         }
         void RigidbodyDrag(float x)

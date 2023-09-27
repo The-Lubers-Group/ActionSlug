@@ -1,54 +1,48 @@
 using DG.Tweening;
-using LubyAdventure;
-using System.Collections;
 using UnityEngine;
 
-public class CoinManager : MonoBehaviour
+namespace LabLuby
 {
-    [Header("Main Object")]
-    [SerializeField] private Transform _coin;
-
-    //[Header("Layers & Tags")]
-    //[SerializeField] private LayerMask interactLayer;
-
-    [SerializeField] private AudioClip _soundFX;
-    [SerializeField] private AudioSource _audioSource;
-
-    private bool _aux = false;
-
-    private SpriteRenderer _spriteIcon;
-    private void Start()
+    [RequireComponent(typeof(GameObject))]
+    public class CoinManager : MonoBehaviour
     {
-        _coin = transform.GetComponent<Transform>();
-        _spriteIcon = _coin.GetChild(0).GetComponentInChildren<SpriteRenderer>();
+        [SerializeField] private GameObject _coin;
+        [SerializeField] private SpriteRenderer _spriteIcon;
 
-    }
+        [Space(10)]
+        private float _durationTime = 1f;
 
-    private void Update()
-    {
-        if (_aux)
+        [Space(10)]
+        [SerializeField] private AudioClip _soundFX;
+        [SerializeField] private AudioSource _audioSource;
+
+        private bool _aux = false;
+
+        private void Update()
         {
-            _coin.DOMove(MenuManager.main.UICoin.transform.position, 1);
-            StartCoroutine(Wait(0.5f));
+            if (_aux && _coin != null)
+            {
+                _coin.transform.DOMove(MenuManager.main.UICoin.transform.position, _durationTime).OnComplete(() => RemoveCoin());
+            }
+        }
 
+        private void RemoveCoin()
+        {
+            _spriteIcon.sortingOrder = 0;
+            _coin.SetActive(false);
+            //Destroy(_coin.gameObject);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                _audioSource.PlayOneShot(_soundFX);
+                MenuManager.main.AddCoin(1);
+                _spriteIcon.sortingOrder = 3;
+                _aux = true;
+            }
         }
     }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            _audioSource.PlayOneShot(_soundFX);
-            MenuManager.main.AddCoin(1);
-            _spriteIcon.sortingOrder = 3;
-            _aux = true;
-        }
-    }
 
-    IEnumerator Wait(float amt)
-    {
-        yield return new WaitForSeconds(amt);
-        _spriteIcon.sortingOrder = 0;
-        Destroy(_coin.gameObject);
-    }
 }

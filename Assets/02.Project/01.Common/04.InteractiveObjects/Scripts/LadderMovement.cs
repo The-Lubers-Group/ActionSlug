@@ -1,6 +1,4 @@
-using LubyAdventure;
-using System.Collections;
-using System.Collections.Generic;
+using LabLuby;
 using UnityEngine;
 
 public class LadderMovement : MonoBehaviour

@@ -1,7 +1,7 @@
 using Cinemachine;
 using Collections.Shaders.CircleTransition;
 using DG.Tweening;
-using LubyAdventure;
+using LabLuby;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

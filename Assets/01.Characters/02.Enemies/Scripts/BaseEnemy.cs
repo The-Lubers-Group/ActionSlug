@@ -29,7 +29,7 @@ namespace LabLuby.FSM
         private float _attackCooldown = 2;
 
         [SerializeField] private bool _isInMeleeRange;
-        [SerializeField] private bool _isInSpitRange;
+        //[SerializeField] private bool _isInSpitRange;
         [SerializeField] private bool _isInChasingRange;
         [SerializeField] private float _lastAttackTime;
 
@@ -86,8 +86,8 @@ namespace LabLuby.FSM
         {
             _followPlayerSensor.OnPlayerEnter += _followPlayerSensor_OnPlayerEnter;
             _followPlayerSensor.OnPlayerExit += _followPlayerSensor_OnPlayerExit;
-            _rangeAttackPlayerSensor.OnPlayerEnter += _rangeAttackPlayerSensor_OnPlayerEnter;
-            _rangeAttackPlayerSensor.OnPlayerExit += _rangeAttackPlayerSensor_OnPlayerExit;
+            //_rangeAttackPlayerSensor.OnPlayerEnter += _rangeAttackPlayerSensor_OnPlayerEnter;
+            //_rangeAttackPlayerSensor.OnPlayerExit += _rangeAttackPlayerSensor_OnPlayerExit;
 
         }
 
@@ -116,9 +116,9 @@ namespace LabLuby.FSM
         private bool IsNotWithinIdleRange(Transition<EnemyState> Transition) =>
             !IsWithinIdleRange(Transition);
 
-        private void _rangeAttackPlayerSensor_OnPlayerExit(Vector3 lastKnownPosition) => _isInSpitRange = false;
+        //private void _rangeAttackPlayerSensor_OnPlayerExit(Vector3 lastKnownPosition) => _isInSpitRange = false;
 
-        private void _rangeAttackPlayerSensor_OnPlayerEnter(Transform player) => _isInSpitRange = true;
+        //private void _rangeAttackPlayerSensor_OnPlayerEnter(Transform player) => _isInSpitRange = true;
  
 
         private void Update()

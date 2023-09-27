@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LubyAdventure;
+using LabLuby;
 
 public class CameraFollowObject : MonoBehaviour
 {

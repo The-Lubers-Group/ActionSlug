@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace LubyAdventure
+namespace LabLuby
 {
 
     public class UnitCharacterAnimationBehaviour : MonoBehaviour

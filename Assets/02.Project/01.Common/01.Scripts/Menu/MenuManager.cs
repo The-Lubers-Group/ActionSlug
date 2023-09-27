@@ -1,4 +1,4 @@
-using LubyAdventure;
+using LabLuby;
 using System.Collections;
 using TMPro;
 using System.Collections.Generic;
