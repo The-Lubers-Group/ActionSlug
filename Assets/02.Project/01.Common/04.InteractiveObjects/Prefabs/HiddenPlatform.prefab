@@ -69,7 +69,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _time: 1
 --- !u!1 &2496661434248347996
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +80,7 @@ GameObject:
   - component: {fileID: 4069160646616140410}
   - component: {fileID: 8522831945442083146}
   m_Layer: 0
-  m_Name: Platform01
+  m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

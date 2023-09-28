@@ -7,13 +7,13 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AnimController_Chameleon
-  m_Controller: {fileID: 9100000, guid: b49963d089b8c534381b31e8a9401827, type: 2}
+  m_Controller: {fileID: 9100000, guid: 09256d875a6bfd04489ea26da9ee8654, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 917781b50f358a2489a7f73510ef8065, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 917781b50f358a2489a7f73510ef8065, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 24729cfac77aa6b459f0d0746910faca, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 24729cfac77aa6b459f0d0746910faca, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 97c61bfce804f7348b5a57ee9da5433f, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 97c61bfce804f7348b5a57ee9da5433f, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 5d2c9dc6eba3bde4188b2aa18454cf9b, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 5d2c9dc6eba3bde4188b2aa18454cf9b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f8a6d643729f86d44a456c9496e2978f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f8a6d643729f86d44a456c9496e2978f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d3fa109e47e624e49a4307f7b9b4c46e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d3fa109e47e624e49a4307f7b9b4c46e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2937252029249c44192dd6026baf8c9f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2937252029249c44192dd6026baf8c9f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 48e47f9390bfa2540bfd692eb12f062f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 48e47f9390bfa2540bfd692eb12f062f, type: 2}
