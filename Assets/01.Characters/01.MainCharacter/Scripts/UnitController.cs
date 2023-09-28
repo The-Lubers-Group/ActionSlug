@@ -17,7 +17,7 @@ namespace LabLuby
 
         private CollisionManager _coll;
 
-        [SerializeField] private Swim _playerSwim;
+        private Swim _playerSwim;
 
         [Space(5)]
         [SerializeField] private GameObject startPoint;
@@ -61,7 +61,8 @@ namespace LabLuby
         public bool IsWallJumping { get; private set; }
         public bool IsDashing { get; private set; }
         public bool IsSliding { get; private set; }
-        public bool IsSwimming { get; private set; }
+
+        public static bool isSwimming;
         
         [HideInInspector] public bool IsClimbing;
 
@@ -125,7 +126,7 @@ namespace LabLuby
 
             }
 
-            if (_playerSwim != null)
+            if (_playerSwim == null)
             {
                 _playerSwim = GetComponent<Swim>();
             }
@@ -160,9 +161,11 @@ namespace LabLuby
             moveInput = gameInput.getMovementVectorNormalized();
             
             
-            IsSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
-
+            isSwimming = Physics2D.OverlapBox(RB.position, RB.transform.localScale, 0, 1 << 4);
+            
             //_playerSwim.CanSwim(IsSwimming, moveInput);
+
+
 
 
             if (moveInput.x != 0)
@@ -194,7 +197,7 @@ namespace LabLuby
             {
                 //Jump();
                 OnJumpInput();
-                if (IsSwimming)
+                if (isSwimming)
                 {
                     ForceSwimming();
                 }
@@ -203,7 +206,7 @@ namespace LabLuby
 
             if (gameInput.IsJumpingReleases())
             {
-                if (!IsSwimming)
+                if (!isSwimming)
                 {
                     OnJumpUpInput();
 
@@ -254,7 +257,7 @@ namespace LabLuby
             CanSlider();
             //CanLedgeClimb();
 
-            if (!IsSwimming)
+            if (!isSwimming)
             {
 
                 if (IsJumping && RB.velocity.y < 0)
@@ -421,7 +424,7 @@ namespace LabLuby
 
         public void SetGravityScale(float scale)
         {
-            if (IsSwimming)
+            if (isSwimming)
             {
                 RB.gravityScale = Data.gravitySwimming;
             }
@@ -722,7 +725,7 @@ namespace LabLuby
 
         private void CanSlider()
         {
-            if (!IsSwimming && _coll.onLeftWall && !_coll.onGround && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
+            if (!isSwimming && _coll.onLeftWall && !_coll.onGround && !CanJump() && !canClibLedge && LastOnGroundTime < -.3f)
             {
                 characterAnimationBehaviour.SetWallSliderAnim(true);
             }
@@ -731,14 +734,14 @@ namespace LabLuby
                 characterAnimationBehaviour.SetWallSliderAnim(false);
             }
 
-            if (!IsSwimming && !_coll.onLeftWall && !_coll.onGround && !CanJump())
+            if (!isSwimming && !_coll.onLeftWall && !_coll.onGround && !CanJump())
             {
                 characterAnimationBehaviour.SetWallSliderAnim(false);
             }
         }
         private void CanLedgeClimb()
         {
-            if (!_coll.onSpaceGround && !_coll.onLedge && _coll.onLeftWall && !IsSwimming)
+            if (!_coll.onSpaceGround && !_coll.onLedge && _coll.onLeftWall && !isSwimming)
             {
                 canClibLedge = true;
                 ledgePosBot = _coll.leftOffset.position;

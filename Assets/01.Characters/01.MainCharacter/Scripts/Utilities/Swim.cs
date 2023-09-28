@@ -24,6 +24,12 @@ public class Swim : MonoBehaviour
         _data = _mainController.Data;
         _characterAnim = _mainController.characterAnimationBehaviour;
     }
+
+    private void LateUpdate()
+    {
+        CanSwim(UnitController.isSwimming, UnitController.main.moveInput);
+    }
+
     public void CanSwim(bool isSwimming, Vector2 moveInput)
     {
         if (isSwimming)
