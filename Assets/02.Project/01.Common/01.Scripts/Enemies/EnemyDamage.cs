@@ -7,9 +7,10 @@ public class EnemyDamage : MonoBehaviour
 {
     [SerializeField] protected int damage = 1;
     private UnitController _player;
+    private static string TAG = "Player";
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == TAG)
         {
             if (_player == null)
             {
@@ -17,5 +18,10 @@ public class EnemyDamage : MonoBehaviour
             }
             _player.PlayerHit(damage);
         }
+
+        CollisonIgnore(collision);
     }
+
+    public virtual void CollisonIgnore(Collider2D collision) { }
+
 }

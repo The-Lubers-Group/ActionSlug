@@ -11,7 +11,7 @@ namespace LabLuby.FSM
     {
         public AttackState(
                 bool needsExitTime,
-                BaseEnemy enemy,
+                BaseEnemyOld enemy,
                 Action<State<EnemyState, StateEvent>> onEnter,
                 float exitTime = 0.33f) : base(needsExitTime, enemy, exitTime, onEnter) { }
 

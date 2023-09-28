@@ -139,8 +139,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2017415797
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 4740742658319907719, guid: d4f2f936f814df24fb7559370c465cdc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  speed: 2
+  speed: 3.26
   pointA: {fileID: 7696549267571778777}
   pointB: {fileID: 3433774929995813332}
 --- !u!95 &8937860272126001158
@@ -234,13 +234,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.75, y: 0.875}
-      - {x: -0.875, y: 0.5625}
-      - {x: -0.9375, y: 0.1875}
-      - {x: -0.9375, y: -0.9375}
-      - {x: 1.125, y: -0.9375}
-      - {x: 1.125, y: 0.625}
-      - {x: 0.5625, y: 0.875}
+    - - {x: -0.5453625, y: 0.79541874}
+      - {x: -0.738575, y: 0.5397625}
+      - {x: -0.8579186, y: 0.1875}
+      - {x: -0.863603, y: -0.94886863}
+      - {x: 1.0738406, y: -0.94886863}
+      - {x: 0.71004057, y: 0.44878438}
+      - {x: 0.39196873, y: 0.8067875}
   m_UseDelaunayMesh: 0
 --- !u!50 &792686885346183426
 Rigidbody2D:
@@ -250,7 +250,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7601016987518067013}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -265,10 +265,10 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7696549267571778777
 GameObject:
   m_ObjectHideFlags: 0

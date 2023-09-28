@@ -7,7 +7,7 @@ namespace LabLuby.FSM
 {
     public abstract class EnemyStateBase : State<EnemyState, StateEvent>
     {
-        protected readonly BaseEnemy _enemy;
+        protected readonly BaseEnemyOld _enemy;
         protected readonly NavMeshAgent _agent;
         protected readonly Animator _animator;
         protected bool _requestedExit;
@@ -19,7 +19,7 @@ namespace LabLuby.FSM
         protected readonly Func<State<EnemyState, StateEvent>, bool> _canExit;
 
         public EnemyStateBase(bool needsExitTime,
-            BaseEnemy enemy,
+            BaseEnemyOld enemy,
             float exitTime = 0.1f,
             Action<State<EnemyState, StateEvent>> onEnter = null,
             Action<State<EnemyState, StateEvent>> onLogic = null,

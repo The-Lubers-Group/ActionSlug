@@ -1,3 +1,4 @@
+using LabLuby.Enemy;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -549,10 +550,8 @@ public class PlayerManager : MonoBehaviour
 
         foreach(Collider2D hit in hitEnemies)
         {
-            Debug.Log("foi dano ");
-            //Debug.Log("foi dano " + hit.name);
-
-            hit.GetComponent<BaseEnemies>().TakeDamage(attackDamage);
+            //Debug.Log("foi dano ");
+            hit.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
 
 
         }

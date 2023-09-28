@@ -8,7 +8,7 @@ namespace LabLuby.FSM
     {
         private Transform _target;
 
-        public RunState(bool needsExitTime, BaseEnemy enemy, Transform target) : base(needsExitTime, enemy)
+        public RunState(bool needsExitTime, BaseEnemyOld enemy, Transform target) : base(needsExitTime, enemy)
         {
             this._target = target;
         }

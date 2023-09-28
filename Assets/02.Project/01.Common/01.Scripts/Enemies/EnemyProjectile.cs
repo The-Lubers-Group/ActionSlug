@@ -39,8 +39,8 @@ public class EnemyProjectile : EnemyDamage
         }
     }
 
-    
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*
+    private void  OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
         
@@ -50,6 +50,19 @@ public class EnemyProjectile : EnemyDamage
             _audioSource.PlayOneShot(_soundFX);
         }
     }
+    */
+
+
+    public override void CollisonIgnore(Collider2D collision)
+    {
+        if (collision.gameObject.tag != TAG_IGNORE)
+        {
+            _animator.SetTrigger(TAG_TRIGGER);
+            _audioSource.PlayOneShot(_soundFX);
+        }
+    }
+
+
 
     public void DisableObject()
     {

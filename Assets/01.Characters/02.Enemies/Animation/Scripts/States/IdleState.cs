@@ -6,7 +6,7 @@ namespace LabLuby.FSM
     {
         private float _animationLoopCount = 0;
 
-        public IdleState(bool needsExitTime, BaseEnemy enemy) : base(needsExitTime, enemy) { }
+        public IdleState(bool needsExitTime, BaseEnemyOld enemy) : base(needsExitTime, enemy) { }
 
         public override void OnEnter()
         {
