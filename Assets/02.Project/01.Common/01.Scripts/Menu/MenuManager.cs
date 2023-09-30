@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager main;
     private UnitController mainCharacter;
 
+    [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Canvas _menuCanvas;
     [SerializeField] private Canvas _mobileCanvas;
     [SerializeField] private Canvas _masterCanvas;
@@ -39,9 +40,16 @@ public class MenuManager : MonoBehaviour
         {
             main = this;
         }
+        _canvasGroup.transform.DOScale(.95f, 0f);
+
+
     }
     private void Start()
     {
+
+        _canvasGroup.transform.DOScale(1f, 1f).SetEase(Ease.Linear);
+        _canvasGroup.DOFade(0f, 1f).From().SetEase(Ease.OutQuad);
+
         _UIPauseMenu.SetActive(false);
         _UIRespawnMenu.SetActive(false);
         mainCharacter = UnitController.main;
@@ -55,6 +63,9 @@ public class MenuManager : MonoBehaviour
         _mobileCanvas.worldCamera = Camera.main;
         _masterCanvas.worldCamera = Camera.main;
         _transitionsCanvas.worldCamera = Camera.main;
+
+
+            //.SetEase(Ease.OutQuad);
 
     }
 
