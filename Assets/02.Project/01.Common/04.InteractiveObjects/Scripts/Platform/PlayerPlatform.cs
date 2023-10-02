@@ -1,66 +1,107 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
-public class PlayerMovingPlatfor : MonoBehaviour
+namespace LabLuby.Platform
 {
-    [SerializeField] private Transform platform;
-    [SerializeField] private Transform startPoint;
-    [SerializeField] private Transform endPoint;
-
-    [SerializeField] private float speed = 1f;
-    int direction = 1;
-
-    private void Update()
+    public class PlayerMovingPlatfor : MonoBehaviour
     {
-        Vector2 target = CurrentMovementTarget();
-        platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
-        
-        
-        //float distance = (target - (Vector2)platform.position).magnitude;
+        [SerializeField] private float _time = 2f;
 
+        [Space(10)]
+        [SerializeField] private Transform _startPoint;
+        [SerializeField] private Transform _endPoint;
 
-        /*
-        Vector2 target = CurrentMovementTarget();
-        platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
-        
-        float distance = (target - (Vector2)platform.position).magnitude;
-        if (distance < 0.1f)
+        private PlatformEffector2D _platformEffector2D;
+        private GameInput gameInput;
+        private Transform _platform;
+        private Animator _animator;
+        private Vector3 _velocity;
+        private int _direction;
+        private Vector3 _pos;
+
+        private void Awake()
         {
-            direction *= -1;
+            _platformEffector2D = GetComponent<PlatformEffector2D>();
+            _platform = GetComponent<Transform>();
+            _animator = GetComponent<Animator>();
+            _pos = transform.position;
+            _direction = 1;
         }
-        */
-    }
+        private void Update()
+        {
+            Vector2 target = CurrentMovementTarget();
+            _platform.DOMove(target, _time).SetEase(Ease.Linear);
 
-    Vector2 CurrentMovementTarget()
-    {
-        if (direction == 1)
-        {
-            return startPoint.position;
-        }
-        else
-        {
-            return endPoint.position;
-        }
-    }
+            _velocity = (transform.position - _pos) / Time.deltaTime;
+            _pos = transform.position;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            direction = -1;
-            //collision.gameObject.CompareTag("Player") = transform;
-            GameObject.FindWithTag("Player").transform.parent = transform;
+            if (_velocity.magnitude > 1)
+            {
+                _animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                _animator.SetBool("isMoving", false);
+            }
         }
-    }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        Vector2 CurrentMovementTarget()
         {
-            direction = 1;
-            //GameObject.FindWithTag("Player").transform.parent = null;
-            GameObject.FindWithTag("Player").transform.parent = null;
+            if (_direction == 1)
+            {
+                return _startPoint.position;
+            }
+            else
+            {
+                return _endPoint.position;
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.collider.CompareTag("Player"))
+            {
+                _direction = -1;
+                if (transform.position.y < collision.transform.position.y)
+                {
+                    collision.transform.SetParent(transform);
+                    gameInput = GameObject.FindAnyObjectByType<GameInput>();
+                }
+            }
+        }
+
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            if (gameInput == null)
+            {
+                return;
+            }
+
+            if (gameInput.GetMoveLeftRight())
+            {
+                collision.transform.SetParent(null);
+            }
+            else
+            {
+                collision.transform.SetParent(transform);
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                _direction = 1;
+                _platformEffector2D.rotationalOffset = 0;
+                collision.transform.SetParent(null);
+                gameInput = null;
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            //Gizmos.DrawLine(_startPoint.position, new Vector3(_startPoint.position.x, _endPoint.position.x));
         }
     }
 }

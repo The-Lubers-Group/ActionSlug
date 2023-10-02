@@ -9,7 +9,7 @@ public class MovingPlatformNew : MonoBehaviour
     [SerializeField] private int startinPoint;          // starting index (position of the platform)
     [SerializeField] private Transform[] points;        // An array of transform points (positions where the platform needs to move)
     
-    [SerializeField] private PlatformEffector2D platformEffector2D;
+    [SerializeField] private PlatformEffector2D platformEffector2D; 
     
     
     [SerializeField] private GameInput gameInput;        // GameInput Reference (Use the new input system)

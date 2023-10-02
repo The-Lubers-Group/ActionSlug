@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager main;
     private UnitController mainCharacter;
 
-    [SerializeField] private CanvasGroup _canvasGroup;
+    public CanvasGroup _canvasGroup;
     [SerializeField] private Canvas _menuCanvas;
     [SerializeField] private Canvas _mobileCanvas;
     [SerializeField] private Canvas _masterCanvas;

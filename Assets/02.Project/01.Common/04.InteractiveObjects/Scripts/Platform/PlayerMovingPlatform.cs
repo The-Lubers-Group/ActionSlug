@@ -63,6 +63,12 @@ namespace LabLuby.Platform
                 GameObject.FindWithTag("Player").transform.parent = null;
             }
         }
+
+
+
+      
+
+
     }
 
 }
