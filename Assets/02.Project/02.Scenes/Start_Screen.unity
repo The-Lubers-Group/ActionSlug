@@ -354,6 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 280993567}
   - component: {fileID: 280993568}
+  - component: {fileID: 280993569}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -406,6 +407,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &280993569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280993566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e31f8d38ee6fc41aaf8df8b7a90825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &339199755
 GameObject:
   m_ObjectHideFlags: 0
@@ -5957,7 +5970,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "APERTE UM BOT\xC3O PARA INICIAR\n"
+  m_text: "APERTE UM BOT\xC3O PARA Come\xE7ar\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e662c90d3767e8046991d53703338837, type: 2}
   m_sharedMaterial: {fileID: 7251727012594532923, guid: e662c90d3767e8046991d53703338837, type: 2}
