@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2936c652eafe0ac47a76108b0b900eea
+guid: 9d91cf733a1b7d040a129ab1247beedf
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,7 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Btn_Uncompress
+  - name: Layer 2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -103,9 +103,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1215
-      height: 135
-    spriteID: a6b6d7bbd75ffdb4aba7305ecc7bcfd5
+      width: 3654
+      height: 2160
+    spriteID: 63910a1b6548a2a40a08d3708019f679
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,9 +113,9 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 3}
-    spritePosition: {x: 0, y: 27}
-  - name: Btn_Hover
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 0, y: 0}
+  - name: Layer 1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -123,10 +123,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 147
-      width: 1215
-      height: 135
-    spriteID: 6503cfbab6072484191d24bf55f48ba6
+      y: 2172
+      width: 1483
+      height: 2160
+    spriteID: 9329fd46a8a94094ca4273cdc608022e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,29 +134,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 146}
-    spritePosition: {x: 0, y: 27}
-  - name: Btn_Compress
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 290
-      width: 1215
-      height: 135
-    spriteID: 17701425bff8e49479c7a6fcfa57d20e
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 289}
-    spritePosition: {x: 0, y: 27}
+    uvTransform: {x: 4, y: 2172}
+    spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
     parts: []
@@ -191,36 +170,66 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Btn_Uncompress
-    spriteName: Btn_Uncompress
+  - name: Rectangle 1
+    spriteName: 
     isGroup: 0
     parentIndex: -1
-    spriteID: a6b6d7bbd75ffdb4aba7305ecc7bcfd5
-    layerID: 2
+    spriteID: d13b89b641711b14d841352e3be36637
+    layerID: 23
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: background Left
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 35c56c75d473b854b91f89ca45b30d76
+    layerID: 20
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Gradient Map 1
+    spriteName: 
+    isGroup: 0
+    parentIndex: 1
+    spriteID: de3fbd22a7aaeed43bd7d0bdff7be40b
+    layerID: 17
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Layer 2
+    spriteName: Layer 2
+    isGroup: 0
+    parentIndex: 1
+    spriteID: 63910a1b6548a2a40a08d3708019f679
+    layerID: 15
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Btn_Hover
-    spriteName: Btn_Hover
+  - name: Layer 1
+    spriteName: Layer 1
     isGroup: 0
-    parentIndex: -1
-    spriteID: 6503cfbab6072484191d24bf55f48ba6
-    layerID: 9
-    mosaicPosition: {x: 4, y: 147}
+    parentIndex: 1
+    spriteID: 9329fd46a8a94094ca4273cdc608022e
+    layerID: 2
+    mosaicPosition: {x: 4, y: 2172}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Btn_Compress
-    spriteName: Btn_Compress
+  - name: Layer 1 copy 3
+    spriteName: 
     isGroup: 0
-    parentIndex: -1
-    spriteID: 17701425bff8e49479c7a6fcfa57d20e
-    layerID: 4
-    mosaicPosition: {x: 4, y: 290}
+    parentIndex: 1
+    spriteID: 13d1a74506a5c0f4e9a9eb51f7099b5f
+    layerID: 14
+    mosaicPosition: {x: 0, y: 0}
     flatten: 0
-    isImported: 1
-    isVisible: 1
+    isImported: 0
+    isVisible: 0
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
