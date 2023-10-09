@@ -39,6 +39,7 @@ public class ButtonManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void OnPointerExit(PointerEventData eventData)
     {
         _img.sprite = _default;
+        
     }
     
 }
