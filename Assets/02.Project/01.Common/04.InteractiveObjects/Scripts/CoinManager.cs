@@ -35,14 +35,13 @@ namespace LabLuby
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "Player")
-            {
-                 print("asdasd");
+            //if (collision.gameObject.tag == "Player")
+            //{
                 _audioSource.PlayOneShot(_soundFX);
                 MenuManager.main.AddCoin(1);
                 _spriteIcon.sortingOrder = 3;
                 _aux = true;
-            }
+            //}
         }
     }
 
