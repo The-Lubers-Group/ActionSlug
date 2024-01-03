@@ -37,6 +37,7 @@ namespace LabLuby
         {
             if (collision.gameObject.tag == "Player")
             {
+                 print("asdasd");
                 _audioSource.PlayOneShot(_soundFX);
                 MenuManager.main.AddCoin(1);
                 _spriteIcon.sortingOrder = 3;

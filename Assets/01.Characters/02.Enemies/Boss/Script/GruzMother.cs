@@ -138,6 +138,7 @@ public class GruzMother : EnemyDamage
 
     public void AttackPlayer()
     {
+
         if (!hasPlayerPosition)
         {
             playerPosition = player.transform.position - transform.position;
@@ -161,6 +162,7 @@ public class GruzMother : EnemyDamage
 
     void FlipTowardsPlayer()
     {
+        /*
         float playerDirection = player.transform.position.x - transform.position.x;
 
         if(playerDirection > 0 && facingLeft)
@@ -171,6 +173,7 @@ public class GruzMother : EnemyDamage
         {
             Flip();
         }
+        */
     }
 
     private void ChangeDirection()
@@ -193,7 +196,7 @@ public class GruzMother : EnemyDamage
     public void GetDamage()
     {
         enemyAnim.SetTrigger("Hit");
-        _life -= 1;
+        _life -= 3;
         if ( _life <= 0)
         {
             Die();
